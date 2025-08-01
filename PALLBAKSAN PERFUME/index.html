@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pallbaksan Perfume</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Inter:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome for Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <style>
+      /* CSS Reset and Global Styles */
+      :root {
+        --color-primary: #111111;
+        --color-accent: #daa520;
+        --color-background: #faf9f6;
+        --color-text: #111111;
+        --color-text-light: #666666;
+        --font-serif: "Cormorant Garamond", serif;
+        --font-sans: "Inter", sans-serif;
+        --spacing-xs: 8px;
+        --spacing-sm: 16px;
+        --spacing-md: 24px;
+        --spacing-lg: 48px;
+        --spacing-xl: 96px;
+        --max-width: 1200px;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: var(--font-sans);
+        color: var(--color-text);
+        background-color: var(--color-background);
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding: 0 var(--spacing-sm);
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-family: var(--font-serif);
+        font-weight: 700;
+        line-height: 1.2;
+        letter-spacing: 1px;
+      }
+
+      h1 {
+        font-size: clamp(2.5rem, 8vw, 5rem);
+      }
+      h2 {
+        font-size: clamp(2rem, 6vw, 3rem);
+      }
+      h3 {
+        font-size: clamp(1.5rem, 4vw, 2.25rem);
+      }
+      p {
+        font-size: 1rem;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      /* Utility classes */
+      .text-center {
+        text-align: center;
+      }
+      .text-accent {
+        color: var(--color-accent);
+      }
+      .bg-dark {
+        background-color: var(--color-primary);
+        color: var(--color-background);
+      }
+      .bg-light {
+        background-color: var(--color-background);
+      }
+
+      /* Navigation */
+      .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 100;
+        padding: var(--spacing-md) 0;
+        transition: background-color 0.3s ease;
+      }
+
+      .header.scrolled {
+        background-color: rgba(250, 249, 246, 0.9);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      }
+
+      .nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .nav-logo {
+        font-family: var(--font-serif);
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+      }
+
+      .nav-menu {
+        list-style: none;
+        display: none;
+      }
+
+      .nav-menu a {
+        font-weight: 400;
+        font-size: 1rem;
+        padding: 0 var(--spacing-sm);
+        position: relative;
+      }
+
+      .nav-menu a::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 1px;
+        background-color: var(--color-accent);
+        transition: width 0.3s ease;
+      }
+
+      .nav-menu a:hover::after {
+        width: 100%;
+      }
+
+      @media (min-width: 768px) {
+        .nav-menu {
+          display: flex;
+        }
+      }
+
+      /* Hero Section */
+      .hero {
+        position: relative;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        overflow: hidden;
+        color: var(--color-background);
+      }
+
+      .hero-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url("https://placehold.co/1920x1080/111/fff?text=Elegant+Perfume+Bottle")
+          center/cover no-repeat;
+        filter: brightness(0.6);
+        z-index: -1;
+        transform: scale(1.1); /* For parallax effect */
+      }
+
+      .hero-content {
+        z-index: 1;
+        padding: var(--spacing-sm);
+      }
+
+      .hero-tagline {
+        font-size: clamp(2.5rem, 8vw, 5rem);
+        margin-bottom: var(--spacing-sm);
+      }
+
+      .hero-subtext {
+        font-family: var(--font-sans);
+        font-size: clamp(1rem, 3vw, 1.25rem);
+        margin-bottom: var(--spacing-md);
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: var(--spacing-sm) var(--spacing-md);
+        border-radius: 50px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .btn-primary {
+        background-color: var(--color-accent);
+        color: var(--color-primary);
+      }
+
+      .btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Product Showcase Section */
+      .products {
+        padding: var(--spacing-xl) 0;
+      }
+
+      .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: var(--spacing-lg);
+        margin-top: var(--spacing-xl);
+      }
+
+      .product-card {
+        background-color: #fff;
+        border-radius: var(--spacing-sm);
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        text-align: center;
+        padding: var(--spacing-sm);
+      }
+
+      .product-image {
+        width: 100%;
+        height: 350px;
+        object-fit: cover;
+        border-radius: var(--spacing-sm);
+        margin-bottom: var(--spacing-sm);
+      }
+
+      .product-name {
+        font-size: 1.5rem;
+        margin-bottom: var(--spacing-xs);
+      }
+
+      .product-price {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--color-accent);
+        margin-bottom: var(--spacing-sm);
+      }
+
+      .product-card .btn {
+        width: 100%;
+      }
+
+      /* About Section */
+      .about {
+        padding: var(--spacing-xl) 0;
+      }
+
+      .about-content {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+        align-items: center;
+      }
+
+      @media (min-width: 768px) {
+        .about-content {
+          grid-template-columns: 1fr 1fr;
+          gap: var(--spacing-xl);
+        }
+      }
+
+      .about-text h2 {
+        margin-bottom: var(--spacing-sm);
+      }
+
+      .about-text p {
+        font-size: 1.125rem;
+        color: var(--color-text-light);
+        max-width: 600px;
+      }
+
+      .about-image {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+        border-radius: var(--spacing-md);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Contact Section */
+      .contact {
+        padding: var(--spacing-xl) 0;
+      }
+
+      .contact-form-container {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: var(--spacing-lg);
+        border-radius: var(--spacing-sm);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      }
+
+      .contact-form h2 {
+        margin-bottom: var(--spacing-lg);
+        text-align: center;
+      }
+
+      .form-group {
+        margin-bottom: var(--spacing-md);
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: var(--spacing-xs);
+        font-weight: 700;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: var(--spacing-sm);
+        border: 1px solid #ddd;
+        border-radius: var(--spacing-xs);
+        font-family: var(--font-sans);
+        transition: border-color 0.3s ease;
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: var(--color-accent);
+      }
+
+      .form-group textarea {
+        resize: vertical;
+        min-height: 150px;
+      }
+
+      .form-group .btn {
+        width: 100%;
+      }
+
+      /* Footer */
+      .footer {
+        padding: var(--spacing-lg) 0;
+        font-size: 0.875rem;
+        text-align: center;
+      }
+
+      .footer p {
+        margin-top: var(--spacing-xs);
+      }
+
+      /* Back-to-top button */
+      .back-to-top {
+        position: fixed;
+        bottom: var(--spacing-md);
+        right: var(--spacing-md);
+        background-color: var(--color-accent);
+        color: var(--color-primary);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+        z-index: 90;
+      }
+
+      .back-to-top.visible {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      /* Modal */
+      .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(17, 17, 17, 0.8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+        z-index: 1000;
+      }
+
+      .modal.visible {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .modal-content {
+        background-color: var(--color-background);
+        padding: var(--spacing-lg);
+        border-radius: var(--spacing-sm);
+        max-width: 500px;
+        width: 90%;
+        text-align: center;
+        position: relative;
+      }
+
+      .modal-content h3 {
+        margin-bottom: var(--spacing-sm);
+      }
+
+      .modal-close {
+        position: absolute;
+        top: var(--spacing-sm);
+        right: var(--spacing-sm);
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--color-text);
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <nav class="nav">
+          <a href="#hero" class="nav-logo">Pallbaksan Perfume</a>
+          <ul class="nav-menu">
+            <li><a href="#products">Products</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section id="hero" class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+          <h1 class="hero-tagline">A Fragrance Beyond Memory</h1>
+          <p class="hero-subtext">Pallbaksan Perfume – crafted for the soul.</p>
+          <a href="#products" class="btn btn-primary">Discover the Scent</a>
+        </div>
+      </section>
+
+      <!-- Product Showcase -->
+      <section id="products" class="products bg-light">
+        <div class="container">
+          <h2 class="text-center">Our Signature Collection</h2>
+          <div class="products-grid">
+            <!-- Product 1 -->
+            <div class="product-card">
+              <img
+                class="product-image"
+                src="https://placehold.co/400x500/F5DEB3/111111?text=AURA+ELEGANCE"
+                alt="Aura Elegance perfume bottle"
+              />
+              <h3 class="product-name">Aura Elegance</h3>
+              <p class="product-price">$50</p>
+              <a href="#" class="btn btn-primary">Buy Now</a>
+            </div>
+            <!-- Product 2 -->
+            <div class="product-card">
+              <img
+                class="product-image"
+                src="https://placehold.co/400x500/DAA520/111111?text=MIDNIGHT+DESIRE"
+                alt="Midnight Desire perfume bottle"
+              />
+              <h3 class="product-name">Midnight Desire</h3>
+              <p class="product-price">$65</p>
+              <a href="#" class="btn btn-primary">Buy Now</a>
+            </div>
+            <!-- Product 3 -->
+            <div class="product-card">
+              <img
+                class="product-image"
+                src="https://placehold.co/400x500/111111/FAF9F6?text=GOLDEN+SERENITY"
+                alt="Golden Serenity perfume bottle"
+              />
+              <h3 class="product-name">Golden Serenity</h3>
+              <p class="product-price">$75</p>
+              <a href="#" class="btn btn-primary">Buy Now</a>
+            </div>
+            <!-- Product 4 -->
+            <div class="product-card">
+              <img
+                class="product-image"
+                src="https://placehold.co/400x500/F5DEB3/111111?text=ETERNAL+BLISS"
+                alt="Eternal Bliss perfume bottle"
+              />
+              <h3 class="product-name">Eternal Bliss</h3>
+              <p class="product-price">$55</p>
+              <a href="#" class="btn btn-primary">Buy Now</a>
+            </div>
+            <!-- Product 5 -->
+            <div class="product-card">
+              <img
+                class="product-image"
+                src="https://placehold.co/400x500/DAA520/111111?text=VELVET+DREAM"
+                alt="Velvet Dream perfume bottle"
+              />
+              <h3 class="product-name">Velvet Dream</h3>
+              <p class="product-price">$80</p>
+              <a href="#" class="btn btn-primary">Buy Now</a>
+            </div>
+            <!-- Product 6 -->
+            <div class="product-card">
+              <img
+                class="product-image"
+                src="https://placehold.co/400x500/111111/FAF9F6?text=SILVER+LUNE"
+                alt="Silver Lune perfume bottle"
+              />
+              <h3 class="product-name">Silver Lune</h3>
+              <p class="product-price">$70</p>
+              <a href="#" class="btn btn-primary">Buy Now</a>
+            </div>
+            <!-- Product 7 -->
+            <div class="product-card">
+              <img
+                class="product-image"
+                src="https://placehold.co/400x500/F5DEB3/111111?text=SECRET+GARDEN"
+                alt="Secret Garden perfume bottle"
+              />
+              <h3 class="product-name">Secret Garden</h3>
+              <p class="product-price">$60</p>
+              <a href="#" class="btn btn-primary">Buy Now</a>
+            </div>
+            <!-- Product 8 -->
+            <div class="product-card">
+              <img
+                class="product-image"
+                src="https://placehold.co/400x500/DAA520/111111?text=OCEAN+BREEZE"
+                alt="Ocean Breeze perfume bottle"
+              />
+              <h3 class="product-name">Ocean Breeze</h3>
+              <p class="product-price">$50</p>
+              <a href="#" class="btn btn-primary">Buy Now</a>
+            </div>
+            <!-- Product 9 -->
+            <div class="product-card">
+              <img
+                class="product-image"
+                src="https://placehold.co/400x500/111111/FAF9F6?text=ROYAL+AMBER"
+                alt="Royal Amber perfume bottle"
+              />
+              <h3 class="product-name">Royal Amber</h3>
+              <p class="product-price">$85</p>
+              <a href="#" class="btn btn-primary">Buy Now</a>
+            </div>
+            <!-- Product 10 -->
+            <div class="product-card">
+              <img
+                class="product-image"
+                src="https://placehold.co/400x500/F5DEB3/111111?text=VANILLA+DREAM"
+                alt="Vanilla Dream perfume bottle"
+              />
+              <h3 class="product-name">Vanilla Dream</h3>
+              <p class="product-price">$60</p>
+              <a href="#" class="btn btn-primary">Buy Now</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About the Brand -->
+      <section id="about" class="about bg-dark">
+        <div class="container">
+          <div class="about-content">
+            <div class="about-text">
+              <h2 class="text-accent">The Story of Scent</h2>
+              <p>
+                Pallbaksan Perfume is more than just a fragrance; it is an art
+                form. Each bottle encapsulates a narrative, a moment in time,
+                and a journey for the senses. Crafted by master perfumers, our
+                scents are a harmonious blend of rare, premium ingredients,
+                meticulously selected from around the globe.
+              </p>
+              <p>
+                We believe that a fragrance should not just be worn, but
+                experienced. It should be a personal signature that leaves a
+                lasting, elegant impression. Our commitment is to pure luxury,
+                quality, and timeless sophistication.
+              </p>
+            </div>
+            <img
+              src="https://placehold.co/800x600/111111/FAF9F6?text=Story+of+the+Scent"
+              alt="An elegant, dark perfume bottle against a minimalist background."
+              class="about-image"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact" class="contact bg-light">
+        <div class="container">
+          <div class="contact-form-container">
+            <form id="contactForm" class="contact-form">
+              <h2>Get in Touch</h2>
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required />
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required />
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" required></textarea>
+              </div>
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary">
+                  Send Message
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer bg-dark">
+      <div class="container">
+        <p class="nav-logo">Pallbaksan Perfume</p>
+        <p>
+          Contact:
+          <a href="mailto:hashimukabiba@gmail.com">hashimukabiba@gmail.com</a>
+        </p>
+        <p>&copy; 2024 Pallbaksan Perfume. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Back-to-top button -->
+    <div class="back-to-top" id="backToTop">
+      <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal" id="successModal">
+      <div class="modal-content">
+        <span class="modal-close">&times;</span>
+        <h3>Message Sent!</h3>
+        <p>Thank you for reaching out. We will get back to you shortly.</p>
+      </div>
+    </div>
+
+    <!-- GSAP and ScrollTrigger scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <script>
+      // Ensure GSAP and ScrollTrigger are registered
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Wait for the entire window to load before running the script
+      window.onload = function () {
+        // --- GSAP Animations ---
+
+        // Hero section animations
+        const heroTimeline = gsap.timeline();
+        heroTimeline.from(
+          ".hero-bg",
+          {
+            scale: 1.2,
+            duration: 2.5,
+            ease: "power2.out",
+          },
+          0
+        );
+        heroTimeline.from(
+          ".hero-tagline",
+          {
+            y: 50,
+            opacity: 0,
+            duration: 1,
+            ease: "power2.out",
+          },
+          0.5
+        );
+        heroTimeline.from(
+          ".hero-subtext",
+          {
+            y: 50,
+            opacity: 0,
+            duration: 1,
+            ease: "power2.out",
+          },
+          0.8
+        );
+        heroTimeline.from(
+          ".btn",
+          {
+            y: 30,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power2.out",
+          },
+          1.1
+        );
+
+        // Product cards staggered animation on scroll
+        gsap.from(".product-card", {
+          y: 50,
+          opacity: 0,
+          duration: 1,
+          ease: "power2.out",
+          stagger: 0.2, // Staggered effect for all cards
+          scrollTrigger: {
+            trigger: ".products-grid", // Trigger when the grid comes into view
+            start: "top 80%",
+            end: "bottom top",
+            toggleActions: "play none none none",
+          },
+        });
+
+        // About section animation
+        gsap.from(".about-content", {
+          opacity: 0,
+          y: 50,
+          duration: 1.5,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: ".about",
+            start: "top 80%",
+            end: "bottom top",
+            toggleActions: "play none none none",
+          },
+        });
+
+        // Contact form animation
+        gsap.from(".contact-form-container", {
+          opacity: 0,
+          y: 50,
+          duration: 1.5,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: ".contact",
+            start: "top 80%",
+            end: "bottom top",
+            toggleActions: "play none none none",
+          },
+        });
+
+        // Footer animation
+        gsap.from(".footer", {
+          opacity: 0,
+          y: 20,
+          duration: 1,
+          scrollTrigger: {
+            trigger: ".footer",
+            start: "top 95%",
+            end: "bottom top",
+            toggleActions: "play none none none",
+          },
+        });
+
+        // --- Other JavaScript Functionality ---
+
+        // Header shrink on scroll
+        const header = document.querySelector(".header");
+        window.addEventListener("scroll", () => {
+          if (window.scrollY > 50) {
+            header.classList.add("scrolled");
+          } else {
+            header.classList.remove("scrolled");
+          }
+        });
+
+        // Back-to-top button functionality
+        const backToTopButton = document.getElementById("backToTop");
+        window.addEventListener("scroll", () => {
+          if (window.scrollY > 300) {
+            backToTopButton.classList.add("visible");
+          } else {
+            backToTopButton.classList.remove("visible");
+          }
+        });
+
+        backToTopButton.addEventListener("click", () => {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+
+        // Contact form and modal functionality
+        const contactForm = document.getElementById("contactForm");
+        const successModal = document.getElementById("successModal");
+        const modalClose = document.querySelector(".modal-close");
+
+        contactForm.addEventListener("submit", (e) => {
+          e.preventDefault(); // Prevent default form submission
+
+          // Simulate form submission success
+          successModal.classList.add("visible");
+          contactForm.reset();
+        });
+
+        // Close modal when close button is clicked
+        modalClose.addEventListener("click", () => {
+          successModal.classList.remove("visible");
+        });
+
+        // Close modal when clicking outside the content
+        window.addEventListener("click", (e) => {
+          if (e.target === successModal) {
+            successModal.classList.remove("visible");
+          }
+        });
+      };
+    </script>
+  </body>
+</html>

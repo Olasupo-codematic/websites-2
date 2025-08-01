@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sengordered Audio Books</title>
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- GSAP Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <style>
+      /* CSS Reset and Global Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary-bg: #0b0b0b;
+        --primary-color: #0d1b2a;
+        --accent-color: #00d9c0;
+        --secondary-text: #b1b1b1;
+        --cta-color: #b044f6;
+        --text-color: #f8f8f8;
+        --header-font: "Poppins", sans-serif;
+        --body-font: "Poppins", sans-serif;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background-color: var(--primary-bg);
+        color: var(--text-color);
+        font-family: var(--body-font);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      section {
+        padding: 80px 0;
+        min-height: 100vh; /* Ensures sections take up at least full viewport height */
+      }
+
+      h1 {
+        font-size: 48px;
+        line-height: 1.1;
+      }
+      h2 {
+        font-size: 32px;
+        line-height: 1.2;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+      h3 {
+        font-size: 24px;
+        line-height: 1.3;
+      }
+      p {
+        font-size: 18px;
+        line-height: 1.8;
+        color: var(--secondary-text);
+      }
+
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 36px;
+        }
+        h2 {
+          font-size: 24px;
+        }
+        p {
+          font-size: 16px;
+        }
+        section {
+          padding: 60px 0;
+        }
+      }
+
+      /* Reusable Components */
+      .btn {
+        display: inline-block;
+        padding: 15px 30px;
+        border: none;
+        background-color: var(--cta-color);
+        color: var(--text-color);
+        font-size: 18px;
+        font-weight: 600;
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+        box-shadow: 0 0 10px rgba(176, 68, 246, 0.5);
+      }
+
+      .btn:hover {
+        transform: scale(1.05);
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+
+      /* Header */
+      .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: var(--primary-bg);
+        z-index: 999;
+        padding: 20px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .header .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .header .logo {
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--accent-color);
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .header nav a {
+        color: var(--secondary-text);
+        text-decoration: none;
+        margin-left: 25px;
+        font-size: 16px;
+        transition: color 0.3s ease;
+      }
+
+      .header nav a:hover {
+        color: var(--accent-color);
+      }
+
+      /* Hero Section */
+      .hero {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 0 20px;
+        background-color: var(--primary-color);
+        min-height: 100vh;
+      }
+
+      .hero-content {
+        max-width: 800px;
+      }
+
+      .hero h1 {
+        color: var(--accent-color);
+        font-weight: 700;
+        margin-bottom: 20px;
+      }
+
+      .hero p {
+        margin-bottom: 40px;
+        color: var(--text-color);
+      }
+
+      /* How It Works Section */
+      .how-it-works {
+        text-align: center;
+        background-color: var(--primary-bg);
+      }
+
+      .how-it-works-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+        margin-top: 40px;
+      }
+
+      .how-it-works-item {
+        background-color: var(--primary-color);
+        padding: 40px 20px;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .how-it-works-item h3 {
+        color: var(--accent-color);
+        margin-bottom: 10px;
+      }
+
+      .how-it-works-item p {
+        font-size: 16px;
+      }
+
+      @media (max-width: 768px) {
+        .how-it-works-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* Audiobook Library Section */
+      .library {
+        background-color: var(--primary-bg);
+      }
+
+      .library-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+      }
+
+      .book-card {
+        background-color: var(--primary-color);
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+      }
+
+      .book-card img {
+        width: 100%;
+        height: auto;
+        border-radius: 6px;
+        margin-bottom: 15px;
+        transition: transform 0.3s ease;
+      }
+
+      .book-card h3 {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 5px;
+      }
+
+      .book-card .genre {
+        font-size: 14px;
+        color: var(--accent-color);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 10px;
+      }
+
+      .book-card .description {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        padding: 20px;
+        background-color: rgba(13, 27, 42, 0.9);
+        color: var(--text-color);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+
+      @media (max-width: 1024px) {
+        .library-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .library-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 480px) {
+        .library-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* Pricing Section */
+      .pricing {
+        background-color: var(--primary-bg);
+      }
+
+      .pricing-grid {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+      }
+
+      .pricing-card {
+        background-color: var(--primary-color);
+        padding: 40px;
+        border-radius: 12px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        flex: 1;
+        max-width: 350px;
+      }
+
+      .pricing-card.yearly {
+        box-shadow: 0 0 40px var(--accent-color);
+        border: 2px solid var(--accent-color);
+      }
+
+      .pricing-card h3 {
+        color: var(--accent-color);
+        font-weight: 700;
+      }
+
+      .price {
+        font-size: 48px;
+        font-weight: 700;
+        margin: 15px 0;
+      }
+
+      .price sup {
+        font-size: 24px;
+        font-weight: 400;
+        vertical-align: top;
+      }
+
+      .features {
+        list-style: none;
+        margin-bottom: 30px;
+        text-align: left;
+        font-size: 16px;
+      }
+
+      .features li {
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(177, 177, 177, 0.2);
+      }
+
+      @media (max-width: 768px) {
+        .pricing-grid {
+          flex-direction: column;
+          align-items: center;
+        }
+        .pricing-card {
+          max-width: 100%;
+          margin-bottom: 20px;
+        }
+      }
+
+      /* Contact Section */
+      .contact {
+        background-color: var(--primary-bg);
+        padding-bottom: 150px; /* Extra padding for footer */
+      }
+
+      .contact-form-container {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .contact-form input,
+      .contact-form textarea {
+        width: 100%;
+        padding: 15px;
+        background-color: rgba(13, 27, 42, 0.5);
+        border: 1px solid rgba(177, 177, 177, 0.3);
+        border-radius: 8px;
+        color: var(--text-color);
+        font-family: var(--body-font);
+        font-size: 16px;
+        transition: border-color 0.3s ease;
+      }
+
+      .contact-form input:focus,
+      .contact-form textarea:focus {
+        outline: none;
+        border-color: var(--accent-color);
+        box-shadow: 0 0 8px var(--accent-color);
+      }
+
+      .contact-form textarea {
+        resize: vertical;
+        min-height: 150px;
+      }
+
+      /* Success Modal */
+      .modal-backdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(5px);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+
+      .success-modal {
+        background-color: var(--primary-color);
+        padding: 40px;
+        border-radius: 12px;
+        text-align: center;
+        box-shadow: 0 0 50px var(--accent-color);
+        max-width: 400px;
+        transform: scale(0.8) translateY(-100px);
+        opacity: 0;
+        position: relative;
+      }
+
+      .success-modal h3 {
+        color: var(--accent-color);
+        margin-bottom: 15px;
+      }
+
+      /* Footer */
+      .footer {
+        background-color: var(--primary-color);
+        padding: 40px 0;
+        text-align: center;
+        border-top: 1px solid rgba(177, 177, 177, 0.1);
+        opacity: 0;
+      }
+
+      .footer p {
+        margin: 5px 0;
+        font-size: 14px;
+      }
+
+      .footer a {
+        color: var(--secondary-text);
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .footer a:hover {
+        color: var(--accent-color);
+      }
+
+      .footer .legal-links a {
+        margin: 0 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="container">
+        <a href="#" class="logo">Sengordered Audio Books</a>
+        <nav>
+          <a href="#benefits">Features</a>
+          <a href="#library">Library</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div class="container hero-content">
+        <h1 class="gsap-hero-title">Listen. Learn. Live Better.</h1>
+        <p class="gsap-hero-subtitle">
+          Unlimited access to hand-picked audiobooks. Anytime. Anywhere.
+        </p>
+        <a href="#pricing" class="btn gsap-hero-cta">Start Free Trial</a>
+      </div>
+    </section>
+
+    <!-- How It Works / Subscription Benefits Section -->
+    <section class="how-it-works" id="benefits">
+      <div class="container">
+        <div class="section-header">
+          <h2>The Sengordered Way</h2>
+        </div>
+        <div class="how-it-works-grid">
+          <div class="how-it-works-item">
+            <h3>Stream Instantly</h3>
+            <p>
+              Dive into our vast library with a single click. No downloads, no
+              waiting, just pure listening pleasure.
+            </p>
+          </div>
+          <div class="how-it-works-item">
+            <h3>Curated Monthly Picks</h3>
+            <p>
+              Our experts hand-select the best new releases and timeless
+              classics to keep your queue fresh.
+            </p>
+          </div>
+          <div class="how-it-works-item">
+            <h3>Cancel Anytime</h3>
+            <p>
+              No commitments, no strings attached. Enjoy the freedom to manage
+              your subscription effortlessly.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Audiobook Library Preview Section -->
+    <section class="library" id="library">
+      <div class="container">
+        <div class="section-header">
+          <h2>A World of Stories Awaits</h2>
+        </div>
+        <div class="library-grid">
+          <!-- Book Card 1 -->
+          <div class="book-card">
+            <img
+              src="https://images.unsplash.com/photo-1549423985-780c10f854b4?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt="Book cover featuring a colorful, abstract galaxy"
+              onerror="this.onerror=null;this.src='https://placehold.co/400x600/0D1B2A/FFF?text=Image+Error';"
+            />
+            <h3>The Star Traveler's Guide</h3>
+            <div class="genre">Sci-Fi</div>
+            <div class="description">
+              An epic journey through space and time, discovering new
+              civilizations.
+            </div>
+          </div>
+          <!-- Book Card 2 -->
+          <div class="book-card">
+            <img
+              src="https://images.unsplash.com/photo-1621213032230-01115b9dfd70?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt="Book cover with a mysterious, dark forest"
+              onerror="this.onerror=null;this.src='https://placehold.co/400x600/0D1B2A/FFF?text=Image+Error';"
+            />
+            <h3>Whispers of the Gloomwood</h3>
+            <div class="genre">Fantasy</div>
+            <div class="description">
+              A tale of ancient magic, forgotten kingdoms, and a hero's quest
+              for truth.
+            </div>
+          </div>
+          <!-- Book Card 3 -->
+          <div class="book-card">
+            <img
+              src="https://images.unsplash.com/photo-1555132338-34857b29a67a?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt="Book cover with a vibrant, modern cityscape"
+              onerror="this.onerror=null;this.src='https://placehold.co/400x600/0D1B2A/FFF?text=Image+Error';"
+            />
+            <h3>Codebreakers of Neon City</h3>
+            <div class="genre">Thriller</div>
+            <div class="description">
+              A fast-paced cyber-thriller where a lone hacker uncovers a dark
+              conspiracy.
+            </div>
+          </div>
+          <!-- Book Card 4 -->
+          <div class="book-card">
+            <img
+              src="https://images.unsplash.com/photo-1589998059171-988d887df646?q=80&w=1752&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt="Book cover with an abstract, minimalist design"
+              onerror="this.onerror=null;this.src='https://placehold.co/400x600/0D1B2A/FFF?text=Image+Error';"
+            />
+            <h3>The Zen of Doing</h3>
+            <div class="genre">Self-Help</div>
+            <div class="description">
+              A guide to finding purpose and productivity through mindful
+              action.
+            </div>
+          </div>
+          <!-- Book Card 5 -->
+          <div class="book-card">
+            <img
+              src="https://images.unsplash.com/photo-1512499617621-50e42d765851?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt="Book cover with a photo of a desert landscape"
+              onerror="this.onerror=null;this.src='https://placehold.co/400x600/0D1B2A/FFF?text=Image+Error';"
+            />
+            <h3>Echoes of the Sands</h3>
+            <div class="genre">Historical Fiction</div>
+            <div class="description">
+              An epic historical novel set in the ancient desert civilizations.
+            </div>
+          </div>
+          <!-- Book Card 6 -->
+          <div class="book-card">
+            <img
+              src="https://images.unsplash.com/photo-1595180479101-5095d3151b8c?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt="Book cover with a photo of a modern office space"
+              onerror="this.onerror=null;this.src='https://placehold.co/400x600/0D1B2A/FFF?text=Image+Error';"
+            />
+            <h3>The Corporate Labyrinth</h3>
+            <div class="genre">Business</div>
+            <div class="description">
+              Navigate the complex world of modern business with this essential
+              guide.
+            </div>
+          </div>
+          <!-- Book Card 7 -->
+          <div class="book-card">
+            <img
+              src="https://images.unsplash.com/photo-1579471929940-0c4e74676100?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt="Book cover with a photo of a woman in a cafe"
+              onerror="this.onerror=null;this.src='https://placehold.co/400x600/0D1B2A/FFF?text=Image+Error';"
+            />
+            <h3>A Winter's Promise</h3>
+            <div class="genre">Romance</div>
+            <div class="description">
+              A heartwarming love story set against the backdrop of a quiet,
+              snow-covered town.
+            </div>
+          </div>
+          <!-- Book Card 8 -->
+          <div class="book-card">
+            <img
+              src="https://images.unsplash.com/photo-1627065099182-356c3905e94b?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt="Book cover with a detailed, fantastical map"
+              onerror="this.onerror=null;this.src='https://placehold.co/400x600/0D1B2A/FFF?text=Image+Error';"
+            />
+            <h3>The Mapmaker's Secret</h3>
+            <div class="genre">Adventure</div>
+            <div class="description">
+              Unravel a generations-old mystery hidden within an ancient map.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Plans Section -->
+    <section class="pricing" id="pricing">
+      <div class="container">
+        <div class="section-header">
+          <h2>Choose Your Plan</h2>
+        </div>
+        <div class="pricing-grid">
+          <div class="pricing-card monthly-card">
+            <h3>Monthly</h3>
+            <div class="price"><sup>$</sup>9.99</div>
+            <p>per month</p>
+            <ul class="features">
+              <li>✅ Unlimited Audiobook Access</li>
+              <li>✅ Curated Monthly Picks</li>
+              <li>✅ Offline Listening</li>
+              <li>✅ Cancel Anytime</li>
+            </ul>
+            <a href="#" class="btn">Choose Plan</a>
+          </div>
+          <div class="pricing-card yearly-card yearly">
+            <h3>Yearly</h3>
+            <div class="price"><sup>$</sup>99.99</div>
+            <p>per year</p>
+            <ul class="features">
+              <li>✅ Unlimited Audiobook Access</li>
+              <li>✅ Curated Monthly Picks</li>
+              <li>✅ Offline Listening</li>
+              <li>✅ Save 17% Annually</li>
+            </ul>
+            <a href="#" class="btn">Choose Plan</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+      <div class="container contact-form-container">
+        <div class="section-header">
+          <h2>Get in Touch</h2>
+        </div>
+        <form class="contact-form">
+          <input type="text" name="name" placeholder="Name" required />
+          <input type="email" name="email" placeholder="Email" required />
+          <textarea name="message" placeholder="Message" required></textarea>
+          <button type="submit" class="btn">Send Message</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Success Modal -->
+    <div class="modal-backdrop">
+      <div class="success-modal">
+        <h3 class="modal-title">Thank You!</h3>
+        <p class="modal-message">
+          Your message has been sent successfully. We'll be in touch soon.
+        </p>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; 2024 Sengordered Audio Books</p>
+        <p>
+          Email:
+          <a href="mailto:preciouseffah@gmail.com">preciouseffah@gmail.com</a>
+        </p>
+        <div class="legal-links">
+          <a href="#">Terms of Service</a>
+          <a href="#">Privacy Policy</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // GSAP Animations
+      gsap.registerPlugin(ScrollTrigger);
+
+      // 1. Hero Section Animations
+      gsap.from(".gsap-hero-title", {
+        duration: 1.5,
+        y: 50,
+        opacity: 0,
+        ease: "power3.out",
+      });
+      gsap.from(".gsap-hero-subtitle", {
+        duration: 1.5,
+        y: 50,
+        opacity: 0,
+        ease: "power3.out",
+        delay: 0.5,
+      });
+      gsap.from(".gsap-hero-cta", {
+        duration: 1.5,
+        scale: 0,
+        opacity: 0,
+        ease: "power3.out",
+        delay: 1,
+      });
+
+      // CTA Pulse Animation
+      gsap.to(".gsap-hero-cta", {
+        duration: 1,
+        scale: 1.05,
+        yoyo: true,
+        repeat: -1,
+        ease: "power1.inOut",
+      });
+
+      // 2. How It Works Section
+      gsap.from(".how-it-works-item", {
+        scrollTrigger: {
+          trigger: ".how-it-works",
+          start: "top 75%",
+          toggleActions: "play none none none",
+        },
+        duration: 1,
+        y: 50,
+        opacity: 0,
+        stagger: 0.3,
+        ease: "power2.out",
+      });
+
+      // 3. Audiobook Library Section
+      gsap.from(".book-card", {
+        scrollTrigger: {
+          trigger: ".library",
+          start: "top 75%",
+          toggleActions: "play none none none",
+        },
+        duration: 1,
+        scale: 0.8,
+        opacity: 0,
+        stagger: 0.15,
+        ease: "back.out(1.7)",
+      });
+
+      // Book Card Hover Animation using GSAP
+      document.querySelectorAll(".book-card").forEach((card) => {
+        const description = card.querySelector(".description");
+
+        card.addEventListener("mouseenter", () => {
+          gsap.to(card, {
+            scale: 1.05,
+            boxShadow: "0 15px 30px rgba(0,0,0,0.4)",
+            duration: 0.3,
+          });
+          gsap.to(description, {
+            opacity: 1,
+            y: 0,
+            duration: 0.3,
+            ease: "power2.out",
+          });
+        });
+
+        card.addEventListener("mouseleave", () => {
+          gsap.to(card, {
+            scale: 1,
+            boxShadow: "0 5px 15px rgba(0,0,0,0.1)",
+            duration: 0.3,
+          });
+          gsap.to(description, {
+            opacity: 0,
+            y: "100%",
+            duration: 0.3,
+            ease: "power2.in",
+          });
+        });
+      });
+
+      // 4. Pricing Plans Section
+      gsap.from(".pricing-card", {
+        scrollTrigger: {
+          trigger: ".pricing",
+          start: "top 75%",
+          toggleActions: "play none none none",
+        },
+        duration: 1.2,
+        y: 50,
+        opacity: 0,
+        stagger: 0.3,
+        ease: "back.out(1.2)",
+      });
+
+      // 5. Contact Form Submission and Modal
+      const contactForm = document.querySelector(".contact-form");
+      const modalBackdrop = document.querySelector(".modal-backdrop");
+      const successModal = document.querySelector(".success-modal");
+
+      contactForm.addEventListener("submit", function (event) {
+        event.preventDefault(); // Prevent page reload
+
+        // Basic form validation
+        const inputs = this.querySelectorAll("input, textarea");
+        let formIsValid = true;
+        inputs.forEach((input) => {
+          if (!input.value.trim()) {
+            formIsValid = false;
+            // Optional: add a visual cue for invalid input
+          }
+        });
+
+        if (formIsValid) {
+          // Show modal
+          modalBackdrop.style.display = "flex";
+
+          // GSAP animation for the modal
+          gsap.to(successModal, {
+            duration: 0.5,
+            opacity: 1,
+            scale: 1,
+            y: 0,
+            ease: "back.out(1.7)",
+          });
+        }
+      });
+
+      // Close modal on backdrop click
+      modalBackdrop.addEventListener("click", function (event) {
+        if (event.target === modalBackdrop) {
+          closeModal();
+        }
+      });
+
+      // Close modal on ESC key
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape" && modalBackdrop.style.display === "flex") {
+          closeModal();
+        }
+      });
+
+      function closeModal() {
+        gsap.to(successModal, {
+          duration: 0.3,
+          opacity: 0,
+          scale: 0.8,
+          y: -100,
+          ease: "power2.in",
+          onComplete: () => {
+            modalBackdrop.style.display = "none";
+            contactForm.reset(); // Clear the form after closing
+          },
+        });
+      }
+
+      // Footer Fade-in Animation
+      gsap.from(".footer", {
+        scrollTrigger: {
+          trigger: ".footer",
+          start: "top 95%",
+          toggleActions: "play none none none",
+        },
+        duration: 1,
+        opacity: 0,
+        y: 20,
+      });
+    </script>
+  </body>
+</html>
