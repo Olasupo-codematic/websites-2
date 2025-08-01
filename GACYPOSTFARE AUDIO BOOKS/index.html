@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Audiobook Store</title>
+    <style>
+      /* General Styles */
+      :root {
+        --primary-color: #000;
+        --secondary-color: #fff;
+        --accent-color: #6366f1; /* A gentle blue-purple for highlights */
+        --text-color: #1a1a1a;
+        --light-bg: #f8f8f8;
+        --font-family-sans: "Inter", sans-serif;
+      }
+
+      @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: var(--font-family-sans);
+        color: var(--text-color);
+        background-color: var(--secondary-color);
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-family: var(--font-family-serif);
+        font-weight: 700;
+      }
+
+      p {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      a {
+        text-decoration: none;
+        color: var(--text-color);
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 1rem 2rem;
+        border-radius: 4px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: background-color 0.3s ease;
+        cursor: pointer;
+      }
+
+      .btn-primary {
+        background-color: var(--accent-color);
+        color: var(--secondary-color);
+        border: none;
+      }
+
+      .btn-primary:hover {
+        background-color: #4f52d1;
+      }
+
+      .text-center {
+        text-align: center;
+      }
+
+      /* Header */
+      header {
+        background-color: var(--primary-color);
+        color: var(--secondary-color);
+        padding: 1rem 0;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      header .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-family: var(--font-family-serif);
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--secondary-color);
+      }
+
+      /* Hero Section */
+      #hero {
+        background-color: var(--light-bg);
+        padding: 6rem 0;
+        text-align: center;
+      }
+
+      #hero h1 {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        line-height: 1.2;
+        margin-bottom: 1rem;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      #hero p {
+        font-size: 1.25rem;
+        max-width: 600px;
+        margin: 0 auto 2rem;
+      }
+
+      /* Audiobook Store Section */
+      #store {
+        padding: 4rem 0;
+      }
+
+      #store h2 {
+        font-size: 3rem;
+        margin-bottom: 3rem;
+      }
+
+      .audiobook-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+      }
+
+      .audiobook-card {
+        background-color: var(--secondary-color);
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        text-align: left;
+      }
+
+      .audiobook-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+      }
+
+      .audiobook-card img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .audiobook-card-content {
+        padding: 1.5rem;
+      }
+
+      .audiobook-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .audiobook-card p.description {
+        font-size: 0.9rem;
+        color: #666;
+        margin-bottom: 1rem;
+        height: 4.5rem; /* Fixed height for consistent card size */
+        overflow: hidden;
+      }
+
+      .audiobook-card .price-buy {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 1rem;
+      }
+
+      .audiobook-card .price {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--accent-color);
+      }
+
+      .audiobook-card .btn-buy {
+        background-color: var(--accent-color);
+        color: var(--secondary-color);
+        padding: 0.75rem 1.5rem;
+        font-size: 0.9rem;
+        border: none;
+      }
+
+      .audiobook-card .btn-buy:hover {
+        background-color: #4f52d1;
+      }
+
+      /* Contact Section */
+      #contact {
+        background-color: var(--light-bg);
+        padding: 6rem 0;
+      }
+
+      #contact h2 {
+        font-size: 3rem;
+        margin-bottom: 3rem;
+      }
+
+      .contact-form {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-family: var(--font-family-sans);
+        font-size: 1rem;
+      }
+
+      .form-group textarea {
+        resize: vertical;
+        min-height: 150px;
+      }
+
+      .contact-form button {
+        width: 100%;
+        border: none;
+      }
+
+      /* Footer */
+      footer {
+        background-color: var(--primary-color);
+        color: var(--secondary-color);
+        padding: 2rem 0;
+        text-align: center;
+      }
+
+      .footer-content {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .footer-links a {
+        color: var(--secondary-color);
+        margin: 0 1rem;
+        transition: color 0.3s ease;
+      }
+
+      .footer-links a:hover {
+        color: var(--accent-color);
+      }
+
+      .footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .copyright {
+        margin-top: 1rem;
+        font-size: 0.8rem;
+        color: #ccc;
+      }
+
+      /* Custom Success Message Styles */
+      .message-modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 2000;
+      }
+
+      .message-modal-content {
+        background-color: var(--secondary-color);
+        color: var(--text-color);
+        padding: 2.5rem;
+        border-radius: 8px;
+        text-align: center;
+        max-width: 400px;
+        width: 90%;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        transform: scale(0.9);
+        opacity: 0;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+      }
+
+      .message-modal-overlay.show .message-modal-content {
+        transform: scale(1);
+        opacity: 1;
+      }
+
+      .message-modal-content h3 {
+        margin-bottom: 1rem;
+        font-family: var(--font-family-sans);
+        font-weight: 700;
+        font-size: 1.5rem;
+      }
+
+      .message-modal-content p {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .message-modal-content .close-btn {
+        background-color: var(--accent-color);
+        color: var(--secondary-color);
+        border: none;
+        padding: 0.75rem 2rem;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .message-modal-content .close-btn:hover {
+        background-color: #4f52d1;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        #hero {
+          padding: 4rem 0;
+        }
+
+        #hero h1 {
+          font-size: 2.5rem;
+        }
+
+        #hero p {
+          font-size: 1rem;
+        }
+
+        #store h2,
+        #contact h2 {
+          font-size: 2rem;
+        }
+
+        .audiobook-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .footer-links {
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+        .footer-links a {
+          margin: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <a href="#" class="logo">gacypostfare audio book</a>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section id="hero">
+        <div class="container">
+          <h1>Unlock a World of Stories, One Listen at a Time.</h1>
+          <p>
+            Immerse yourself in captivating narratives with our curated
+            collection of audiobooks. From bestsellers to hidden gems, your next
+            great story is just a click away.
+          </p>
+          <a href="#store" class="btn btn-primary">Browse Audiobooks</a>
+        </div>
+      </section>
+
+      <!-- Audiobook Store Section -->
+      <section id="store">
+        <div class="container">
+          <h2 class="text-center">Our Curated Collection</h2>
+          <div class="audiobook-grid">
+            <!-- Audiobook 1: The Echo of Silence -->
+            <div class="audiobook-card">
+              <img
+                src="https://m.media-amazon.com/images/I/61VlHO-nYlL._UF894,1000_QL80_.jpg"
+                alt="Audiobook Cover: The Echo of Silence"
+              />
+              <div class="audiobook-card-content">
+                <h3>The Echo of Silence</h3>
+                <p class="description">
+                  A gripping psychological thriller that explores the dark
+                  secrets of a small, isolated town and the investigator who
+                  must face his own past to solve a mysterious disappearance.
+                </p>
+                <div class="price-buy">
+                  <span class="price">$19.99</span>
+                  <button
+                    class="btn btn-primary btn-buy"
+                    data-title="The Echo of Silence"
+                  >
+                    Buy Now
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- Audiobook 2: Chronicles of the Starfall -->
+            <div class="audiobook-card">
+              <img
+                src="https://dianeralmaxaudiobook.com/images/cover/small/1.jpg"
+                alt="Audiobook Cover: Chronicles of the Starfall"
+              />
+              <div class="audiobook-card-content">
+                <h3>Chronicles of the Starfall</h3>
+                <p class="description">
+                  An epic fantasy adventure following a young orphan who
+                  discovers a celestial power that could either save his world
+                  from eternal darkness or destroy it completely.
+                </p>
+                <div class="price-buy">
+                  <span class="price">$24.99</span>
+                  <button
+                    class="btn btn-primary btn-buy"
+                    data-title="Chronicles of the Starfall"
+                  >
+                    Buy Now
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- Audiobook 3: The Art of Minimal Living -->
+            <div class="audiobook-card">
+              <img
+                src="https://dianeralmaxaudiobook.com/images/cover/small/6.jpg"
+                alt="Audiobook Cover: The Art of Minimal Living"
+              />
+              <div class="audiobook-card-content">
+                <h3>The Art of Minimal Living</h3>
+                <p class="description">
+                  A practical guide to decluttering your life, finding peace,
+                  and focusing on what truly matters. Learn how to simplify your
+                  home, your schedule, and your mind.
+                </p>
+                <div class="price-buy">
+                  <span class="price">$12.99</span>
+                  <button
+                    class="btn btn-primary btn-buy"
+                    data-title="The Art of Minimal Living"
+                  >
+                    Buy Now
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- Audiobook 4: Beyond the Horizon -->
+            <div class="audiobook-card">
+              <img
+                src="https://dianeralmaxaudiobook.com/images/cover/small/2.jpg"
+                alt="Audiobook Cover: Beyond the Horizon"
+              />
+              <div class="audiobook-card-content">
+                <h3>Beyond the Horizon</h3>
+                <p class="description">
+                  A sweeping historical saga set against the backdrop of the
+                  high seas, following a crew of explorers on a perilous journey
+                  to discover a legendary lost continent.
+                </p>
+                <div class="price-buy">
+                  <span class="price">$21.50</span>
+                  <button
+                    class="btn btn-primary btn-buy"
+                    data-title="Beyond the Horizon"
+                  >
+                    Buy Now
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- Audiobook 5: The Quantum Paradox -->
+            <div class="audiobook-card">
+              <img
+                src="https://dianeralmaxaudiobook.com/images/cover/small/7.jpg"
+                alt="Audiobook Cover: The Quantum Paradox"
+              />
+              <div class="audiobook-card-content">
+                <h3>The Quantum Paradox</h3>
+                <p class="description">
+                  A mind-bending science fiction novel that challenges our
+                  understanding of reality, time, and the universe. Perfect for
+                  fans of complex, theoretical narratives.
+                </p>
+                <div class="price-buy">
+                  <span class="price">$18.00</span>
+                  <button
+                    class="btn btn-primary btn-buy"
+                    data-title="The Quantum Paradox"
+                  >
+                    Buy Now
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- Audiobook 6: Garden of Whispers -->
+            <div class="audiobook-card">
+              <img
+                src="https://cdn.venngage.com/template/thumbnail/small/4cdc03bb-179f-4399-969e-88804547d585.webp"
+                alt="Audiobook Cover: Garden of Whispers"
+              />
+              <div class="audiobook-card-content">
+                <h3>Garden of Whispers</h3>
+                <p class="description">
+                  A captivating magical realism story about a forgotten garden
+                  that holds the secrets of a family's history, and the woman
+                  who must uncover them.
+                </p>
+                <div class="price-buy">
+                  <span class="price">$15.75</span>
+                  <button
+                    class="btn btn-primary btn-buy"
+                    data-title="Garden of Whispers"
+                  >
+                    Buy Now
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- Audiobook 7: Startup Success Secrets -->
+            <div class="audiobook-card">
+              <img
+                src="https://mentmanufaudiobooks.com/images/product/3.jpg"
+                alt="Audiobook Cover: Startup Success Secrets"
+              />
+              <div class="audiobook-card-content">
+                <h3>Startup Success Secrets</h3>
+                <p class="description">
+                  An essential guide for aspiring entrepreneurs, filled with
+                  actionable advice, case studies, and proven strategies for
+                  building a thriving business from the ground up.
+                </p>
+                <div class="price-buy">
+                  <span class="price">$29.99</span>
+                  <button
+                    class="btn btn-primary btn-buy"
+                    data-title="Startup Success Secrets"
+                  >
+                    Buy Now
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- Audiobook 8: The Silent Shore -->
+            <div class="audiobook-card">
+              <img
+                src="https://mentmanufaudiobooks.com/images/product/2.jpg"
+                alt="Audiobook Cover: The Silent Shore"
+              />
+              <div class="audiobook-card-content">
+                <h3>The Silent Shore</h3>
+                <p class="description">
+                  A haunting literary fiction novel set on the coast of New
+                  England, exploring themes of loss, memory, and the enduring
+                  power of the sea.
+                </p>
+                <div class="price-buy">
+                  <span class="price">$16.25</span>
+                  <button
+                    class="btn btn-primary btn-buy"
+                    data-title="The Silent Shore"
+                  >
+                    Buy Now
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- Audiobook 9: Cooking with Confidence -->
+            <div class="audiobook-card">
+              <img
+                src="https://mentmanufaudiobooks.com/images/product/3.jpg"
+                alt="Audiobook Cover: Cooking with Confidence"
+              />
+              <div class="audiobook-card-content">
+                <h3>Cooking with Confidence</h3>
+                <p class="description">
+                  A culinary audiobook that not only provides delicious recipes
+                  but also teaches fundamental techniques to help you master the
+                  art of cooking with ease and joy.
+                </p>
+                <div class="price-buy">
+                  <span class="price">$14.99</span>
+                  <button
+                    class="btn btn-primary btn-buy"
+                    data-title="Cooking with Confidence"
+                  >
+                    Buy Now
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- Audiobook 10: Rise of the Aether Mages -->
+            <div class="audiobook-card">
+              <img
+                src="https://mentmanufaudiobooks.com/images/product/2.jpg"
+                alt="Audiobook Cover: Rise of the Aether Mages"
+              />
+              <div class="audiobook-card-content">
+                <h3>Rise of the Aether Mages</h3>
+                <p class="description">
+                  A high-stakes fantasy adventure where ancient magic clashes
+                  with modern technology, and a young prodigy must unite a
+                  divided world to face a common enemy.
+                </p>
+                <div class="price-buy">
+                  <span class="price">$22.99</span>
+                  <button
+                    class="btn btn-primary btn-buy"
+                    data-title="Rise of the Aether Mages"
+                  >
+                    Buy Now
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact">
+        <div class="container">
+          <h2 class="text-center">Get In Touch</h2>
+          <form class="contact-form" id="contactForm">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send Message</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-links">
+            <a href="#store">Audiobooks</a>
+            <a href="#contact">Contact</a>
+            <a href="mailto:kelvinkwablah@gmail.com">kelvinkwablah@gmail.com</a>
+          </div>
+          <p class="copyright">
+            &copy; 2025 gacypostfare audio book. All Rights Reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Custom Success Message Modal -->
+    <div id="successMessageModal" class="message-modal-overlay">
+      <div class="message-modal-content">
+        <h3>Message Sent Successfully!</h3>
+        <p>
+          Thank you for reaching out. We will get back to you as soon as
+          possible.
+        </p>
+        <button class="close-btn">Close</button>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Functionality for "Buy Now" buttons
+        const buyButtons = document.querySelectorAll(".btn-buy");
+        buyButtons.forEach((button) => {
+          button.addEventListener("click", (event) => {
+            const audiobookTitle = event.target.getAttribute("data-title");
+            alert(
+              `Thank you for your interest in "${audiobookTitle}"! This is a demo. In a real application, you would be redirected to a checkout page.`
+            );
+            console.log(`User clicked "Buy Now" for: ${audiobookTitle}`);
+          });
+        });
+
+        // Functionality for the Contact Form and custom message modal
+        const contactForm = document.getElementById("contactForm");
+        const successModal = document.getElementById("successMessageModal");
+        const closeModalBtn = successModal.querySelector(".close-btn");
+
+        contactForm.addEventListener("submit", (event) => {
+          event.preventDefault(); // Prevent the default form submission
+
+          const name = document.getElementById("name").value;
+          const email = document.getElementById("email").value;
+          const message = document.getElementById("message").value;
+
+          console.log("Form Submission Data:");
+          console.log("Name:", name);
+          console.log("Email:", email);
+          console.log("Message:", message);
+
+          // Show the custom success message
+          successModal.style.display = "flex";
+          setTimeout(() => {
+            successModal.classList.add("show");
+          }, 10);
+
+          // Reset the form after a short delay
+          setTimeout(() => {
+            contactForm.reset();
+          }, 500);
+        });
+
+        closeModalBtn.addEventListener("click", () => {
+          successModal.classList.remove("show");
+          setTimeout(() => {
+            successModal.style.display = "none";
+          }, 300); // Wait for transition to finish
+        });
+      });
+    </script>
+  </body>
+</html>

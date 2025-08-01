@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Leclinup Stock - High-Quality Photos</title>
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome for social icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- GSAP CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+    <style>
+      /* General Styles */
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #121212;
+        color: #d1d5db;
+        overflow-x: hidden;
+      }
+
+      .scroll-smooth {
+        scroll-behavior: smooth;
+      }
+
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #282828;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #444444;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555555;
+      }
+
+      .text-accent {
+        color: #c39c6d;
+      }
+
+      .container {
+        max-width: 1280px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+
+      .flex-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .text-center {
+        text-align: center;
+      }
+
+      /* Buttons */
+      .btn-primary {
+        background-color: #c39c6d;
+        color: #121212;
+        transition: all 0.3s ease;
+        border-radius: 9999px; /* full rounded */
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em; /* tracking-widest */
+        border: none;
+      }
+
+      .btn-primary:hover {
+        background-color: #af8d64;
+        transform: scale(1.05);
+      }
+
+      /* Social Icons */
+      .social-icon {
+        transition: color 0.3s ease, transform 0.3s ease;
+      }
+      .social-icon:hover {
+        color: #c39c6d;
+        transform: scale(1.2);
+      }
+
+      /* Header */
+      .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 50;
+        padding: 1rem;
+        background-color: transparent;
+        color: #e5e7eb;
+      }
+      .nav-links {
+        display: none;
+        gap: 2rem;
+        font-size: 0.875rem;
+        text-transform: uppercase;
+        font-weight: 500;
+      }
+      .nav-link:hover {
+        color: #c39c6d;
+        transition: color 0.3s ease;
+      }
+      @media (min-width: 768px) {
+        .nav-links {
+          display: flex;
+        }
+        .header {
+          padding: 1.5rem;
+        }
+      }
+
+      /* Hero Section */
+      .hero {
+        position: relative;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 0 1rem;
+        overflow: hidden;
+      }
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-image: url("https://placehold.co/1920x1080/282828/8c8c8c?text=Photography");
+      }
+      .hero-overlay {
+        position: absolute;
+        inset: 0;
+        background-color: #000;
+        opacity: 0.6;
+      }
+      .hero-content {
+        position: relative;
+        z-index: 10;
+        padding: 1.5rem;
+        background-color: rgba(0, 0, 0, 0.4);
+        border-radius: 1.5rem;
+        backdrop-filter: blur(5px);
+      }
+      .hero-title {
+        font-size: 1.875rem;
+        font-weight: 300;
+        letter-spacing: 0.025em;
+        margin-bottom: 1rem;
+        color: #fff;
+      }
+      .hero-subtitle {
+        font-size: 1rem;
+        font-weight: 300;
+        margin-bottom: 2rem;
+        color: #d1d5db;
+      }
+      .hero-cta {
+        padding: 0.75rem 2rem;
+        font-size: 0.875rem;
+      }
+      @media (min-width: 768px) {
+        .hero-content {
+          padding: 3rem;
+        }
+        .hero-title {
+          font-size: 3rem;
+        }
+        .hero-subtitle {
+          font-size: 1.25rem;
+        }
+      }
+      @media (min-width: 1024px) {
+        .hero-content {
+          padding: 5rem;
+        }
+        .hero-title {
+          font-size: 4.5rem;
+        }
+        .hero-subtitle {
+          font-size: 1.25rem;
+        }
+      }
+
+      /* Photos Section */
+      .photos-section {
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+      }
+      .section-title {
+        font-size: 1.875rem;
+        font-weight: 300;
+        margin-bottom: 3rem;
+      }
+      .photos-grid {
+        display: grid;
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        gap: 2rem;
+      }
+      .photo-card {
+        background-color: #1e1e1e;
+        padding: 1.5rem;
+        border-radius: 1rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+          0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        transform: translateY(2rem);
+        opacity: 0;
+      }
+      .photo-card-image-container {
+        height: 16rem;
+        margin-bottom: 1.5rem;
+        border-radius: 0.75rem;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .photo-card-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition-property: transform;
+        transition-duration: 500ms;
+      }
+      .photo-card-image:hover {
+        transform: scale(1.1);
+      }
+      .photo-card h3 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+      .photo-card p {
+        color: #9ca3af;
+        font-size: 0.875rem;
+        margin-bottom: 1rem;
+      }
+      .photo-card-details {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 1.5rem;
+      }
+      .photo-card-price {
+        font-size: 1.125rem;
+        font-weight: 700;
+        color: #fff;
+      }
+      .photo-card-btn {
+        padding: 0.5rem 1.25rem;
+        font-size: 0.75rem;
+      }
+
+      @media (min-width: 640px) {
+        .photos-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+      @media (min-width: 1024px) {
+        .photos-grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+        .photos-section {
+          padding-top: 6rem;
+          padding-bottom: 6rem;
+        }
+        .section-title {
+          font-size: 2.25rem;
+          margin-bottom: 4rem;
+        }
+      }
+
+      /* Contact Section */
+      .contact-section {
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+        background-color: #181818;
+      }
+      .contact-form-container {
+        max-width: 42rem;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: left;
+      }
+      .form-field-label {
+        display: block;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: #9ca3af;
+      }
+      .form-field-input,
+      .form-field-textarea {
+        display: block;
+        width: 100%;
+        padding: 0.75rem 1rem;
+        background-color: #222;
+        border: 1px solid #333;
+        border-radius: 0.75rem;
+        color: #e5e7eb;
+        outline: none;
+        transition-property: all;
+        transition-duration: 300ms;
+      }
+      .form-field-input:focus,
+      .form-field-textarea:focus {
+        ring-color: #c39c6d;
+        border-color: #c39c6d;
+      }
+      .contact-form .btn-primary {
+        padding-top: 1rem; /* Increased padding */
+        padding-bottom: 1rem; /* Increased padding */
+        width: 100%;
+      }
+
+      /* Footer */
+      .footer {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+        background-color: #000;
+        color: #9ca3af;
+      }
+      @media (min-width: 768px) {
+        .footer {
+          padding-top: 4rem;
+          padding-bottom: 4rem;
+        }
+      }
+
+      /* Modal */
+      #confirmation-modal {
+        position: fixed;
+        inset: 0;
+        background-color: rgba(0, 0, 0, 0.75);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        z-index: 999;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease;
+      }
+      #confirmation-modal.visible {
+        opacity: 1;
+        visibility: visible;
+      }
+      .modal-content {
+        background-color: #1e1e1e;
+        padding: 2rem;
+        border-radius: 1.5rem;
+        max-width: 24rem;
+        width: 100%;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body class="overflow-x-hidden">
+    <!-- Header / Navigation -->
+    <nav class="header">
+      <div class="container flex-row">
+        <div class="flex items-center gap-8">
+          <a
+            href="#hero"
+            class="text-2xl font-bold tracking-widest text-accent hover:text-white transition duration-300"
+          >
+            Lec<span class="text-white">linup Artifacts</span>
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+      <div class="hero-bg">
+        <div class="hero-overlay"></div>
+      </div>
+      <div class="hero-content">
+        <h1 class="hero-title">Capture the Moment. Create the Vision.</h1>
+        <p class="hero-subtitle">
+          High-quality, royalty-free images for every story.
+        </p>
+        <a href="#photos" class="hero-cta btn-primary"> Explore Photos </a>
+      </div>
+    </section>
+
+    <!-- Photos Showcase Section -->
+    <section id="photos" class="photos-section container">
+      <h2 class="section-title text-center">Our Portfolio</h2>
+      <div id="photos-grid" class="photos-grid">
+        <!-- Photo cards will be dynamically inserted here by JavaScript -->
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+      <div class="container contact-form-container text-center">
+        <h2 class="section-title">Get in Touch</h2>
+        <p class="text-gray-400 mb-8">
+          For commercial inquiries or custom shoots, please fill out the form
+          below.
+        </p>
+        <form id="contact-form" class="contact-form">
+          <div>
+            <label for="name" class="form-field-label">Name</label>
+            <input type="text" id="name" name="name" class="form-field-input" />
+          </div>
+          <div>
+            <label for="email" class="form-field-label">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="form-field-input"
+            />
+          </div>
+          <div>
+            <label for="message" class="form-field-label">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="5"
+              class="form-field-textarea"
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            class="btn-primary w-full py-3 rounded-xl font-semibold uppercase tracking-widest text-sm shadow-lg"
+          >
+            Send Message
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer" class="footer">
+      <div class="container text-center">
+        <div class="mb-6">
+          <a
+            href="#hero"
+            class="text-3xl font-bold tracking-widest text-accent hover:text-white transition duration-300"
+          >
+            Lec<span class="text-white">linup Artifacts</span>
+          </a>
+        </div>
+        <p class="mb-4">
+          Email:
+          <a
+            href="mailto:lademaxwell@gmail.com"
+            class="hover:text-accent transition duration-300"
+            >lademaxwell@gmail.com</a
+          >
+        </p>
+        <p class="text-sm">&copy; 2023 Leclinup Stock. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Confirmation Modal -->
+    <div
+      id="confirmation-modal"
+      class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-[999] opacity-0 invisible transition-opacity duration-300"
+    >
+      <div class="modal-content">
+        <i class="fas fa-check-circle text-accent text-6xl mb-4"></i>
+        <h3 class="text-2xl font-bold text-white mb-2">Message Sent!</h3>
+        <p class="text-gray-400 mb-6">
+          Thank you for your inquiry. We will get back to you shortly.
+        </p>
+        <button
+          id="close-modal-btn"
+          class="btn-primary px-8 py-3 rounded-full font-semibold uppercase tracking-widest text-sm"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // --- GSAP Setup ---
+        gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+        // --- Data for Photos ---
+        // This is a simple data structure to make it easy to add or change photos.
+        const photosData = [
+          {
+            id: 1,
+            name: "Urban Sunset",
+            description: "A beautiful cityscape bathed in golden hour light.",
+            price: "$ 15",
+            image:
+              "https://images.stockcake.com/public/c/4/1/c4197bb1-aba5-42ec-ab25-5c04804b521d_large/stunning-urban-sunset-stockcake.jpg",
+          },
+          {
+            id: 2,
+            name: "Mountain Vista",
+            description: "Majestic mountains under a clear blue sky.",
+            price: "$ 25",
+            image:
+              "https://images.stockcake.com/public/5/1/9/519a33ec-98ed-4936-85d0-1ef9cf4efe0c_large/majestic-mountain-vista-stockcake.jpg",
+          },
+          {
+            id: 3,
+            name: "Forest Path",
+            description: "A serene path winding through a lush, green forest.",
+            price: "$ 18",
+            image:
+              "https://images.stockcake.com/public/2/a/e/2ae44186-5aba-4a8e-b019-aee42219cc91_large/enchanted-forest-path-stockcake.jpg",
+          },
+          {
+            id: 4,
+            name: "Modern Architecture",
+            description:
+              "Minimalist design and clean lines of a modern building.",
+            price: "$ 22",
+            image:
+              "https://www.realsimple.com/thmb/R26WlmAr7Jm3d8YJTRxoB77cDCc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/modern-architecture-GettyImages-1283532143-a61afc966237469fb384890712c9bab1.jpg",
+          },
+          {
+            id: 5,
+            name: "Abstract Water",
+            description:
+              "Ripples and reflections on the surface of calm water.",
+            price: "$ 12",
+            image:
+              "https://images.unsplash.com/photo-1630445923303-fe721565b68e?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGFic3RyYWN0JTIwd2F0ZXJ8ZW58MHx8MHx8fDA%3D",
+          },
+          {
+            id: 6,
+            name: "Workplace Synergy",
+            description:
+              "A diverse team collaborating in a bright office space.",
+            price: "$ 35",
+            image:
+              "https://business-review.eu/wp-content/uploads/2021/09/unnamed-8.jpg",
+          },
+          {
+            id: 7,
+            name: "Coffee Shop Moment",
+            description: "A candid shot of someone enjoying a coffee break.",
+            price: "$ 8",
+            image:
+              "https://img.freepik.com/premium-photo/business-woman-african-ethnicity-coffee-shop-moment-rest-finance-woman-having-coffee_242111-30325.jpg",
+          },
+          {
+            id: 8,
+            name: "Tech in Nature",
+            description: "A laptop and a notebook on a tree stump in a forest.",
+            price: "$ 20",
+            image:
+              "https://images.theconversation.com/files/626348/original/file-20241017-15-3t8c0r.jpg?ixlib=rb-4.1.0&rect=1077%2C476%2C4913%2C3511&q=20&auto=format&w=320&fit=clip&dpr=2&usm=12&cs=strip",
+          },
+          {
+            id: 9,
+            name: "Urban Graffiti",
+            description:
+              "Vibrant and colorful street art on an old brick wall.",
+            price: "$ 10",
+            image:
+              "https://media.istockphoto.com/id/477339612/photo/hipster-male-walking-next-to-wall-of-graffiti-in-brooklyn.jpg?s=612x612&w=0&k=20&c=4QT42iJgAsw73Bg-utN8EZGsgLVO5FFVW5jGbtNMorg=",
+          },
+          {
+            id: 10,
+            name: "Family Fun",
+            description: "A joyful family playing together in a park.",
+            price: "$ 25",
+            image:
+              "https://www.parents.com/thmb/l7_tnzc6hTYBOjr4HrZItquh6jU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1447338583-d091945837dc4bc8aa2f5f73d99f63e0.jpg",
+          },
+        ];
+
+        // --- Dynamic Photo Card Generation ---
+        const photosGrid = document.getElementById("photos-grid");
+        photosData.forEach((photo) => {
+          const card = document.createElement("div");
+          card.className = "photo-card";
+          card.innerHTML = `
+                    <div class="photo-card-image-container">
+                        <img src="${photo.image}" alt="${photo.name}" class="photo-card-image">
+                    </div>
+                    <h3 class="text-accent">${photo.name}</h3>
+                    <p class="text-gray-400 text-sm mb-4">${photo.description}</p>
+                    <div class="photo-card-details">
+                        <span class="photo-card-price">${photo.price}</span>
+                        <button class="btn-primary photo-card-btn">
+                            Download
+                        </button>
+                    </div>
+                `;
+          photosGrid.appendChild(card);
+        });
+
+        // --- GSAP Animations ---
+
+        // Hero Section Animation (on page load)
+        gsap.from(".hero-title", {
+          duration: 1.5,
+          y: 50,
+          opacity: 0,
+          ease: "power3.out",
+          delay: 0.5,
+        });
+        gsap.from(".hero-subtitle", {
+          duration: 1.5,
+          y: 50,
+          opacity: 0,
+          ease: "power3.out",
+          delay: 0.8,
+        });
+        gsap.from(".hero-cta", {
+          duration: 1.5,
+          y: 50,
+          opacity: 0,
+          ease: "power3.out",
+          delay: 1.1,
+        });
+
+        // Photos Section and Card Animations (on scroll)
+        const photoCards = gsap.utils.toArray(".photo-card");
+        photoCards.forEach((card, index) => {
+          gsap.to(card, {
+            y: 0,
+            opacity: 1,
+            duration: 1,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: card,
+              start: "top 85%", // Start animation when card is 85% in view
+              toggleActions: "play none none none",
+            },
+          });
+        });
+
+        // Contact Form Animation (on scroll)
+        gsap.from(".contact-form", {
+          duration: 1,
+          y: 50,
+          opacity: 0,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: "#contact",
+            start: "top 75%",
+            toggleActions: "play none none none",
+          },
+        });
+
+        // Footer Animation (on scroll)
+        gsap.from("#footer", {
+          duration: 1,
+          y: 50,
+          opacity: 0,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: "#footer",
+            start: "top 95%",
+            toggleActions: "play none none none",
+          },
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            let target = document.querySelector(this.getAttribute("href"));
+            if (target) {
+              gsap.to(window, {
+                duration: 1,
+                scrollTo: {
+                  y: target,
+                  offsetY: 50, // Adjust for fixed header
+                },
+                ease: "power2.out",
+              });
+            }
+          });
+        });
+
+        // --- Modal Logic ---
+        const contactForm = document.getElementById("contact-form");
+        const modal = document.getElementById("confirmation-modal");
+        const closeModalBtn = document.getElementById("close-modal-btn");
+
+        contactForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          showModal();
+          contactForm.reset();
+        });
+
+        closeModalBtn.addEventListener("click", () => {
+          hideModal();
+        });
+
+        // Also hide modal if user clicks outside of it
+        modal.addEventListener("click", (e) => {
+          if (e.target.id === "confirmation-modal") {
+            hideModal();
+          }
+        });
+
+        function showModal() {
+          modal.classList.add("visible");
+          gsap.fromTo(
+            modal.querySelector(".modal-content"),
+            { scale: 0.95 },
+            { scale: 1, duration: 0.3, ease: "back.out(1.7)" }
+          );
+        }
+
+        function hideModal() {
+          modal.classList.remove("visible");
+        }
+      });
+    </script>
+  </body>
+</html>
