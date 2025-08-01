@@ -217,7 +217,7 @@
         font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 1px;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+     
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
       }
 
@@ -241,6 +241,7 @@
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         gap: var(--spacing-lg);
         margin-top: var(--spacing-xl);
+        align-items: stretch; /* Ensures all grid items have the same height */
       }
 
       .product-card {
@@ -250,6 +251,10 @@
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         text-align: center;
         padding: var(--spacing-sm);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
       }
 
       .product-image {
@@ -483,110 +488,110 @@
             <div class="product-card">
               <img
                 class="product-image"
-                src="https://placehold.co/400x500/F5DEB3/111111?text=AURA+ELEGANCE"
-                alt="Aura Elegance perfume bottle"
+                src="https://static.sweetcare.com/img/prd/488/v-638200521091365222/dior-012623di-1.webp"
+                alt="Dior Sauvage perfume bottle"
               />
-              <h3 class="product-name">Aura Elegance</h3>
-              <p class="product-price">$50</p>
+              <h3 class="product-name">Dior Sauvage</h3>
+              <p class="product-price">$95</p>
               <a href="#" class="btn btn-primary">Buy Now</a>
             </div>
             <!-- Product 2 -->
             <div class="product-card">
               <img
                 class="product-image"
-                src="https://placehold.co/400x500/DAA520/111111?text=MIDNIGHT+DESIRE"
-                alt="Midnight Desire perfume bottle"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSx1OrBZk85aYC5FlLFaDa2Nw0iFlaEGB7y4w&s"
+                alt="Bleu de Chanel perfume bottle"
               />
-              <h3 class="product-name">Midnight Desire</h3>
-              <p class="product-price">$65</p>
+              <h3 class="product-name">Bleu de Chanel</h3>
+              <p class="product-price">$120</p>
               <a href="#" class="btn btn-primary">Buy Now</a>
             </div>
             <!-- Product 3 -->
             <div class="product-card">
               <img
                 class="product-image"
-                src="https://placehold.co/400x500/111111/FAF9F6?text=GOLDEN+SERENITY"
-                alt="Golden Serenity perfume bottle"
+                src="https://bizweb.dktcdn.net/thumb/1024x1024/100/106/604/products/white-red-minimalist-quote-valentine-s-day-instagram-post-4.png?v=1707129395187"
+                alt="YSL Libre perfume bottle"
               />
-              <h3 class="product-name">Golden Serenity</h3>
-              <p class="product-price">$75</p>
+              <h3 class="product-name">YSL Libre</h3>
+              <p class="product-price">$110</p>
               <a href="#" class="btn btn-primary">Buy Now</a>
             </div>
             <!-- Product 4 -->
             <div class="product-card">
               <img
                 class="product-image"
-                src="https://placehold.co/400x500/F5DEB3/111111?text=ETERNAL+BLISS"
-                alt="Eternal Bliss perfume bottle"
+                src="https://cdn.shopify.com/s/files/1/0853/1863/1748/files/Tom-Ford-Black-Orchid-Eau-de-Parfum-Spray-Fem.png?resize=598%2C598&ssl=1"
+                alt="Tom Ford Black Orchid perfume bottle"
               />
-              <h3 class="product-name">Eternal Bliss</h3>
-              <p class="product-price">$55</p>
+              <h3 class="product-name">Tom Ford Black Orchid</h3>
+              <p class="product-price">$150</p>
               <a href="#" class="btn btn-primary">Buy Now</a>
             </div>
             <!-- Product 5 -->
             <div class="product-card">
               <img
                 class="product-image"
-                src="https://placehold.co/400x500/DAA520/111111?text=VELVET+DREAM"
-                alt="Velvet Dream perfume bottle"
+                src="https://placehold.co/400x500/DAA520/111111?text=BACCARAT+ROUGE+540"
+                alt="Maison Francis Kurkdjian Baccarat Rouge 540 perfume bottle"
               />
-              <h3 class="product-name">Velvet Dream</h3>
-              <p class="product-price">$80</p>
+              <h3 class="product-name">Baccarat Rouge 540</h3>
+              <p class="product-price">$325</p>
               <a href="#" class="btn btn-primary">Buy Now</a>
             </div>
             <!-- Product 6 -->
             <div class="product-card">
               <img
                 class="product-image"
-                src="https://placehold.co/400x500/111111/FAF9F6?text=SILVER+LUNE"
-                alt="Silver Lune perfume bottle"
+                src="https://www.u-buy.com.ng/productimg/?image=aHR0cHM6Ly9tLm1lZGlhLWFtYXpvbi5jb20vaW1hZ2VzL0kvNTFzb01DTk1LSUwuX1NMMTUwMF8uanBn.jpg"
+                alt="Armaf Club de Nuit Intense Man perfume bottle"
               />
-              <h3 class="product-name">Silver Lune</h3>
-              <p class="product-price">$70</p>
+              <h3 class="product-name">Club de Nuit Intense Man</h3>
+              <p class="product-price">$45</p>
               <a href="#" class="btn btn-primary">Buy Now</a>
             </div>
             <!-- Product 7 -->
             <div class="product-card">
               <img
                 class="product-image"
-                src="https://placehold.co/400x500/F5DEB3/111111?text=SECRET+GARDEN"
-                alt="Secret Garden perfume bottle"
+                src="https://fragrances.com.ng/media/catalog/product/cache/0daeb07bb1d294c1f281fab47369d56a/v/e/versace_bright_crystal_absolu_edp_90ml_for_women.jpeg"
+                alt="Versace Bright Crystal perfume bottle"
               />
-              <h3 class="product-name">Secret Garden</h3>
-              <p class="product-price">$60</p>
+              <h3 class="product-name">Versace Bright Crystal</h3>
+              <p class="product-price">$80</p>
               <a href="#" class="btn btn-primary">Buy Now</a>
             </div>
             <!-- Product 8 -->
             <div class="product-card">
               <img
                 class="product-image"
-                src="https://placehold.co/400x500/DAA520/111111?text=OCEAN+BREEZE"
-                alt="Ocean Breeze perfume bottle"
+                src="https://i5.walmartimages.com/seo/335-Value-Creed-Aventus-Eau-de-Parfum-Cologne-for-Men-1-7-Oz_6048781d-77c7-41a5-952c-0c85d6c25ab0.e365c011e137eeffde6b32ca6424495d.jpeg"
+                alt="Creed Aventus cologne bottle"
               />
-              <h3 class="product-name">Ocean Breeze</h3>
-              <p class="product-price">$50</p>
+              <h3 class="product-name">Creed Aventus</h3>
+              <p class="product-price">$400</p>
               <a href="#" class="btn btn-primary">Buy Now</a>
             </div>
             <!-- Product 9 -->
             <div class="product-card">
               <img
                 class="product-image"
-                src="https://placehold.co/400x500/111111/FAF9F6?text=ROYAL+AMBER"
-                alt="Royal Amber perfume bottle"
+                src="https://us.parfums-de-marly.com/cdn/shop/files/LAYTON_EXCLUSIF-PERFUME-75-PACK1-1X1_CENTERED.jpg?v=1751872346"
+                alt="Parfums de Marly Layton perfume bottle"
               />
-              <h3 class="product-name">Royal Amber</h3>
-              <p class="product-price">$85</p>
+              <h3 class="product-name">Parfums de Marly Layton</h3>
+              <p class="product-price">$295</p>
               <a href="#" class="btn btn-primary">Buy Now</a>
             </div>
             <!-- Product 10 -->
             <div class="product-card">
               <img
                 class="product-image"
-                src="https://placehold.co/400x500/F5DEB3/111111?text=VANILLA+DREAM"
-                alt="Vanilla Dream perfume bottle"
+                src="https://fimgs.net/mdimg/perfume/social.64153.jpg"
+                alt="Amouage Interlude Man perfume bottle"
               />
-              <h3 class="product-name">Vanilla Dream</h3>
-              <p class="product-price">$60</p>
+              <h3 class="product-name">Amouage Interlude Man</h3>
+              <p class="product-price">$280</p>
               <a href="#" class="btn btn-primary">Buy Now</a>
             </div>
           </div>
