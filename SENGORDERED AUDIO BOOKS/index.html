@@ -225,8 +225,9 @@
 
       .library-grid {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         gap: 30px;
+        justify-content: center;
       }
 
       .book-card {
@@ -274,24 +275,6 @@
         justify-content: center;
         align-items: center;
         text-align: center;
-      }
-
-      @media (max-width: 1024px) {
-        .library-grid {
-          grid-template-columns: repeat(3, 1fr);
-        }
-      }
-
-      @media (max-width: 768px) {
-        .library-grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
-      }
-
-      @media (max-width: 480px) {
-        .library-grid {
-          grid-template-columns: 1fr;
-        }
       }
 
       /* Pricing Section */
@@ -439,28 +422,40 @@
       .footer {
         background-color: var(--primary-color);
         padding: 40px 0;
-        text-align: center;
         border-top: 1px solid rgba(177, 177, 177, 0.1);
-        opacity: 0;
+      }
+
+      .footer-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        text-align: center;
+      }
+
+      .footer .logo {
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--accent-color);
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .footer .legal-links a {
+        color: var(--secondary-text);
+        text-decoration: none;
+        margin: 0 10px;
+        transition: color 0.3s ease;
+      }
+
+      .footer .legal-links a:hover {
+        color: var(--accent-color);
       }
 
       .footer p {
         margin: 5px 0;
         font-size: 14px;
-      }
-
-      .footer a {
-        color: var(--secondary-text);
-        text-decoration: none;
-        transition: color 0.3s ease;
-      }
-
-      .footer a:hover {
-        color: var(--accent-color);
-      }
-
-      .footer .legal-links a {
-        margin: 0 10px;
       }
     </style>
   </head>
@@ -531,111 +526,115 @@
           <!-- Book Card 1 -->
           <div class="book-card">
             <img
-              src="https://images.unsplash.com/photo-1549423985-780c10f854b4?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              alt="Book cover featuring a colorful, abstract galaxy"
-              onerror="this.onerror=null;this.src='https://placehold.co/400x600/0D1B2A/FFF?text=Image+Error';"
+              src="https://i1.sndcdn.com/artworks-000662050246-ip9g0y-t500x500.jpg"
+              alt="The 48 Laws of Power book cover"
             />
-            <h3>The Star Traveler's Guide</h3>
-            <div class="genre">Sci-Fi</div>
+            <h3>The 48 Laws of Power</h3>
+            <div class="genre">Self-Help</div>
             <div class="description">
-              An epic journey through space and time, discovering new
-              civilizations.
+              A guide to the philosophies of power, cunning, and manipulation.
             </div>
           </div>
           <!-- Book Card 2 -->
           <div class="book-card">
             <img
-              src="https://images.unsplash.com/photo-1621213032230-01115b9dfd70?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              alt="Book cover with a mysterious, dark forest"
-              onerror="this.onerror=null;this.src='https://placehold.co/400x600/0D1B2A/FFF?text=Image+Error';"
+              src="https://i1.sndcdn.com/artworks-000108364718-82s55y-t500x500.jpg"
+              alt="Thinking, Fast and Slow book cover"
             />
-            <h3>Whispers of the Gloomwood</h3>
-            <div class="genre">Fantasy</div>
+            <h3>Thinking, Fast and Slow</h3>
+            <div class="genre">Psychology</div>
             <div class="description">
-              A tale of ancient magic, forgotten kingdoms, and a hero's quest
-              for truth.
+              A groundbreaking book on how we make decisions, and how to improve
+              our thinking.
             </div>
           </div>
           <!-- Book Card 3 -->
           <div class="book-card">
             <img
-              src="https://images.unsplash.com/photo-1555132338-34857b29a67a?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              alt="Book cover with a vibrant, modern cityscape"
-              onerror="this.onerror=null;this.src='https://placehold.co/400x600/0D1B2A/FFF?text=Image+Error';"
+              src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1351539051i/15843166.jpg"
+              alt="You Are a Badass book cover"
             />
-            <h3>Codebreakers of Neon City</h3>
-            <div class="genre">Thriller</div>
+            <h3>You Are a Badass</h3>
+            <div class="genre">Self-Help</div>
             <div class="description">
-              A fast-paced cyber-thriller where a lone hacker uncovers a dark
-              conspiracy.
+              A humorous and inspiring guide to creating a life you love.
             </div>
           </div>
           <!-- Book Card 4 -->
           <div class="book-card">
             <img
-              src="https://images.unsplash.com/photo-1589998059171-988d887df646?q=80&w=1752&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              alt="Book cover with an abstract, minimalist design"
-              onerror="this.onerror=null;this.src='https://placehold.co/400x600/0D1B2A/FFF?text=Image+Error';"
+              src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1549433350i/40672036.jpg"
+              alt="Digital Minimalism book cover"
             />
-            <h3>The Zen of Doing</h3>
-            <div class="genre">Self-Help</div>
+            <h3>Digital Minimalism</h3>
+            <div class="genre">Technology</div>
             <div class="description">
-              A guide to finding purpose and productivity through mindful
-              action.
+              A philosophy for using technology to support, rather than subvert,
+              your goals.
             </div>
           </div>
           <!-- Book Card 5 -->
           <div class="book-card">
             <img
-              src="https://images.unsplash.com/photo-1512499617621-50e42d765851?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              alt="Book cover with a photo of a desert landscape"
-              onerror="this.onerror=null;this.src='https://placehold.co/400x600/0D1B2A/FFF?text=Image+Error';"
+              src="https://static.proko.com/images/lauragingrich/lauragingrich-bookreview2.jpg"
+              alt="The War of Art book cover"
             />
-            <h3>Echoes of the Sands</h3>
-            <div class="genre">Historical Fiction</div>
+            <h3>The War of Art</h3>
+            <div class="genre">Creativity</div>
             <div class="description">
-              An epic historical novel set in the ancient desert civilizations.
+              A classic guide to overcoming creative blocks and resistance.
             </div>
           </div>
           <!-- Book Card 6 -->
           <div class="book-card">
             <img
-              src="https://images.unsplash.com/photo-1595180479101-5095d3151b8c?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              alt="Book cover with a photo of a modern office space"
-              onerror="this.onerror=null;this.src='https://placehold.co/400x600/0D1B2A/FFF?text=Image+Error';"
+              src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1386803701i/19161852.jpg"
+              alt="The Fifth Season book cover"
             />
-            <h3>The Corporate Labyrinth</h3>
-            <div class="genre">Business</div>
+            <h3>The Fifth Season</h3>
+            <div class="genre">Sci-Fi Fantasy</div>
             <div class="description">
-              Navigate the complex world of modern business with this essential
-              guide.
+              A world-building masterpiece where a powerful woman must face a
+              catastrophic event.
             </div>
           </div>
           <!-- Book Card 7 -->
           <div class="book-card">
             <img
-              src="https://images.unsplash.com/photo-1579471929940-0c4e74676100?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              alt="Book cover with a photo of a woman in a cafe"
-              onerror="this.onerror=null;this.src='https://placehold.co/400x600/0D1B2A/FFF?text=Image+Error';"
+              src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1555447414i/44767458.jpg"
+              alt="Dune book cover"
             />
-            <h3>A Winter's Promise</h3>
-            <div class="genre">Romance</div>
+            <h3>Dune</h3>
+            <div class="genre">Sci-Fi</div>
             <div class="description">
-              A heartwarming love story set against the backdrop of a quiet,
-              snow-covered town.
+              A classic epic of politics, religion, and survival on a desert
+              planet.
             </div>
           </div>
           <!-- Book Card 8 -->
           <div class="book-card">
             <img
-              src="https://images.unsplash.com/photo-1627065099182-356c3905e94b?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              alt="Book cover with a detailed, fantastical map"
-              onerror="this.onerror=null;this.src='https://placehold.co/400x600/0D1B2A/FFF?text=Image+Error';"
+              src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1598382979i/50892338.jpg"
+              alt="Legendborn book cover"
             />
-            <h3>The Mapmaker's Secret</h3>
-            <div class="genre">Adventure</div>
+            <h3>Legendborn</h3>
+            <div class="genre">Young Adult Fantasy</div>
             <div class="description">
-              Unravel a generations-old mystery hidden within an ancient map.
+              A young girl discovers a secret society of Arthurian descendants
+              in a modern-day setting.
+            </div>
+          </div>
+          <!-- Book Card 9 (New) -->
+          <div class="book-card">
+            <img
+              src="https://rukminim2.flixcart.com/image/704/844/xif0q/book/0/f/h/the-night-circus-original-imaggeezz8tpsvzd.jpeg?q=90&crop=false"
+              alt="The Night Circus book cover"
+            />
+            <h3>The Night Circus</h3>
+            <div class="genre">Fantasy</div>
+            <div class="description">
+              A magical, captivating tale of two young magicians bound by a
+              life-or-death competition.
             </div>
           </div>
         </div>
@@ -704,8 +703,8 @@
 
     <!-- Footer -->
     <footer class="footer">
-      <div class="container">
-        <p>&copy; 2024 Sengordered Audio Books</p>
+      <div class="container footer-content">
+        <a href="#" class="logo">Sengordered Audio Books</a>
         <p>
           Email:
           <a href="mailto:preciouseffah@gmail.com">preciouseffah@gmail.com</a>
@@ -714,6 +713,7 @@
           <a href="#">Terms of Service</a>
           <a href="#">Privacy Policy</a>
         </div>
+        <p>&copy; 2024 Sengordered Audio Books</p>
       </div>
     </footer>
 
