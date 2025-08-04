@@ -336,6 +336,67 @@
         }
       }
 
+      /* --- Pricing Section --- */
+      .pricing {
+        padding: var(--spacing-unit) 0;
+        text-align: center;
+      }
+
+      .pricing h2 {
+        margin-bottom: var(--spacing-unit);
+      }
+
+      .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: var(--spacing-unit);
+        margin-top: calc(var(--spacing-unit) * 2);
+      }
+
+      .pricing-card {
+        border: 2px solid var(--text-color);
+        border-radius: 8px;
+        padding: var(--spacing-unit);
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .pricing-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+      }
+
+      .pricing-card h3 {
+        font-family: var(--heading-font);
+        font-size: 2rem;
+        margin-bottom: calc(var(--spacing-unit) / 2);
+        text-transform: uppercase;
+      }
+
+      .pricing-card .price {
+        font-family: var(--heading-font);
+        font-size: 3rem;
+        color: var(--primary-color);
+        margin-bottom: calc(var(--spacing-unit) / 2);
+      }
+
+      .pricing-card ul {
+        list-style: none;
+        text-align: left;
+        margin: var(--spacing-unit) 0;
+        padding: 0;
+      }
+
+      .pricing-card ul li {
+        margin-bottom: calc(var(--spacing-unit) / 2);
+        font-size: 16px;
+      }
+
+      .pricing-card ul li i {
+        margin-right: calc(var(--spacing-unit) / 4);
+        color: var(--primary-color);
+      }
+
       /* --- CTA Block --- */
       .cta-block {
         background-color: var(--primary-color);
@@ -600,7 +661,7 @@
               <div
                 class="case-study-image"
                 style="
-                  background-image: url('https://placehold.co/600x400/00E1FF/202124?text=Funnel+Results');
+                  background-image: url('https://media.sproutsocial.com/uploads/marketing-funnel.jpg');
                 "
               ></div>
             </div>
@@ -610,7 +671,7 @@
               <div
                 class="case-study-image"
                 style="
-                  background-image: url('https://placehold.co/600x400/FF0054/FFFFFF?text=SEO+Growth');
+                  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlNDO8Xo-2SgdEqIwK3ClEaAmZPyI_GT2S2w&s');
                 "
               ></div>
               <div class="case-study-text">
@@ -623,6 +684,78 @@
                 </p>
                 <p><em>Tools Used: Ahrefs, SEMrush, Google Analytics</em></p>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- --- Pricing Section --- -->
+      <section class="pricing" id="pricing">
+        <div class="container">
+          <h2 class="gsap-section-title">Our Growth Packages</h2>
+          <div class="pricing-grid">
+            <!-- Starter Package -->
+            <div class="pricing-card gsap-pricing-card">
+              <h3>Starter</h3>
+              <p class="price">$1,000<span>/mo</span></p>
+              <p>
+                Perfect for small businesses looking to establish their digital
+                presence and start seeing results.
+              </p>
+              <ul>
+                <li><i class="fas fa-check"></i> Basic SEO Optimization</li>
+                <li><i class="fas fa-check"></i> Monthly Content Plan</li>
+                <li><i class="fas fa-check"></i> Google Analytics Setup</li>
+                <li><i class="fas fa-check"></i> 1 Ad Campaign</li>
+              </ul>
+              <a href="#contact" class="btn">Buy Now</a>
+            </div>
+            <!-- Pro Package -->
+            <div class="pricing-card gsap-pricing-card">
+              <h3>Pro</h3>
+              <p class="price">$3,500<span>/mo</span></p>
+              <p>
+                Accelerate your growth with a comprehensive, data-driven
+                marketing strategy.
+              </p>
+              <ul>
+                <li>
+                  <i class="fas fa-check"></i> Advanced SEO & Keyword Research
+                </li>
+                <li>
+                  <i class="fas fa-check"></i> Comprehensive Content Strategy
+                </li>
+                <li>
+                  <i class="fas fa-check"></i> A/B Testing & Funnel Optimization
+                </li>
+                <li>
+                  <i class="fas fa-check"></i> 3 Ad Campaigns + Retargeting
+                </li>
+                <li>
+                  <i class="fas fa-check"></i> Bi-weekly Performance Reporting
+                </li>
+              </ul>
+              <a href="#contact" class="btn">Buy Now</a>
+            </div>
+            <!-- Enterprise Package -->
+            <div class="pricing-card gsap-pricing-card">
+              <h3>Enterprise</h3>
+              <p class="price">Custom</p>
+              <p>
+                Tailored solutions for large brands with specific goals and
+                complex marketing needs.
+              </p>
+              <ul>
+                <li><i class="fas fa-check"></i> Full-Service SEO & Content</li>
+                <li><i class="fas fa-check"></i> Dedicated Account Manager</li>
+                <li><i class="fas fa-check"></i> Custom Funnel Development</li>
+                <li><i class="fas fa-check"></i> Unlimited Ad Campaigns</li>
+                <li>
+                  <i class="fas fa-check"></i> Advanced Analytics & Reporting
+                </li>
+                <li><i class="fas fa-check"></i> Brand Strategy Consulting</li>
+              </ul>
+              <a href="#contact" class="btn">Let's Talk</a>
             </div>
           </div>
         </div>
@@ -776,6 +909,19 @@
         ease: "power3.out",
         scrollTrigger: {
           trigger: ".case-studies",
+          start: "top 80%",
+        },
+      });
+
+      // --- Staggered Fade-up for Pricing Cards ---
+      gsap.from(".gsap-pricing-card", {
+        y: 50,
+        opacity: 0,
+        stagger: 0.2,
+        duration: 0.8,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: ".pricing-grid",
           start: "top 80%",
         },
       });
