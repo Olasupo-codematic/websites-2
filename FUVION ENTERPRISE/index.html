@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fuvion Enterprise</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Source+Sans+Pro:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <style>
+      /* CSS Reset and Global Styles */
+      :root {
+        --primary-color: #1b2e4b;
+        --accent-color: #00c2a8;
+        --background-color: #f6f6f6;
+        --text-color: #1a1a1a;
+        --spacing-unit: 24px;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Source Sans Pro", sans-serif;
+        background-color: var(--background-color);
+        color: var(--text-color);
+        line-height: 1.65;
+        letter-spacing: 0.15px;
+        font-size: 15px;
+      }
+
+      h1,
+      h2 {
+        font-family: "Inter", sans-serif;
+        color: var(--primary-color);
+        text-transform: uppercase;
+      }
+
+      h1 {
+        font-size: 48px;
+      }
+      h2 {
+        font-size: 32px;
+      }
+
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 36px;
+        }
+        h2 {
+          font-size: 24px;
+        }
+      }
+
+      section {
+        padding: calc(var(--spacing-unit) * 3) 0;
+        max-width: 1160px;
+        margin: 0 auto;
+        padding-left: var(--spacing-unit);
+        padding-right: var(--spacing-unit);
+      }
+
+      /* UI Components */
+      .btn {
+        display: inline-block;
+        padding: 12px 24px;
+        border-radius: 8px;
+        text-decoration: none;
+        text-align: center;
+        font-family: "Inter", sans-serif;
+        font-weight: 600;
+        cursor: pointer;
+        border: none;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .btn-primary {
+        background-color: var(--primary-color);
+        color: #fff;
+      }
+
+      .btn-accent {
+        background: linear-gradient(90deg, #00c2a8 0%, #009985 100%);
+        color: #fff;
+      }
+
+      .btn-accent:hover {
+        box-shadow: 0 0 15px var(--accent-color);
+      }
+
+      /* Hero Section */
+      .hero {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 80vh;
+        text-align: left;
+        position: relative;
+        background: var(--background-color);
+        overflow: hidden;
+        padding-bottom: 0;
+      }
+
+      .hero-content {
+        z-index: 2;
+        width: 50%;
+      }
+
+      .hero h1 {
+        margin-bottom: var(--spacing-unit);
+      }
+
+      .hero p {
+        font-size: 18px;
+        margin-bottom: calc(var(--spacing-unit) * 2);
+      }
+
+      .hero-ctas .btn {
+        margin-right: var(--spacing-unit);
+      }
+
+      .hero-image {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: 50%;
+        height: 100%;
+        background: url("https://imgproxy.divecdn.com/j7ZyEzKtFSeXISQnYWbMykLuB4pWv-eZ_7fN4bSvF8c/g:ce/rs:fill:1200:675:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9HZXR0eUltYWdlcy0xNDA1Njk4MTMxXzEuanBn.webp")
+          no-repeat center center/cover;
+        z-index: 1;
+        clip-path: polygon(25% 0, 100% 0, 100% 100%, 0% 100%);
+      }
+
+      @media (max-width: 768px) {
+        .hero {
+          flex-direction: column;
+          text-align: center;
+          min-height: auto;
+          padding-top: calc(var(--spacing-unit) * 3);
+        }
+        .hero-content {
+          width: 100%;
+          margin-bottom: var(--spacing-unit);
+        }
+        .hero-image {
+          position: static;
+          width: 100%;
+          height: 40vh;
+          clip-path: none;
+        }
+        .hero-ctas {
+          display: flex;
+          flex-direction: column;
+        }
+        .hero-ctas .btn {
+          margin: var(--spacing-unit) auto;
+        }
+      }
+
+      /* Featured Products */
+      .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: var(--spacing-unit);
+        margin-top: var(--spacing-unit);
+      }
+
+      .product-card {
+        background: #fff;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        transition: transform 0.2s, box-shadow 0.2s;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .product-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+
+      .product-info {
+        padding: var(--spacing-unit);
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .product-info h3 {
+        font-family: "Inter", sans-serif;
+        font-size: 18px;
+        color: var(--primary-color);
+        margin-bottom: 8px;
+      }
+
+      .product-info p {
+        color: #666;
+        margin-bottom: 16px;
+      }
+
+      .product-meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: var(--spacing-unit);
+      }
+
+      .product-price {
+        font-family: "Inter", sans-serif;
+        font-weight: 700;
+        font-size: 20px;
+        color: var(--accent-color);
+      }
+
+      .credit-badge {
+        background-color: #e5f6e8;
+        color: #388e3c;
+        font-size: 12px;
+        font-weight: 600;
+        padding: 4px 8px;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .credit-badge::before {
+        content: "✔";
+        color: #388e3c;
+      }
+
+      .product-card .btn {
+        width: 100%;
+      }
+
+      /* How It Works Section */
+      .how-it-works-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: calc(var(--spacing-unit) * 2);
+        margin-top: calc(var(--spacing-unit) * 2);
+        text-align: center;
+      }
+
+      .step-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .step-icon {
+        font-size: 48px;
+        color: var(--accent-color);
+        margin-bottom: var(--spacing-unit);
+      }
+
+      .step-card h3 {
+        font-family: "Inter", sans-serif;
+        font-size: 18px;
+        color: var(--primary-color);
+        margin-bottom: 8px;
+      }
+
+      /* Why Fuvion Section */
+      .why-fuvion-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: calc(var(--spacing-unit) * 2);
+        margin-top: calc(var(--spacing-unit) * 2);
+      }
+
+      .why-fuvion-item {
+        display: flex;
+        gap: var(--spacing-unit);
+        align-items: flex-start;
+      }
+
+      .why-fuvion-icon {
+        font-size: 32px;
+        color: var(--accent-color);
+        flex-shrink: 0;
+        line-height: 1;
+      }
+
+      .why-fuvion-item h3 {
+        font-family: "Inter", sans-serif;
+        font-size: 20px;
+        color: var(--primary-color);
+        margin-bottom: 4px;
+      }
+
+      /* Testimonials Section */
+      .testimonials-grid {
+        display: flex;
+        gap: var(--spacing-unit);
+        overflow-x: auto;
+        margin-top: var(--spacing-unit);
+      }
+
+      .testimonial-card {
+        background: #fff;
+        padding: var(--spacing-unit);
+        border-radius: 12px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        flex: 0 0 350px;
+      }
+
+      .testimonial-card p {
+        font-style: italic;
+        margin-bottom: var(--spacing-unit);
+        color: #666;
+      }
+
+      .testimonial-author {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .testimonial-author img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .author-info h4 {
+        font-family: "Inter", sans-serif;
+        font-size: 16px;
+        color: var(--primary-color);
+      }
+
+      /* Credit Application Modal */
+      .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.3s, visibility 0.3s;
+        z-index: 1000;
+      }
+
+      .modal.is-visible {
+        visibility: visible;
+        opacity: 1;
+      }
+
+      .modal-content {
+        background: #fff;
+        padding: calc(var(--spacing-unit) * 2);
+        border-radius: 12px;
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+        width: 90%;
+        max-width: 500px;
+        transform: translateY(50px);
+        transition: transform 0.3s;
+        position: relative;
+      }
+
+      .modal.is-visible .modal-content {
+        transform: translateY(0);
+      }
+
+      .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: var(--spacing-unit);
+      }
+
+      .modal-header h3 {
+        font-family: "Inter", sans-serif;
+        color: var(--primary-color);
+        font-size: 24px;
+      }
+
+      .close-btn {
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: #888;
+      }
+
+      .form-group {
+        margin-bottom: var(--spacing-unit);
+        position: relative;
+      }
+
+      .form-group label {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        color: #888;
+        transition: top 0.2s, font-size 0.2s;
+        pointer-events: none;
+      }
+
+      .form-group input:focus + label,
+      .form-group input:not(:placeholder-shown) + label {
+        top: -10px;
+        font-size: 12px;
+        color: var(--primary-color);
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        font-size: 16px;
+        font-family: "Source Sans Pro", sans-serif;
+        background-color: transparent;
+      }
+
+      .form-group input:focus {
+        outline: none;
+        border-color: var(--primary-color);
+      }
+
+      .modal-message {
+        text-align: center;
+      }
+
+      /* Footer */
+      .footer {
+        background-color: var(--primary-color);
+        color: #fff;
+        padding: calc(var(--spacing-unit) * 2);
+        text-align: center;
+        font-family: "Source Sans Pro", sans-serif;
+      }
+
+      .footer a {
+        color: #fff;
+        text-decoration: none;
+        margin: 0 12px;
+        transition: color 0.2s;
+      }
+
+      .footer a:hover {
+        color: var(--accent-color);
+      }
+
+      .footer p {
+        margin-bottom: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Main Content -->
+    <main>
+      <!-- Hero Section -->
+      <section class="hero">
+        <div class="hero-content">
+          <h1 class="hero-text">Get What You Need. Pay Monthly.</h1>
+          <p class="hero-subtext">
+            We provide appliances, electronics, furniture, and more — all on
+            flexible credit for formally employed individuals.
+          </p>
+          <div class="hero-ctas">
+            <a href="#featured-products" class="btn btn-primary"
+              >Browse Items</a
+            >
+            <a href="#" class="btn btn-accent open-modal-btn">Check Credit</a>
+          </div>
+        </div>
+        <div class="hero-image"></div>
+      </section>
+
+      <!-- Featured Products Section -->
+      <section id="featured-products">
+        <h2
+          class="section-title"
+          style="text-align: center; margin-bottom: var(--spacing-unit)"
+        >
+          Featured Products
+        </h2>
+        <div class="products-grid">
+          <!-- Product Card 1 -->
+          <div class="product-card">
+            <img
+              src="https://i0.wp.com/perfectmalls.com.ng/wp-content/uploads/2025/01/QGC-2BG-Lotus.jpg?fit=800%2C800&ssl=1"
+              alt="Gas cooker"
+            />
+            <div class="product-info">
+              <div>
+                <h3>Gas Cooker</h3>
+                <p>An essential for every modern kitchen.</p>
+              </div>
+              <div class="product-meta">
+                <span class="product-price">$80 USD</span>
+                <span class="credit-badge">Available on Credit</span>
+              </div>
+              <a href="#" class="btn btn-accent open-modal-btn">Order Now</a>
+            </div>
+          </div>
+
+          <!-- Product Card 2 -->
+          <div class="product-card">
+            <img
+              src="https://i5.walmartimages.com/seo/Portable-Bluetooth-Speaker-Wireless-Speaker-10W-Loud-Stereo-Sound-Outdoor-Speakers-Bluetooth-5-0-30H-Playtime-66ft-Bluetooth-Range-Dual-Pairing-Home_099b8406-3790-4ced-9bb6-5a5f464b9052.7b2f8af60aba57f6033735d24bd277cd.jpeg"
+              alt="Bluetooth speaker"
+            />
+            <div class="product-info">
+              <div>
+                <h3>Bluetooth Speaker</h3>
+                <p>Portable audio for your home or on the go.</p>
+              </div>
+              <div class="product-meta">
+                <span class="product-price">$25 USD</span>
+                <span class="credit-badge">Available on Credit</span>
+              </div>
+              <a href="#" class="btn btn-accent open-modal-btn">Order Now</a>
+            </div>
+          </div>
+
+          <!-- Product Card 3 -->
+          <div class="product-card">
+            <img
+              src="https://aspirestore.co.uk/49723-large_default/Aspire-Cool-Tufted-Ortho-Mattress.jpg"
+              alt="Mattress"
+            />
+            <div class="product-info">
+              <div>
+                <h3>Mattress</h3>
+                <p>Sleep better with our comfortable foam mattress.</p>
+              </div>
+              <div class="product-meta">
+                <span class="product-price">$100 USD</span>
+                <span class="credit-badge">Available on Credit</span>
+              </div>
+              <a href="#" class="btn btn-accent open-modal-btn">Order Now</a>
+            </div>
+          </div>
+
+          <!-- Product Card 4 -->
+          <div class="product-card">
+            <img
+              src="https://pinamart.com/wp-content/uploads/2021/04/Scanfrost-Standing-Rechargeable-Fan.jpg"
+              alt="Rechargable fan"
+            />
+            <div class="product-info">
+              <div>
+                <h3>Rechargeable Fan</h3>
+                <p>Stay cool during power outages with this fan.</p>
+              </div>
+              <div class="product-meta">
+                <span class="product-price">$60 USD</span>
+                <span class="credit-badge">Available on Credit</span>
+              </div>
+              <a href="#" class="btn btn-accent open-modal-btn">Order Now</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- How It Works Section -->
+      <section id="how-it-works">
+        <h2 class="section-title" style="text-align: center">How It Works</h2>
+        <div class="how-it-works-grid">
+          <div class="step-card">
+            <span class="step-icon">1</span>
+            <h3>Browse Your Item</h3>
+            <p>
+              Find the product that fits your needs and budget from our catalog.
+            </p>
+          </div>
+          <div class="step-card">
+            <span class="step-icon">2</span>
+            <h3>Fill Employer Info</h3>
+            <p>
+              Provide details about your employment and salary for verification.
+            </p>
+          </div>
+          <div class="step-card">
+            <span class="step-icon">3</span>
+            <h3>We Verify & Approve</h3>
+            <p>
+              Our team quickly verifies your details and approves your credit
+              request.
+            </p>
+          </div>
+          <div class="step-card">
+            <span class="step-icon">4</span>
+            <h3>Get Your Product</h3>
+            <p>
+              Receive your product and begin making convenient monthly payments.
+            </p>
+          </div>
+        </div>
+        <div
+          style="text-align: center; margin-top: calc(var(--spacing-unit) * 2)"
+        >
+          <a href="#" class="btn btn-accent open-modal-btn"
+            >Check If You Qualify</a
+          >
+        </div>
+      </section>
+
+      <!-- Credit Application Section -->
+      <section id="credit-application">
+        <h2 class="section-title" style="text-align: center">
+          Credit Application
+        </h2>
+        <div style="text-align: center; margin-top: var(--spacing-unit)">
+          <p>
+            Ready to get started? Fill out our simple form to apply for credit.
+          </p>
+          <a
+            href="#"
+            class="btn btn-primary open-modal-btn"
+            style="margin-top: var(--spacing-unit)"
+            >Submit Request</a
+          >
+        </div>
+      </section>
+
+      <!-- Why Fuvion? Section -->
+      <section id="why-fuvion">
+        <h2 class="section-title" style="text-align: center">Why Fuvion?</h2>
+        <div class="why-fuvion-grid">
+          <div class="why-fuvion-item">
+            <div class="why-fuvion-icon">📋</div>
+            <div>
+              <h3>No Collateral Required</h3>
+              <p>We believe in you. Your employment is your collateral.</p>
+            </div>
+          </div>
+          <div class="why-fuvion-item">
+            <div class="why-fuvion-icon">⏱️</div>
+            <div>
+              <h3>Fast Approval</h3>
+              <p>
+                Our streamlined process means you get a response within 24
+                hours.
+              </p>
+            </div>
+          </div>
+          <div class="why-fuvion-item">
+            <div class="why-fuvion-icon">✅</div>
+            <div>
+              <h3>Only for Employed Customers</h3>
+              <p>
+                Our model is designed to be a perfect fit for those with a
+                steady income.
+              </p>
+            </div>
+          </div>
+          <div class="why-fuvion-item">
+            <div class="why-fuvion-icon">💲</div>
+            <div>
+              <h3>Interest-Free Periods</h3>
+              <p>
+                Enjoy certain items with no interest for a promotional period.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials Section -->
+      <section id="testimonials">
+        <h2 class="section-title" style="text-align: center">Testimonials</h2>
+        <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <p>
+              "Fuvion made it so easy to get the new fridge I needed. The
+              application process was smooth and the payments are manageable."
+            </p>
+            <div class="testimonial-author">
+              <img
+                src="https://placehold.co/50x50/e0e0e0/000000?text=JD"
+                alt="John Doe"
+              />
+              <div class="author-info">
+                <h4>John D.</h4>
+                <span>Happy Customer</span>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <p>
+              "I was skeptical at first, but Fuvion's fast approval process and
+              flexible terms are the real deal. Highly recommend!"
+            </p>
+            <div class="testimonial-author">
+              <img
+                src="https://placehold.co/50x50/e0e0e0/000000?text=SA"
+                alt="Sarah A."
+              />
+              <div class="author-info">
+                <h4>Sarah A.</h4>
+                <span>Small Business Owner</span>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <p>
+              "The team was very helpful and the whole process was transparent.
+              Got my new TV delivered within a week of applying."
+            </p>
+            <div class="testimonial-author">
+              <img
+                src="https://placehold.co/50x50/e0e0e0/000000?text=AM"
+                alt="Alex M."
+              />
+              <div class="author-info">
+                <h4>Alex M.</h4>
+                <span>New Homeowner</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Credit Application Modal -->
+    <div id="credit-modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Request Credit</h3>
+          <button class="close-btn">&times;</button>
+        </div>
+        <form id="credit-form">
+          <div class="form-group">
+            <input type="text" id="name" placeholder=" " required />
+            <label for="name">Full Name</label>
+          </div>
+          <div class="form-group">
+            <input type="text" id="employer" placeholder=" " required />
+            <label for="employer">Employer Name</label>
+          </div>
+          <div class="form-group">
+            <input type="number" id="salary" placeholder=" " required />
+            <label for="salary">Monthly Salary (USD)</label>
+          </div>
+          <div class="form-group">
+            <input type="text" id="item" placeholder=" " required />
+            <label for="item">Item Needed</label>
+          </div>
+          <button type="submit" class="btn btn-accent" style="width: 100%">
+            Submit Request
+          </button>
+        </form>
+        <div id="success-message" class="modal-message" style="display: none">
+          <p
+            style="
+              color: var(--accent-color);
+              font-weight: bold;
+              margin-bottom: 8px;
+            "
+          >
+            Success!
+          </p>
+          <p>Request received! You’ll get a response within 24 hours.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>Fuvion Enterprise</p>
+      <p>Email: Ceo@fuvionenterprise.com</p>
+      <p>
+        <a href="#">Terms</a> |
+        <a href="#">Privacy</a>
+      </p>
+    </footer>
+
+    <!-- JavaScript for Animations and Modal Logic -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Register GSAP ScrollTrigger plugin
+        gsap.registerPlugin(ScrollTrigger);
+
+        // --- Hero Section Animations ---
+        gsap.from(".hero-text", {
+          opacity: 0,
+          y: -50,
+          duration: 1,
+          delay: 0.5,
+        });
+        gsap.from(".hero-subtext", {
+          opacity: 0,
+          y: -30,
+          duration: 1,
+          delay: 0.7,
+        });
+        gsap.from(".hero-ctas .btn", {
+          opacity: 0,
+          y: 20,
+          stagger: 0.2,
+          duration: 0.8,
+          delay: 1,
+        });
+        gsap.to(".hero-image", {
+          y: 20,
+          repeat: -1,
+          yoyo: true,
+          duration: 2,
+          ease: "power1.inOut",
+        });
+
+        // --- Featured Products Animations ---
+        gsap.from(".product-card", {
+          opacity: 0,
+          y: 50,
+          stagger: 0.2,
+          duration: 0.6,
+          scrollTrigger: {
+            trigger: "#featured-products",
+            start: "top 80%",
+          },
+        });
+
+        // --- How It Works Animations ---
+        gsap.from(".step-card", {
+          opacity: 0,
+          y: 50,
+          stagger: 0.3,
+          duration: 0.8,
+          scrollTrigger: {
+            trigger: "#how-it-works",
+            start: "top 80%",
+          },
+        });
+
+        // --- Why Fuvion Animations ---
+        gsap.from(".why-fuvion-item", {
+          opacity: 0,
+          x: -50,
+          stagger: 0.2,
+          duration: 0.6,
+          scrollTrigger: {
+            trigger: "#why-fuvion",
+            start: "top 80%",
+          },
+        });
+
+        // --- Testimonials Animations ---
+        gsap.from(".testimonial-card", {
+          opacity: 0,
+          x: 100,
+          stagger: 0.3,
+          duration: 0.8,
+          scrollTrigger: {
+            trigger: "#testimonials",
+            start: "top 80%",
+          },
+        });
+
+        // --- Footer Animation ---
+        gsap.from(".footer", {
+          opacity: 0,
+          y: 50,
+          duration: 0.8,
+          scrollTrigger: {
+            trigger: ".footer",
+            start: "top 95%",
+          },
+        });
+
+        // --- Modal Logic ---
+        const modal = document.getElementById("credit-modal");
+        const openModalBtns = document.querySelectorAll(".open-modal-btn");
+        const closeModalBtn = document.querySelector(".close-btn");
+        const creditForm = document.getElementById("credit-form");
+        const successMessage = document.getElementById("success-message");
+
+        // Open modal
+        openModalBtns.forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            modal.classList.add("is-visible");
+            // GSAP animation for modal entry
+            gsap.fromTo(
+              ".modal-content",
+              { y: 50, opacity: 0 },
+              { y: 0, opacity: 1, duration: 0.3, ease: "power2.out" }
+            );
+          });
+        });
+
+        // Close modal
+        function closeModal() {
+          modal.classList.remove("is-visible");
+          // Reset form and message
+          creditForm.style.display = "block";
+          successMessage.style.display = "none";
+          creditForm.reset();
+        }
+
+        closeModalBtn.addEventListener("click", closeModal);
+        modal.addEventListener("click", (e) => {
+          if (e.target === modal) {
+            closeModal();
+          }
+        });
+
+        // Form submission logic
+        creditForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+
+          // Hide form and show success message
+          creditForm.style.display = "none";
+          successMessage.style.display = "block";
+
+          // GSAP animation for modal content change
+          gsap.fromTo(
+            successMessage,
+            { opacity: 0, y: 20 },
+            { opacity: 1, y: 0, duration: 0.5 }
+          );
+
+          // Auto-close modal after a few seconds
+          setTimeout(() => {
+            closeModal();
+          }, 3000);
+        });
+      });
+    </script>
+  </body>
+</html>

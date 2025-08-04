@@ -179,14 +179,16 @@
         background-color: rgba(0, 0, 0, 0.5);
         display: none; /* Hidden by default */
         justify-content: center;
-        align-items: flex-end;
+        align-items: center; /* Changed to center */
         z-index: 1000;
       }
 
       .modal-content {
         background-color: white;
         padding: calc(var(--spacing-unit) * 2);
-        border-radius: var(--spacing-unit) var(--spacing-unit) 0 0;
+        border-radius: var(
+          --spacing-unit
+        ); /* Changed for a full box appearance */
         width: 100%;
         max-width: 500px;
         text-align: center;
@@ -345,6 +347,104 @@
         font-size: 20px;
         font-family: "Manrope", sans-serif;
         margin-bottom: 5px;
+      }
+
+      /* Pricing Section Styles */
+      .pricing-section {
+        padding: calc(var(--spacing-unit) * 4) 0;
+        text-align: center;
+      }
+      .pricing-cards-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: calc(var(--spacing-unit) * 2);
+        align-items: stretch;
+        justify-content: center;
+      }
+      .pricing-card {
+        position: relative;
+        background-color: white;
+        padding: calc(var(--spacing-unit) * 2);
+        border-radius: calc(var(--spacing-unit) * 2);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        text-align: center;
+        border: 2px solid transparent;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .pricing-card.featured {
+        border-color: var(--primary-color);
+        box-shadow: 0 12px 40px rgba(16, 207, 201, 0.2);
+        transform: scale(1.05);
+      }
+      .pricing-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+      }
+      .pricing-card.featured:hover {
+        transform: scale(1.08) translateY(-10px);
+      }
+      .pricing-card h3 {
+        font-family: "Manrope", sans-serif;
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: var(--spacing-unit);
+      }
+      .pricing-card .price {
+        font-family: "Manrope", sans-serif;
+        font-size: 48px;
+        font-weight: 700;
+        color: var(--primary-color);
+        margin-bottom: var(--spacing-unit);
+      }
+      .pricing-card .price small {
+        font-size: 16px;
+        font-weight: 400;
+        color: var(--text-color);
+      }
+      .pricing-card ul {
+        list-style: none;
+        margin: 0 0 calc(var(--spacing-unit) * 1.5) 0;
+        padding: 0;
+        text-align: left;
+        display: inline-block;
+        flex-grow: 1;
+      }
+      .pricing-card ul li {
+        position: relative;
+        padding-left: 25px;
+        margin-bottom: 10px;
+      }
+      .pricing-card ul li::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: var(--primary-color);
+        font-weight: 700;
+      }
+      .pricing-card .ribbon {
+        position: absolute;
+        top: 0;
+        right: 20px;
+        width: 120px;
+        height: 120px;
+        overflow: hidden;
+      }
+      .pricing-card .ribbon::before {
+        content: "Most Popular";
+        position: absolute;
+        top: 20px;
+        right: -40px;
+        background-color: var(--accent-color);
+        color: white;
+        padding: 5px 40px;
+        font-size: 14px;
+        font-weight: 700;
+        font-family: "Manrope", sans-serif;
+        transform: rotate(45deg);
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
       }
 
       .download-cta-section {
@@ -697,6 +797,70 @@
         </div>
       </section>
 
+      <!-- Pricing Section -->
+      <section class="pricing-section">
+        <div class="container">
+          <h2>Choose the right plan for you</h2>
+          <div class="pricing-cards-container">
+            <!-- Basic Plan -->
+            <div class="pricing-card">
+              <div>
+                <h3>Basic Plan</h3>
+                <p class="price">
+                  $10
+                  <small>/ per month</small>
+                </p>
+                <ul>
+                  <li>Access to core services</li>
+                  <li>Standard support</li>
+                  <li>Secure in-app wallet</li>
+                  <li>5 service bookings per month</li>
+                </ul>
+              </div>
+              <button class="btn btn-primary">Choose Plan</button>
+            </div>
+
+            <!-- Pro Plan (Featured) -->
+            <div class="pricing-card featured">
+              <div class="ribbon"></div>
+              <div>
+                <h3>Pro Plan</h3>
+                <p class="price">
+                  $30
+                  <small>/ per month</small>
+                </p>
+                <ul>
+                  <li>Access to all core services</li>
+                  <li>Priority customer support</li>
+                  <li>Exclusive vendor discounts</li>
+                  <li>Secure in-app wallet</li>
+                  <li>Unlimited service bookings</li>
+                </ul>
+              </div>
+              <button class="btn btn-accent">Choose Plan</button>
+            </div>
+
+            <!-- Enterprise Plan -->
+            <div class="pricing-card">
+              <div>
+                <h3>Enterprise Plan</h3>
+                <p class="price">
+                  $100
+                  <small>/ per month</small>
+                </p>
+                <ul>
+                  <li>All Pro features included</li>
+                  <li>Dedicated account manager</li>
+                  <li>Custom service integrations</li>
+                  <li>API access for developers</li>
+                </ul>
+              </div>
+              <button class="btn btn-primary">Choose Plan</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- Call to Action / Download Block -->
       <section class="download-cta-section">
         <div class="container">
@@ -909,6 +1073,18 @@
           ease: "back.out(1.7)",
           scrollTrigger: {
             trigger: ".benefits-section",
+            start: "top 80%",
+          },
+        });
+
+        // Pricing section animation - Removed autoAlpha: 0 to make it visible initially
+        gsap.from(".pricing-card", {
+          y: 50,
+          stagger: 0.2,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: ".pricing-section",
             start: "top 80%",
           },
         });
