@@ -316,6 +316,78 @@
         gap: calc(var(--spacing-unit) * 2);
       }
 
+      #pricing .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: calc(var(--spacing-unit) * 2);
+        align-items: center;
+      }
+
+      .pricing-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: calc(var(--spacing-unit) * 2);
+        border-radius: calc(var(--spacing-unit) * 1.5);
+        background: rgba(var(--text-color), 0.05);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(var(--text-color), 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .pricing-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 40px rgba(var(--accent-color), 0.2);
+      }
+
+      .pricing-card h3 {
+        font-size: var(--h2-size);
+        margin-bottom: calc(var(--spacing-unit) / 2);
+      }
+
+      .pricing-card .price {
+        font-family: var(--font-heading);
+        font-size: calc(var(--h1-size) * 0.8);
+        margin: var(--spacing-unit) 0;
+        color: var(--accent-color);
+      }
+
+      .pricing-card ul {
+        list-style: none;
+        margin: calc(var(--spacing-unit) / 2) 0 calc(var(--spacing-unit) * 1.5)
+          0;
+        text-align: left;
+      }
+
+      .pricing-card ul li {
+        position: relative;
+        padding-left: calc(var(--spacing-unit) + 5px);
+        margin-bottom: 10px;
+        font-size: var(--body-size);
+      }
+
+      .pricing-card ul li::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: var(--accent-color);
+      }
+
+      .pricing-card.recommended {
+        border-color: var(--accent-color);
+        box-shadow: 0 0 20px rgba(var(--accent-color), 0.5);
+        background: rgba(var(--accent-color), 0.05);
+      }
+
+      .pricing-card.recommended .btn {
+        background: linear-gradient(
+          90deg,
+          var(--accent-color),
+          var(--primary-color)
+        );
+      }
+
       #consultancy .flex-panels {
         display: flex;
         flex-direction: column;
@@ -531,6 +603,58 @@
             <p>
               Design, build, and deploy a network of smart, connected devices.
             </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="section-padding">
+      <div class="container">
+        <h2 class="section-title">Pricing & Products</h2>
+        <p>Choose the plan that's right for your innovation journey.</p>
+        <div
+          class="pricing-grid"
+          style="margin-top: calc(var(--spacing-unit) * 2)"
+        >
+          <!-- Pricing Card 1 -->
+          <div class="pricing-card">
+            <h3>Startup</h3>
+            <p>Launch your first project with essential tools.</p>
+            <div class="price">$99<span>/mo</span></div>
+            <ul>
+              <li>Innovation Toolkit Access</li>
+              <li>5GB Cloud Storage</li>
+              <li>Community Support</li>
+            </ul>
+            <a href="#" class="btn">Get Started</a>
+          </div>
+          <!-- Pricing Card 2 (Recommended) -->
+          <div class="pricing-card recommended">
+            <h3>Innovator Pro</h3>
+            <p>Scale your R&D with advanced features.</p>
+            <div class="price">$249<span>/mo</span></div>
+            <ul>
+              <li>All Startup Features</li>
+              <li>Prototyping Platform Access</li>
+              <li>20GB Cloud Storage</li>
+              <li>Dedicated Account Manager</li>
+              <li>24/7 Technical Support</li>
+            </ul>
+            <a href="#" class="btn">Get Started</a>
+          </div>
+          <!-- Pricing Card 3 -->
+          <div class="pricing-card">
+            <h3>Enterprise</h3>
+            <p>A complete solution for large-scale innovation.</p>
+            <div class="price">$499<span>/mo</span></div>
+            <ul>
+              <li>All Innovator Pro Features</li>
+              <li>AI/ML Software Integrations</li>
+              <li>Custom Systems Design</li>
+              <li>Unlimited Cloud Storage</li>
+            </ul>
+            <a href="#" class="btn">Get Started</a>
           </div>
         </div>
       </div>
@@ -769,6 +893,24 @@
             scrollTrigger: {
               trigger: card,
               start: "top 90%",
+              toggleActions: "play none none none",
+            },
+          });
+        });
+
+        // Pricing Section Animations (on scroll)
+        const pricingCards = gsap.utils.toArray(".pricing-card");
+        pricingCards.forEach((card, i) => {
+          gsap.from(card, {
+            y: 100,
+            opacity: 0,
+            scale: 0.8,
+            duration: 0.8,
+            ease: "power2.out",
+            delay: i * 0.2, // Stagger effect
+            scrollTrigger: {
+              trigger: "#pricing",
+              start: "top 80%",
               toggleActions: "play none none none",
             },
           });
