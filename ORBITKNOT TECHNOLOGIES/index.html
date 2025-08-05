@@ -259,16 +259,6 @@
         opacity: 0;
       }
 
-      /* Persistent CTA */
-      .persistent-cta {
-        position: fixed;
-        bottom: calc(var(--spacing-unit) * 1.5);
-        right: calc(var(--spacing-unit) * 1.5);
-        z-index: 900;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-      }
-
       /* Specific Section Styles */
       .hero {
         position: relative;
@@ -310,7 +300,7 @@
         opacity: 0;
       }
 
-      #products .grid {
+      #digital-resources .grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: calc(var(--spacing-unit) * 2);
@@ -318,8 +308,8 @@
 
       #pricing .pricing-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: calc(var(--spacing-unit) * 2);
+        grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+        gap: calc(var(--spacing-unit) * 3); /* Increased spacing */
         align-items: center;
       }
 
@@ -358,6 +348,7 @@
         margin: calc(var(--spacing-unit) / 2) 0 calc(var(--spacing-unit) * 1.5)
           0;
         text-align: left;
+        flex-grow: 1; /* Ensures list takes available space */
       }
 
       .pricing-card ul li {
@@ -372,6 +363,10 @@
         position: absolute;
         left: 0;
         color: var(--accent-color);
+      }
+
+      .pricing-card .btn {
+        margin-top: auto; /* Pushes button to the bottom */
       }
 
       .pricing-card.recommended {
@@ -421,12 +416,6 @@
         align-items: center;
         font-family: var(--font-heading);
         font-size: var(--h2-size);
-      }
-
-      #success-stories .card-deck {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: calc(var(--spacing-unit) * 2);
       }
 
       #contact h2 {
@@ -486,9 +475,6 @@
       style="opacity: 0; transform: translate(-50%, -50%)"
     ></div>
 
-    <!-- Persistent CTA -->
-    <a href="#contact" class="btn persistent-cta">Launch Consultation</a>
-
     <!-- Header & Navigation -->
     <header class="header">
       <div class="container">
@@ -547,9 +533,9 @@
           OrbitKnot helps you ideate, build, and deploy next-gen innovations
           through cutting-edge tools & expert consulting.
         </p>
-        <a href="#products" class="btn cta-btn">Launch Your Idea</a>
+        <a href="#digital-resources" class="btn cta-btn">Launch Your Idea</a>
         <a
-          href="#products"
+          href="#digital-resources"
           class="scroll-down"
           aria-label="Scroll down to products"
         >
@@ -572,36 +558,40 @@
       </div>
     </section>
 
-    <!-- Products & Innovation Suite Section -->
-    <section id="products" class="section-padding">
+    <!-- Digital Resources & Innovation Guides Section -->
+    <section id="digital-resources" class="section-padding">
       <div class="container">
-        <h2 class="section-title">Product & Innovation Suite</h2>
-        <p>Our core tools and platforms to accelerate your innovation cycle.</p>
+        <h2 class="section-title">Digital Resources & Innovation Guides</h2>
+        <p>
+          Unlock cutting-edge knowledge with our instant-access digital guides.
+        </p>
         <div class="grid" style="margin-top: calc(var(--spacing-unit) * 2)">
           <div class="card product-card">
-            <h3>Innovation Toolkit</h3>
+            <h3>AI & ML Starter Guide</h3>
             <p>
-              A suite of software tools for brainstorming, prototyping, and
-              project management.
+              A comprehensive introduction to Artificial Intelligence and
+              Machine Learning concepts.
             </p>
           </div>
           <div class="card product-card">
-            <h3>R&D Prototyping Platform</h3>
+            <h3>Blockchain Fundamentals</h3>
             <p>
-              Develop and test hardware prototypes in a virtual lab environment.
+              Understand the core principles and applications of blockchain
+              technology.
             </p>
           </div>
           <div class="card product-card">
-            <h3>AI/ML Software Integrations</h3>
+            <h3>IoT Security Handbook</h3>
             <p>
-              Seamlessly integrate intelligent software solutions into your
-              existing systems.
+              Best practices and strategies for securing your Internet of Things
+              deployments.
             </p>
           </div>
           <div class="card product-card">
-            <h3>IoT Hardware + Systems</h3>
+            <h3>Quantum Computing Primer</h3>
             <p>
-              Design, build, and deploy a network of smart, connected devices.
+              An accessible overview of quantum computing's potential and
+              challenges.
             </p>
           </div>
         </div>
@@ -620,11 +610,10 @@
           <!-- Pricing Card 1 -->
           <div class="pricing-card">
             <h3>Startup</h3>
-            <p>Launch your first project with essential tools.</p>
-            <div class="price">$99<span>/mo</span></div>
+            <p>Launch your first project with essential digital access.</p>
+            <div class="price">K2,475<span>/month</span></div>
             <ul>
-              <li>Innovation Toolkit Access</li>
-              <li>5GB Cloud Storage</li>
+              <li>Access to 1 Digital Guide of your choice</li>
               <li>Community Support</li>
             </ul>
             <a href="#" class="btn">Get Started</a>
@@ -632,27 +621,25 @@
           <!-- Pricing Card 2 (Recommended) -->
           <div class="pricing-card recommended">
             <h3>Innovator Pro</h3>
-            <p>Scale your R&D with advanced features.</p>
-            <div class="price">$249<span>/mo</span></div>
+            <p>Scale your R&D with advanced digital resources.</p>
+            <div class="price">K6,225<span>/month</span></div>
             <ul>
-              <li>All Startup Features</li>
-              <li>Prototyping Platform Access</li>
-              <li>20GB Cloud Storage</li>
+              <li>Access to All Digital Guides</li>
+              <li>Virtual Ideation Workshop Access</li>
               <li>Dedicated Account Manager</li>
-              <li>24/7 Technical Support</li>
             </ul>
             <a href="#" class="btn">Get Started</a>
           </div>
           <!-- Pricing Card 3 -->
           <div class="pricing-card">
             <h3>Enterprise</h3>
-            <p>A complete solution for large-scale innovation.</p>
-            <div class="price">$499<span>/mo</span></div>
+            <p>A complete solution for large-scale digital innovation.</p>
+            <div class="price">K12,475<span>/month</span></div>
             <ul>
               <li>All Innovator Pro Features</li>
-              <li>AI/ML Software Integrations</li>
-              <li>Custom Systems Design</li>
-              <li>Unlimited Cloud Storage</li>
+              <li>Custom Software Blueprints</li>
+              <li>Priority Technical Support</li>
+              <li>Unlimited Digital Consultations</li>
             </ul>
             <a href="#" class="btn">Get Started</a>
           </div>
@@ -660,91 +647,46 @@
       </div>
     </section>
 
-    <!-- Consultancy & Services Section -->
+    <!-- Technology & Innovation Products & Consultancy Section -->
     <section id="consultancy" class="section-padding">
       <div class="container">
-        <h2 class="section-title">Consultancy & Services</h2>
-        <p>Expert guidance from ideation to market launch.</p>
+        <h2 class="section-title">
+          Technology & Innovation Products & Consultancy
+        </h2>
+        <p>Expert guidance and digital resources to fuel your progress.</p>
         <div
           class="flex-panels"
           style="margin-top: calc(var(--spacing-unit) * 2)"
         >
           <div class="panel consultancy-panel">
             <div class="panel-content">
-              <h3>Product R&D</h3>
+              <h3>Digital Innovation Guides</h3>
               <p>
-                We partner with you to explore new frontiers and bring
-                groundbreaking ideas to life through rigorous research and
-                development.
+                Receive comprehensive guides via email on cutting-edge
+                technologies and innovation strategies.
               </p>
             </div>
-            <div class="icon-cluster">🛠</div>
+            <div class="icon-cluster">📚</div>
           </div>
           <div class="panel consultancy-panel reverse">
             <div class="panel-content">
-              <h3>Innovation Workshops</h3>
+              <h3>Virtual Ideation Workshops</h3>
               <p>
-                Engage your team in dynamic workshops to unlock creative
-                potential and define your product strategy.
+                Participate in online workshops to generate and refine your
+                innovative concepts with expert facilitators.
               </p>
             </div>
-            <div class="icon-cluster">🧠</div>
+            <div class="icon-cluster">💡</div>
           </div>
           <div class="panel consultancy-panel">
             <div class="panel-content">
-              <h3>Systems Design + Dev</h3>
+              <h3>Custom Software Blueprints</h3>
               <p>
-                From micro-architecture to large-scale systems, we design and
-                build robust, scalable technology from the ground up.
+                Get detailed architectural designs and development roadmaps
+                delivered digitally for your bespoke software needs.
               </p>
             </div>
-            <div class="icon-cluster">⚙️</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Success Stories / Use Cases Section -->
-    <section id="success-stories" class="section-padding">
-      <div class="container">
-        <h2 class="section-title">Success Stories</h2>
-        <p>See how we've helped others shape their tomorrow.</p>
-        <div
-          class="card-deck"
-          style="margin-top: calc(var(--spacing-unit) * 2)"
-        >
-          <div class="card story-card">
-            <h3>Project Nova</h3>
-            <p>
-              Challenge: Develop a self-optimizing IoT sensor network for
-              sustainable agriculture.
-            </p>
-            <p>
-              Solution: Implemented a custom hardware and AI-driven software
-              stack for real-time data analysis.
-            </p>
-          </div>
-          <div class="card story-card">
-            <h3>Ember Core</h3>
-            <p>
-              Challenge: Streamline R&D for a new generation of robotic
-              components.
-            </p>
-            <p>
-              Solution: Utilized our Prototyping Platform to reduce development
-              time by 40%.
-            </p>
-          </div>
-          <div class="card story-card">
-            <h3>Vortex AI</h3>
-            <p>
-              Challenge: Integrate a new AI model into an existing legacy
-              platform with minimal disruption.
-            </p>
-            <p>
-              Solution: Developed a custom API layer and provided expert
-              consultation on systems architecture.
-            </p>
+            <div class="icon-cluster">💻</div>
           </div>
         </div>
       </div>
@@ -881,7 +823,7 @@
             yoyo: true,
           });
 
-        // Products Section Animations (on scroll)
+        // Digital Resources Section Animations (on scroll)
         const productCards = gsap.utils.toArray(".product-card");
         productCards.forEach((card) => {
           gsap.from(card, {
@@ -929,29 +871,6 @@
               toggleActions: "play none none none",
             },
           });
-        });
-
-        // Success Stories Section Animations (on scroll)
-        gsap.utils.toArray(".story-card").forEach((card) => {
-          gsap.from(card, {
-            y: 50,
-            opacity: 0,
-            scale: 0.9,
-            duration: 0.8,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: card,
-              start: "top 90%",
-              toggleActions: "play none none none",
-            },
-          });
-        });
-
-        // Persistent CTA animation
-        gsap.to(".persistent-cta", {
-          opacity: 1,
-          duration: 0.5,
-          delay: 2.5,
         });
 
         // --- Form Submission & Modal Logic ---
