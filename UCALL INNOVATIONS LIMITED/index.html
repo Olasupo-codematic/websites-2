@@ -232,8 +232,13 @@
         position: relative;
         padding-top: calc(var(--spacing-unit) * 4);
         padding-bottom: calc(var(--spacing-unit) * 4);
+        background-image: url("https://eu-images.contentstack.com/v3/assets/blt10e444bce2d36aa8/blt58b52eaa7d5f97f7/65e875e9a39625040a66a9ad/Digital_Marketplace.jpg?disable=upscale&width=1200&height=630&fit=crop");
+        background-size: cover;
+        background-position: center;
+        color: white; /* Adjust text color for better contrast on image */
       }
 
+      /* Overlay for hero background image */
       .hero-section::before {
         content: "";
         position: absolute;
@@ -241,12 +246,15 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M100 0L0 100H100V0Z' fill='%2310CFC9' opacity='0.05'/%3E%3C/svg%3E"),
-          url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0L100 100V0H0Z' fill='%23FF6859' opacity='0.05'/%3E%3C/svg%3E");
-        background-size: 50px, 50px;
-        background-position: 0 0, 50px 50px;
+        background-color: rgba(0, 0, 0, 0.4); /* Dark overlay */
         z-index: -1;
-        opacity: 0.5;
+        /* Removed subtle illustrations to prevent clash with image */
+      }
+
+      .hero-section h1,
+      .hero-section p.subtext {
+        color: white; /* Ensure text is white on the dark overlay */
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Add subtle text shadow for readability */
       }
 
       .hero-section h1 {
@@ -268,7 +276,8 @@
         margin-top: calc(var(--spacing-unit) * 3);
         font-size: 18px;
         font-weight: 600;
-        color: var(--primary-color);
+        color: var(--primary-color); /* Kept primary color for contrast */
+        text-shadow: none; /* Remove text shadow for counter */
       }
 
       .categories-section {
@@ -447,32 +456,7 @@
         box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
       }
 
-      .download-cta-section {
-        padding: calc(var(--spacing-unit) * 4) 0;
-        text-align: center;
-      }
-      .download-banner {
-        background-color: var(--primary-color);
-        color: white;
-        padding: calc(var(--spacing-unit) * 3);
-        border-radius: calc(var(--spacing-unit) * 2);
-        position: relative;
-        overflow: hidden;
-      }
-      .download-banner h2 {
-        color: white;
-        font-size: 40px;
-      }
-      .download-buttons {
-        display: flex;
-        justify-content: center;
-        gap: var(--spacing-unit);
-        margin-top: calc(var(--spacing-unit) * 2);
-      }
-      .download-buttons .btn-primary {
-        background-color: white;
-        color: var(--primary-color);
-      }
+      /* Removed download-cta-section styles */
 
       .contact-section {
         padding: calc(var(--spacing-unit) * 4) 0;
@@ -571,9 +555,7 @@
         .how-it-works-grid {
           grid-template-columns: repeat(3, 1fr);
         }
-        .download-banner {
-          text-align: left;
-        }
+        /* Removed download-banner media query styles */
       }
 
       @media (min-width: 992px) {
@@ -583,12 +565,7 @@
         .benefits-grid {
           grid-template-columns: repeat(4, 1fr);
         }
-        .download-banner .phone-graphic {
-          width: 350px;
-          height: 350px;
-          bottom: -80px;
-          right: -50px;
-        }
+        /* Removed download-banner phone-graphic media query styles */
       }
     </style>
   </head>
@@ -614,7 +591,6 @@
             </p>
             <div class="hero-cta">
               <button class="btn btn-primary cta-btn">Get Started</button>
-              <button class="btn btn-outline cta-btn">Download App</button>
             </div>
             <div class="service-counter">
               <p>People served today: <span id="counter">0</span>+</p>
@@ -807,14 +783,14 @@
               <div>
                 <h3>Basic Plan</h3>
                 <p class="price">
-                  $10
+                  ZMW 150
                   <small>/ per month</small>
                 </p>
                 <ul>
-                  <li>Access to core services</li>
-                  <li>Standard support</li>
-                  <li>Secure in-app wallet</li>
-                  <li>5 service bookings per month</li>
+                  <li>Access to essential digital services</li>
+                  <li>Email-based service notifications</li>
+                  <li>Standard email support</li>
+                  <li>5 service requests per month</li>
                 </ul>
               </div>
               <button class="btn btn-primary">Choose Plan</button>
@@ -826,15 +802,14 @@
               <div>
                 <h3>Pro Plan</h3>
                 <p class="price">
-                  $30
+                  ZMW 450
                   <small>/ per month</small>
                 </p>
                 <ul>
-                  <li>Access to all core services</li>
-                  <li>Priority customer support</li>
-                  <li>Exclusive vendor discounts</li>
-                  <li>Secure in-app wallet</li>
-                  <li>Unlimited service bookings</li>
+                  <li>Unlimited access to all digital services</li>
+                  <li>Priority email support</li>
+                  <li>Exclusive digital service discounts</li>
+                  <li>Unlimited service requests</li>
                 </ul>
               </div>
               <button class="btn btn-accent">Choose Plan</button>
@@ -845,32 +820,17 @@
               <div>
                 <h3>Enterprise Plan</h3>
                 <p class="price">
-                  $100
+                  ZMW 1500
                   <small>/ per month</small>
                 </p>
                 <ul>
-                  <li>All Pro features included</li>
-                  <li>Dedicated account manager</li>
-                  <li>Custom service integrations</li>
-                  <li>API access for developers</li>
+                  <li>All Pro features</li>
+                  <li>Dedicated account management</li>
+                  <li>Custom digital service solutions</li>
+                  <li>Advanced analytics & reporting</li>
                 </ul>
               </div>
               <button class="btn btn-primary">Choose Plan</button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Call to Action / Download Block -->
-      <section class="download-cta-section">
-        <div class="container">
-          <div class="download-banner">
-            <div class="download-content">
-              <h2>Download Ucall-inn. Start Living Smarter.</h2>
-              <div class="download-buttons">
-                <button class="btn btn-primary">Apple App Store</button>
-                <button class="btn btn-primary">Google Play</button>
-              </div>
             </div>
           </div>
         </div>
@@ -1077,7 +1037,7 @@
           },
         });
 
-        // Pricing section animation - Removed autoAlpha: 0 to make it visible initially
+        // Pricing section animation
         gsap.from(".pricing-card", {
           y: 50,
           stagger: 0.2,
@@ -1085,18 +1045,6 @@
           ease: "power2.out",
           scrollTrigger: {
             trigger: ".pricing-section",
-            start: "top 80%",
-          },
-        });
-
-        // Download CTA Section Animations
-        const downloadBanner = document.querySelector(".download-banner");
-        gsap.from(downloadBanner, {
-          y: 100,
-          duration: 1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: ".download-cta-section",
             start: "top 80%",
           },
         });
