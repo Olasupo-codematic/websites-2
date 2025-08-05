@@ -701,14 +701,14 @@
             showModal();
             form.reset(); // Clear the form fields after showing the modal
           }, 500); // Small delay to simulate server response
-        });
+        }); 
 
         // Handle modal closing
         closeButtons.forEach((button) => {
           button.addEventListener("click", function (event) {
             event.preventDefault();
-            hideModal();
-          });
+            hideModal(); 
+          }); 
         });
 
         // Hide modal if user clicks outside the modal content
