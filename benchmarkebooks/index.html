@@ -3,1273 +3,1117 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BENCHMARK DIGITAL E-BOOKS</title>
 
-    <!-- Preload fonts for performance -->
-    <link
-      rel="preload"
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
+    <!-- SEO -->
+    <title>BENCHMARK DIGITAL E-BOOKS | Premium Book Subscriptions</title>
+    <meta
+      name="description"
+      content="Subscribe to BENCHMARK DIGITAL E-BOOKS for curated premium e‑books and audiobooks. Flexible monthly (GHS 120) or yearly (GHS 1200) plans."
     />
-    <noscript
-      ><link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap"
-    /></noscript>
-    <link
-      rel="preload"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <noscript
-      ><link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
-    /></noscript>
+    <link rel="canonical" href="https://benchmarkebooks.com/" />
+    <meta name="author" content="BENCHMARK DIGITAL E-BOOKS" />
 
-    <!-- Font Awesome for icons (still needed for other sections) -->
+    <!-- Open Graph -->
+    <meta property="og:title" content="BENCHMARK DIGITAL E-BOOKS" />
+    <meta
+      property="og:description"
+      content="Curated premium e‑books and audiobooks. Subscribe monthly or yearly."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/favicon.ico" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="BENCHMARK DIGITAL E-BOOKS" />
+    <meta
+      name="twitter:description"
+      content="Curated premium e‑books and audiobooks. Subscribe monthly or yearly."
+    />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
+
+    <!-- GSAP -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 
     <style>
-      /* CSS Variables & Global Styles */
+      /* Design System: CSS Variables */
       :root {
-        --primary-color: #2d3e50;
-        --accent-color: #f2b632;
-        --background-color: #fafafa;
-        --text-color: #1a1a1a;
-        --white-color: #ffffff;
-        --spacing-unit: 16px;
-        --max-width: 1200px;
+        /* Colors */
+        --primary: #2d3e50; /* Deep Navy Blue */
+        --accent: #f2b632; /* Warm Gold */
+        --bg: #fafafa; /* Soft White */
+        --text: #1a1a1a; /* Charcoal Black */
+        --muted: #6b7280; /* Neutral text */
+        --card: #ffffff;
+        --shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+        --shadow-hover: 0 18px 40px rgba(0, 0, 0, 0.12);
+        --glow: 0 0 0 0 rgba(242, 182, 50, 0);
+
+        /* Typography */
+        --font-heading: "Playfair Display", serif;
+        --font-body: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu,
+          Cantarell, "Helvetica Neue", Arial, "Apple Color Emoji",
+          "Segoe UI Emoji";
+        --h1: clamp(2.2rem, 1.6rem + 2.5vw, 3rem);
+        --h2: clamp(1.5rem, 1.1rem + 1.5vw, 2rem);
+        --body: 1rem;
+
+        /* Layout */
+        --space: 16px;
+        --radius: 14px;
+        --radius-sm: 10px;
+        --maxw: 1200px;
       }
 
-      /* Set base styles and use imported fonts */
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-
-      html {
-        scroll-behavior: smooth;
-      }
-
+      html,
       body {
-        font-family: "Inter", sans-serif;
-        background-color: var(--background-color);
-        color: var(--text-color);
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        font-family: var(--font-body);
+        background: var(--bg);
+        color: var(--text);
         line-height: 1.6;
         letter-spacing: 0.5px;
-        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
       }
 
-      h1,
-      h2,
-      h3 {
-        font-family: "Playfair Display", serif;
-        color: var(--primary-color);
-        text-transform: capitalize;
-        line-height: 1.2;
-      }
-
-      h1 {
-        font-size: 3rem;
-      }
-      h2 {
-        font-size: 2rem;
-      }
-      p {
-        font-size: 1rem;
-      }
-
-      /* General Layout */
+      /* Utility */
       .container {
-        max-width: var(--max-width);
-        margin: 0 auto;
-        padding: 0 var(--spacing-unit);
+        width: min(100% - 2 * var(--space), var(--maxw));
+        margin-inline: auto;
       }
-
-      section {
-        padding: calc(var(--spacing-unit) * 6) 0;
-        position: relative;
-      }
-
-      /* Buttons */
       .btn {
-        display: inline-block;
-        padding: calc(var(--spacing-unit) * 1) calc(var(--spacing-unit) * 2);
-        font-family: "Inter", sans-serif;
-        font-weight: 700;
-        color: var(--primary-color);
-        background-color: var(--accent-color);
-        border: 2px solid var(--accent-color);
-        border-radius: 50px;
-        text-decoration: none;
-        text-transform: uppercase;
-        cursor: pointer;
-        transition: all 0.3s ease-in-out;
-        box-shadow: 0 4px 15px rgba(242, 182, 50, 0.3);
-      }
-
-      .btn:hover {
-        box-shadow: 0 8px 25px rgba(242, 182, 50, 0.6);
-        transform: scale(1.05);
-      }
-
-      /* Header Navigation */
-      .header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        background-color: rgba(250, 250, 250, 0.9);
-        backdrop-filter: blur(5px);
-        z-index: 100;
-        padding: calc(var(--spacing-unit) * 1.5) var(--spacing-unit);
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .header .logo {
-        font-family: "Playfair Display", serif;
-        font-weight: 700;
-        font-size: 1.5rem;
-        color: var(--primary-color);
-        text-decoration: none;
-      }
-
-      /* Hero Section */
-      #hero {
-        position: relative;
-        height: 100vh;
-        display: flex;
+        display: inline-flex;
         align-items: center;
         justify-content: center;
-        text-align: center;
-        overflow: hidden;
+        gap: 10px;
+        padding: 14px 22px;
+        border-radius: 999px;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        background: var(--primary);
+        color: #fff;
+        font-weight: 600;
+        text-decoration: none;
+        box-shadow: var(--glow), 0 6px 18px rgba(45, 62, 80, 0.18);
+        transform: translateZ(0);
+        transition: box-shadow 0.25s ease, transform 0.25s ease,
+          background 0.25s ease;
+        will-change: transform;
+      }
+      .btn--outline {
+        background: transparent;
+        color: var(--primary);
+        border-color: var(--primary);
+        box-shadow: none;
+      }
+      .btn--accent {
+        background: var(--accent);
+        color: #111;
+        border-color: rgba(0, 0, 0, 0.06);
+        box-shadow: 0 6px 18px rgba(242, 182, 50, 0.35);
+      }
+      .btn:focus-visible {
+        outline: 3px solid rgba(242, 182, 50, 0.5);
+        outline-offset: 2px;
+      }
+
+      /* Header */
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: rgba(250, 250, 250, 0.85);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      }
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 0;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 700;
+        letter-spacing: 0.6px;
+      }
+      .brand__mark {
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+        background: linear-gradient(135deg, var(--primary), #0f2236);
+        position: relative;
+        box-shadow: 0 10px 20px rgba(45, 62, 80, 0.25);
+      }
+      .brand__mark::after {
+        content: "";
+        position: absolute;
+        inset: 1px;
+        border-radius: 8px;
         background: linear-gradient(
-            rgba(45, 62, 80, 0.8),
-            rgba(45, 62, 80, 0.8)
+          135deg,
+          rgba(255, 255, 255, 0.1),
+          transparent
+        );
+      }
+      .brand__name {
+        font-family: var(--font-heading);
+        font-size: 1.05rem;
+        color: var(--primary);
+      }
+
+      nav a {
+        color: var(--text);
+        text-decoration: none;
+        margin-inline: 12px;
+        font-weight: 500;
+        opacity: 0.9;
+      }
+      nav a:hover {
+        opacity: 1;
+      }
+
+      /* Hero */
+      .hero {
+        position: relative;
+        min-height: 84vh;
+        display: grid;
+        place-items: center;
+        overflow: clip;
+        background: #0b1724;
+      }
+      .hero__bg {
+        position: absolute;
+        inset: 0;
+        background: url("https://plus.unsplash.com/premium_photo-1683120731413-b3aa991cb64e?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bWFuJTIwcmVhZGluZyUyMGJvb2t8ZW58MHx8MHx8fDA")
+          center/cover no-repeat;
+        filter: brightness(0.7) saturate(1);
+      }
+      .hero__overlay {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+            800px 400px at var(--mx, 50%) var(--my, 50%),
+            rgba(242, 182, 50, 0.15),
+            transparent 60%
           ),
-          url("https://plus.unsplash.com/premium_photo-1683120731413-b3aa991cb64e?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bWFuJTIwcmVhZGluZyUyMGJvb2t8ZW58MHx8MHx8fDA")
-            center/cover no-repeat;
-        background-attachment: fixed;
-        background-size: cover;
-        background-position: center;
+          linear-gradient(
+            180deg,
+            rgba(11, 23, 36, 0.2),
+            rgba(11, 23, 36, 0.75) 70%
+          );
       }
-
-      .hero-content {
-        color: var(--white-color);
-        z-index: 2;
-      }
-
-      .hero-content h1 {
-        color: var(--white-color);
-        max-width: 800px;
-        margin: 0 auto calc(var(--spacing-unit) * 1.5);
-      }
-
-      .hero-content p {
-        font-size: 1.25rem;
-        max-width: 600px;
-        margin: 0 auto calc(var(--spacing-unit) * 2.5);
-      }
-
-      /* Why Choose Us Section (new design) */
-      #benefits {
-        background-image: linear-gradient(
-            rgba(45, 62, 80, 0.8),
-            rgba(45, 62, 80, 0.8)
-          ),
-          url("https://t3.ftcdn.net/jpg/03/28/82/42/360_F_328824244_h8ln41Hd3sh985TASxWVMmZ2w5LYSYvz.jpg");
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
-        color: var(--white-color);
+      .hero__content {
+        position: relative;
+        z-index: 1;
+        color: #fff;
         text-align: center;
-        padding: calc(var(--spacing-unit) * 8) 0;
-        margin-top: calc(var(--spacing-unit) * 6); /* Added space here */
+        padding: 64px var(--space);
+      }
+      .kicker {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 999px;
+        background: rgba(242, 182, 50, 0.18);
+        color: #fce6a5;
+        font-weight: 600;
+        margin-bottom: 14px;
+      }
+      h1 {
+        font-family: var(--font-heading);
+        font-size: var(--h1);
+        margin: 0 0 12px 0;
+        text-transform: none;
+        letter-spacing: 0.4px;
+      }
+      .lead {
+        font-size: 1.06rem;
+        max-width: 780px;
+        margin: 0 auto;
+        opacity: 0.95;
+      }
+      .cta {
+        margin-top: 22px;
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        flex-wrap: wrap;
       }
 
-      #benefits .container {
-        max-width: 800px;
+      /* Spacer to create large margin before Why Choose Us */
+      .section-spacer {
+        height: clamp(40px, 6vh, 96px);
       }
 
-      #benefits h2,
-      #benefits p {
-        color: var(--white-color);
+      /* Why Choose Us - Single prominent block with background image */
+      .why {
+        position: relative;
+        overflow: hidden;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        background: #111;
+        color: #fff;
+      }
+      .why__bg {
+        position: absolute;
+        inset: 0;
+        background: url("https://t3.ftcdn.net/jpg/03/28/82/42/360_F_328824244_h8ln41Hd3sh985TASxWVMmZ2w5LYSYvz.jpg")
+          center/cover no-repeat;
+        filter: brightness(0.45);
+      }
+      .why__inner {
+        position: relative;
+        padding: clamp(28px, 6vw, 72px);
+      }
+      .why h2 {
+        font-family: var(--font-heading);
+        font-size: var(--h2);
+        margin: 0 0 10px 0;
+        color: #fff;
+      }
+      .why p {
+        max-width: 900px;
+        margin: 0;
+        color: #eaeaea;
       }
 
-      #benefits h2 {
-        margin-bottom: calc(var(--spacing-unit) * 2);
+      /* What We Offer - 3 column grid with placeholders */
+      .offer {
+        padding: clamp(40px, 7vw, 96px) 0;
       }
-
-      #benefits p {
-        font-size: 1.25rem;
-        line-height: 1.6;
-      }
-
-      /* What We Offer Section */
-      #offer .container {
+      .offer h2 {
+        font-family: var(--font-heading);
+        font-size: var(--h2);
+        margin: 0 0 24px 0;
+        color: var(--primary);
         text-align: center;
       }
-
-      .offer-grid {
+      .grid-3 {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: calc(var(--spacing-unit) * 3);
-        margin-top: calc(var(--spacing-unit) * 4);
+        gap: 24px;
       }
-
-      .offer-item {
-        text-align: center;
-        padding: calc(var(--spacing-unit) * 2);
-        border-radius: 8px;
-        background-color: var(--white-color);
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-      }
-
-      .offer-item img {
-        width: 80px; /* Adjust size as needed */
-        height: 80px;
-        margin-bottom: var(--spacing-unit);
-        border-radius: 50%;
-        object-fit: cover;
-        border: 2px solid var(--accent-color);
-      }
-
-      .offer-item h3 {
-        font-size: 1.5rem;
-        color: var(--primary-color);
-        margin-bottom: var(--spacing-unit);
-      }
-
-      /* What You Will Gain Section (single block design) */
-      #gain {
-        position: relative;
-        height: 400px;
+      .card {
+        background: var(--card);
+        border-radius: var(--radius);
         overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        color: var(--white-color);
-        padding: calc(var(--spacing-unit) * 4) 0;
+        box-shadow: var(--shadow);
+        transform: translateY(0) scale(1);
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+      }
+      .card:hover {
+        transform: translateY(-6px) scale(1.01);
+        box-shadow: var(--shadow-hover);
+      }
+      .card__img {
+        aspect-ratio: 16/9;
+        width: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .card__body {
+        padding: 18px;
+      }
+      .card__title {
+        font-weight: 700;
+        margin: 0 0 6px 0;
+      }
+      .card__text {
+        color: var(--muted);
+        margin: 0;
       }
 
-      #gain .video-background {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        min-width: 100%;
-        min-height: 100%;
-        width: auto;
-        height: auto;
-        z-index: 1;
-        transform: translate(-50%, -50%);
-        background-size: cover;
-        opacity: 0.6; /* Adjust for text readability */
+      /* Audiobook Covers - 4 column responsive grid */
+      .books {
+        padding: 12px 0 clamp(40px, 6vw, 80px);
       }
-
-      #gain .container {
-        position: relative;
-        z-index: 2;
-        max-width: 800px;
-        background: rgba(45, 62, 80, 0.6);
-        padding: calc(var(--spacing-unit) * 4);
-        border-radius: 12px;
-      }
-
-      #gain h2,
-      #gain p {
-        color: var(--white-color);
-      }
-
-      #gain h2 {
-        margin-bottom: calc(var(--spacing-unit) * 2);
-      }
-
-      #gain p {
-        font-size: 1.25rem;
-        line-height: 1.6;
-      }
-
-      /* Audiobook Collection Preview Section */
-      #audiobooks .container {
+      .books h2 {
+        font-family: var(--font-heading);
+        font-size: var(--h2);
+        margin: 0 0 24px 0;
+        color: var(--primary);
         text-align: center;
       }
-
-      .books-grid {
+      .grid-4 {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        gap: calc(var(--spacing-unit) * 3);
-        margin-top: calc(var(--spacing-unit) * 4);
+        gap: 18px;
       }
-
-      .book-card {
-        background-color: var(--white-color);
-        border-radius: 8px;
-        overflow: hidden;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-        text-align: left;
-        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      .book {
+        background: var(--card);
+        border-radius: var(--radius-sm);
+        box-shadow: var(--shadow);
+        padding: 14px;
+        text-align: center;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
       }
-
-      .book-card:hover {
-        transform: translateY(-5px) scale(1.02);
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      .book:hover {
+        transform: translateY(-6px) scale(1.02);
+        box-shadow: var(--shadow-hover);
       }
-
-      .book-card img {
+      .book img {
         width: 100%;
-        height: auto;
+        height: 220px;
+        object-fit: cover;
+        border-radius: 10px;
         display: block;
       }
-
-      .book-card-content {
-        padding: var(--spacing-unit);
+      .book h3 {
+        font-size: 0.98rem;
+        margin: 10px 0 0 0;
       }
 
-      .book-card-content h4 {
-        font-family: "Playfair Display", serif;
-        font-size: 1.25rem;
-        color: var(--primary-color);
-        margin-bottom: var(--spacing-unit) / 2;
+      /* What You Will Gain - Full width with video background */
+      .gain {
+        position: relative;
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        color: #fff;
       }
-
-      .book-card-content .genre-tag {
-        display: inline-block;
-        background-color: var(--primary-color);
-        color: var(--white-color);
-        font-size: 0.75rem;
-        padding: 4px 8px;
-        border-radius: 4px;
-        margin-bottom: var(--spacing-unit) / 2;
+      .gain__video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(0.55);
       }
-
-      .book-card-content p {
-        font-size: 0.9rem;
-        color: var(--text-color);
+      .gain__overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0.25),
+          rgba(0, 0, 0, 0.55)
+        );
       }
-
-      /* Pricing Plans Section */
-      #pricing .container {
+      .gain__inner {
+        position: relative;
+        padding: clamp(28px, 6vw, 80px);
         text-align: center;
       }
+      .gain h2 {
+        font-family: var(--font-heading);
+        font-size: var(--h2);
+        margin: 0 0 10px 0;
+        color: #fff;
+      }
+      .gain p {
+        max-width: 900px;
+        margin: 0 auto;
+        color: #f2f2f2;
+      }
 
-      .pricing-grid {
+      /* Pricing */
+      .pricing {
+        padding: clamp(40px, 7vw, 96px) 0;
+      }
+      .pricing h2 {
+        font-family: var(--font-heading);
+        font-size: var(--h2);
+        margin: 0 0 24px 0;
+        color: var(--primary);
+        text-align: center;
+      }
+      .plans {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: calc(var(--spacing-unit) * 3);
-        margin-top: calc(var(--spacing-unit) * 4);
+        gap: 22px;
+      }
+      .plan {
+        background: var(--card);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 24px;
+        text-align: center;
+        border: 1px solid rgba(0, 0, 0, 0.06);
+      }
+      .price {
+        font-size: 2rem;
+        font-weight: 800;
+        color: var(--primary);
+        margin: 6px 0 2px;
+      }
+      .cycle {
+        color: var(--muted);
+        margin: 0 0 18px;
       }
 
-      .price-card {
-        background-color: var(--white-color);
-        border-radius: 12px;
-        padding: calc(var(--spacing-unit) * 4);
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      /* Contact */
+      .contact {
+        padding: clamp(40px, 7vw, 96px) 0;
       }
-
-      .price-card:hover {
-        transform: translateY(-10px) scale(1.02);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      }
-
-      .price-card h3 {
-        font-size: 1.75rem;
-        margin-bottom: var(--spacing-unit);
-      }
-
-      .price-card .price {
-        font-size: 3rem;
-        font-weight: 700;
-        color: var(--accent-color);
-        margin-bottom: var(--spacing-unit);
-      }
-
-      .price-card .price span {
-        font-size: 1rem;
-        font-weight: 400;
-        color: var(--text-color);
-      }
-
-      .price-card ul {
-        list-style: none;
-        text-align: left;
-        margin-bottom: calc(var(--spacing-unit) * 2);
-      }
-
-      .price-card ul li {
-        margin-bottom: var(--spacing-unit);
-        padding-left: var(--spacing-unit) * 1.5;
-        position: relative;
-      }
-
-      .price-card ul li::before {
-        content: "✓";
-        color: var(--accent-color);
-        font-weight: 700;
-        position: absolute;
-        left: 0;
-        top: 0;
-      }
-
-      .price-card .btn {
-        width: 100%;
-      }
-
-      /* Countdown Timer */
-      .countdown-timer {
-        margin-top: calc(var(--spacing-unit) * 2);
-        font-size: 1.25rem;
-        font-weight: 500;
-        color: var(--primary-color);
-      }
-
-      .countdown-timer .label {
-        font-weight: 400;
-        font-size: 0.9rem;
-        color: #666;
-        display: block;
-      }
-
-      /* Contact Section */
-      #contact {
-        background-color: var(--primary-color);
-        color: var(--white-color);
+      .contact h2 {
+        font-family: var(--font-heading);
+        font-size: var(--h2);
+        margin: 0 0 24px 0;
+        color: var(--primary);
         text-align: center;
       }
-
-      #contact h2,
-      #contact p {
-        color: var(--white-color);
-      }
-
-      #contact p {
-        max-width: 600px;
-        margin: var(--spacing-unit) auto calc(var(--spacing-unit) * 3);
-      }
-
-      .contact-form {
-        max-width: 600px;
+      form {
+        max-width: 720px;
         margin: 0 auto;
-        text-align: left;
+        background: var(--card);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 24px;
       }
-
-      .form-group {
-        margin-bottom: calc(var(--spacing-unit) * 2);
+      .field {
+        display: grid;
+        gap: 8px;
+        margin-bottom: 14px;
       }
-
-      .form-group label {
-        display: block;
-        margin-bottom: var(--spacing-unit) / 2;
-        font-weight: 500;
+      label {
+        font-weight: 600;
       }
-
-      .form-group input,
-      .form-group textarea {
+      input,
+      textarea {
         width: 100%;
-        padding: var(--spacing-unit);
-        font-size: 1rem;
-        border-radius: 8px;
-        border: 2px solid var(--primary-color);
-        background-color: var(--white-color);
-        color: var(--text-color);
-        transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        padding: 12px 14px;
+        border-radius: 12px;
+        border: 1px solid #e5e7eb;
+        font: inherit;
+        color: inherit;
+        background: #fff;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
       }
-
-      .form-group textarea {
-        min-height: 150px;
+      input:focus,
+      textarea:focus {
+        outline: none;
+        border-color: var(--accent);
+        box-shadow: 0 0 0 4px rgba(242, 182, 50, 0.18);
+      }
+      textarea {
+        min-height: 140px;
         resize: vertical;
       }
 
-      .form-group input:focus,
-      .form-group textarea:focus {
-        outline: none;
-        border-color: var(--accent-color);
-        box-shadow: 0 0 10px rgba(242, 182, 50, 0.5);
-      }
-
-      .form-group.invalid input,
-      .form-group.invalid textarea {
-        border-color: #e74c3c;
-      }
-
-      .form-group .error-message {
-        color: #e74c3c;
-        font-size: 0.875rem;
-        margin-top: 4px;
+      /* Success Modal */
+      .modal-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.45);
         display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+      .modal {
+        width: min(560px, 100%);
+        background: #fff;
+        border-radius: 18px;
+        box-shadow: 0 40px 120px rgba(0, 0, 0, 0.25);
+        padding: 28px;
+        text-align: center;
+        transform: scale(0.9);
+        opacity: 0;
+      }
+      .modal h3 {
+        font-family: var(--font-heading);
+        font-size: 1.4rem;
+        margin: 0 0 8px 0;
+        color: var(--primary);
+      }
+      .modal p {
+        margin: 0 0 18px 0;
+        color: var(--text);
       }
 
       /* Footer */
-      .footer {
-        background-color: var(--primary-color);
-        color: #a0aec0;
-        padding: calc(var(--spacing-unit) * 3);
-        text-align: center;
-        font-size: 0.9rem;
+      footer {
+        padding: 28px 0;
+        color: #4b5563;
       }
-
-      /* Modal */
-      .modal {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.7);
+      .foot {
         display: flex;
+        gap: 12px;
         align-items: center;
         justify-content: center;
-        z-index: 200;
-        visibility: hidden;
-        opacity: 0;
-      }
-
-      .modal-content {
-        background-color: var(--white-color);
-        color: var(--primary-color);
-        padding: calc(var(--spacing-unit) * 4);
-        border-radius: 12px;
+        flex-wrap: wrap;
         text-align: center;
-        max-width: 500px;
-        transform: scale(0.8);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+      .divider {
+        width: 1px;
+        height: 18px;
+        background: #d1d5db;
       }
 
-      .modal-content h3 {
-        font-size: 2rem;
-        margin-bottom: var(--spacing-unit);
-        color: var(--primary-color);
-      }
-
-      /* Responsive Design */
+      /* Responsive */
       @media (max-width: 1200px) {
-        .books-grid {
-          grid-template-columns: repeat(3, 1fr);
-        }
       }
-
       @media (max-width: 992px) {
-        h1 {
-          font-size: 2.5rem;
+        .grid-3 {
+          grid-template-columns: 1fr 1fr;
         }
-        h2 {
-          font-size: 1.75rem;
+        .grid-4 {
+          grid-template-columns: 1fr 1fr 1fr;
         }
-        .offer-grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
-        .books-grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
-        .pricing-grid {
+        .plans {
           grid-template-columns: 1fr;
         }
       }
-
       @media (max-width: 768px) {
-        h1 {
-          font-size: 2rem;
-        }
-        h2 {
-          font-size: 1.5rem;
-        }
-        section {
-          padding: calc(var(--spacing-unit) * 4) 0;
-        }
-        .hero-content p {
-          font-size: 1rem;
-        }
-        .offer-grid {
+        .grid-3 {
           grid-template-columns: 1fr;
+        }
+        .grid-4 {
+          grid-template-columns: 1fr 1fr;
         }
       }
-
       @media (max-width: 480px) {
-        h1 {
-          font-size: 1.75rem;
-        }
-        .books-grid {
+        .grid-4 {
           grid-template-columns: 1fr;
-        }
-        .header .logo {
-          font-size: 1.25rem;
         }
       }
     </style>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "BENCHMARK DIGITAL E-BOOKS",
+        "url": "https://benchmarkebooks.com/",
+        "email": "contact@benchmarkebooks.com"
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": "BENCHMARK DIGITAL E-BOOKS Subscription",
+        "description": "Curated premium digital e-books and audiobooks subscription.",
+        "brand": { "@type": "Brand", "name": "BENCHMARK DIGITAL E-BOOKS" },
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "GHS",
+          "lowPrice": "120.00",
+          "highPrice": "1200.00",
+          "offerCount": "2",
+          "offers": [
+            {
+              "@type": "Offer",
+              "price": "120.00",
+              "priceCurrency": "GHS",
+              "name": "Monthly"
+            },
+            {
+              "@type": "Offer",
+              "price": "1200.00",
+              "priceCurrency": "GHS",
+              "name": "Yearly"
+            }
+          ]
+        }
+      }
+    </script>
   </head>
   <body>
-    <!-- GSAP Libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js"></script>
+    <a
+      class="skip-link"
+      href="#main"
+      style="
+        position: absolute;
+        left: -9999px;
+        top: auto;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+      "
+      >Skip to content</a
+    >
 
-    <!-- Header -->
-    <header class="header">
-      <a href="#" class="logo">BENCHMARK DIGITAL E-BOOKS</a>
-      <a href="#contact" class="btn">Start Your Free Trial</a>
+    <header aria-label="Primary Navigation">
+      <div class="container nav">
+        <div class="brand" aria-label="BENCHMARK DIGITAL E-BOOKS">
+          <span class="brand__mark" aria-hidden="true"></span>
+          <span class="brand__name">BENCHMARK DIGITAL E-BOOKS</span>
+        </div>
+        <nav aria-label="Main">
+          <a href="#offer">What We Offer</a>
+          <a href="#books">Audiobooks</a>
+          <a href="#gain">What You Will Gain</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <a href="#pricing" class="btn btn--accent" aria-label="Subscribe Now"
+          >Subscribe Now</a
+        >
+      </div>
     </header>
 
-    <main>
-      <!-- Hero Section -->
-      <section id="hero">
-        <div class="hero-content">
-          <h1>Your Gateway to Knowledge — Anytime, Anywhere</h1>
-          <p>
-            BENCHMARK DIGITAL E-BOOKS gives you unlimited access to a curated
-            library of high-quality digital books at your fingertips.
+    <main id="main">
+      <!-- Hero -->
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero__bg" aria-hidden="true"></div>
+        <div class="hero__overlay" aria-hidden="true"></div>
+        <div class="container hero__content">
+          <span class="kicker">Premium, Curated, Digital‑Native</span>
+          <h1 id="hero-title">
+            Elevate Your Reading With Curated Digital E‑Books
+          </h1>
+          <p class="lead">
+            Access a handpicked library of e‑books and audiobooks trusted by
+            founders and professionals. Learn faster, think deeper, grow
+            smarter.
           </p>
-          <a href="#pricing" class="btn">Start Reading Today</a>
-        </div>
-      </section>
-
-      <!-- Why Choose Us Section -->
-      <section id="benefits">
-        <div class="container">
-          <h2>Why Choose Us?</h2>
-          <p>
-            Our commitment to providing a seamless reading experience, a highly
-            curated library, and flexible plans sets us apart from the rest. We
-            are dedicated to your growth and knowledge, providing a trusted
-            source for impactful digital books and audiobooks.
-          </p>
-        </div>
-      </section>
-
-      <!-- What We Offer Section -->
-      <section id="offer">
-        <div class="container">
-          <h2>What We Offer</h2>
-          <div class="offer-grid">
-            <div class="offer-item">
-              <img
-                src="https://placehold.co/80x80/2D3E50/F2B632?text=Library"
-                alt="Extensive E-Book Library Image"
-              />
-              <h3>Extensive E-Book Library</h3>
-              <p>
-                Gain unlimited access to a vast collection of professional and
-                personal development e-books from leading authors.
-              </p>
-            </div>
-            <div class="offer-item">
-              <img
-                src="https://placehold.co/80x80/2D3E50/F2B632?text=Audiobooks"
-                alt="High-Quality Audiobooks Image"
-              />
-              <h3>High-Quality Audiobooks</h3>
-              <p>
-                Listen on the go with our premium selection of audiobooks,
-                perfect for multitasking and learning anywhere.
-              </p>
-            </div>
-            <div class="offer-item">
-              <img
-                src="https://placehold.co/80x80/2D3E50/F2B632?text=Summaries"
-                alt="Exclusive Insights & Summaries Image"
-              />
-              <h3>Exclusive Insights & Summaries</h3>
-              <p>
-                Get straight to the point with exclusive summaries and key
-                insights from popular non-fiction titles.
-              </p>
-            </div>
+          <div class="cta">
+            <a href="#pricing" class="btn" aria-label="View Pricing"
+              >View Pricing</a
+            >
+            <a
+              href="#books"
+              class="btn btn--outline"
+              aria-label="Browse Audiobooks"
+              >Browse Audiobooks</a
+            >
           </div>
         </div>
       </section>
 
-      <!-- What You Will Gain Section -->
-      <section id="gain">
-        <video class="video-background" autoplay muted loop playsinline>
-          <source src="meeting.mp4" type="video/mp4" />
-        </video>
-        <div class="container">
-          <h2>What You Will Gain</h2>
+      <div class="section-spacer" aria-hidden="true"></div>
+
+      <!-- Why Choose Us - prominent single block -->
+      <section class="container why" aria-labelledby="why-title">
+        <div class="why__bg" aria-hidden="true"></div>
+        <div class="why__inner">
+          <h2 id="why-title">Why Choose BENCHMARK DIGITAL E‑BOOKS</h2>
           <p>
-            By joining Benchmark Digital E-books, you will accelerate your
-            career growth with expert knowledge, enhance your personal
-            development with a growth mindset, and expand your understanding of
-            diverse topics to stay ahead in your industry.
+            We curate the most impactful titles in business, leadership,
+            productivity, and personal growth, so you spend less time searching
+            and more time learning. With premium recommendations, a minimalist
+            experience, and seamless access, your reading habit becomes your
+            competitive advantage.
           </p>
         </div>
       </section>
 
-      <!-- Audiobook Collection Preview -->
-      <section id="audiobooks">
+      <!-- What We Offer -->
+      <section id="offer" class="offer">
         <div class="container">
-          <h2>Our Curated Audiobook Collection</h2>
-          <div class="books-grid">
-            <!-- Book Card 1 -->
-            <div class="book-card">
+          <h2>What We Offer</h2>
+          <div class="grid-3">
+            <article class="card" aria-label="Curated Library">
               <img
-                src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1386609333i/18176747.jpg"
-                alt="The Hard Things About Hard Things cover"
+                class="card__img"
+                loading="lazy"
+                src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1600&auto=format&fit=crop"
+                alt="Curated bookshelf of premium titles"
               />
-              <div class="book-card-content">
-                <span class="genre-tag">Business</span>
-                <h4>The Hard Things About Hard Things</h4>
-                <p>
-                  A personal guide to building a successful startup from a
-                  seasoned entrepreneur.
+              <div class="card__body">
+                <h3 class="card__title">Curated Library</h3>
+                <p class="card__text">
+                  A focused selection of high‑signal books for busy
+                  professionals.
                 </p>
               </div>
-            </div>
-            <!-- Book Card 2 -->
-            <div class="book-card">
+            </article>
+            <article class="card" aria-label="Audiobook Access">
               <img
+                class="card__img"
+                loading="lazy"
+                src="https://images.unsplash.com/photo-1513171920216-2640b288471b?q=80&w=1600&auto=format&fit=crop"
+                alt="Headphones and audiobook app"
+              />
+              <div class="card__body">
+                <h3 class="card__title">Audiobook Access</h3>
+                <p class="card__text">
+                  Listen on the go with high‑quality audio editions of top
+                  titles.
+                </p>
+              </div>
+            </article>
+            <article class="card" aria-label="Actionable Summaries">
+              <img
+                class="card__img"
+                loading="lazy"
+                src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=1600&auto=format&fit=crop"
+                alt="Notes and highlights for learning"
+              />
+              <div class="card__body">
+                <h3 class="card__title">Actionable Summaries</h3>
+                <p class="card__text">
+                  Key insights, distilled and organized for rapid application.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Audiobook Covers -->
+      <section id="books" class="books">
+        <div class="container">
+          <h2>Audiobooks & Featured Titles</h2>
+          <div class="grid-4" role="list">
+            <article
+              class="book"
+              role="listitem"
+              aria-label="The Hard Thing About Hard Things"
+            >
+              <img
+                loading="lazy"
+                src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1386609333i/18176747.jpg"
+                alt="The Hard Thing About Hard Things cover"
+              />
+              <h3>The Hard Thing About Hard Things</h3>
+            </article>
+            <article class="book" role="listitem" aria-label="Good to Great">
+              <img
+                loading="lazy"
                 src="https://cipmnigeria.org/wp-content/uploads/2022/07/good-to-great-e1657199803498.jpg"
                 alt="Good to Great cover"
               />
-              <div class="book-card-content">
-                <span class="genre-tag">Business</span>
-                <h4>Good to Great</h4>
-                <p>
-                  A deep dive into what separates companies that simply perform
-                  well from those that achieve greatness.
-                </p>
-              </div>
-            </div>
-            <!-- Book Card 3 -->
-            <div class="book-card">
+              <h3>Good to Great</h3>
+            </article>
+            <article class="book" role="listitem" aria-label="Rework">
               <img
+                loading="lazy"
                 src="https://productivemuslim.com/wp-content/uploads/rework2.jpg"
                 alt="Rework cover"
               />
-              <div class="book-card-content">
-                <span class="genre-tag">Business</span>
-                <h4>Rework</h4>
-                <p>
-                  A book that challenges conventional business wisdom with a
-                  fresh perspective on work and entrepreneurship.
-                </p>
-              </div>
-            </div>
-            <!-- Book Card 4 -->
-            <div class="book-card">
+              <h3>Rework</h3>
+            </article>
+            <article class="book" role="listitem" aria-label="The Power of Now">
               <img
+                loading="lazy"
                 src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1545884080i/43369246.jpg"
                 alt="The Power of Now cover"
               />
-              <div class="book-card-content">
-                <span class="genre-tag">Self-Help</span>
-                <h4>The Power of Now</h4>
-                <p>
-                  A spiritual guide to living in the present moment and freeing
-                  yourself from the mind's control.
-                </p>
-              </div>
-            </div>
-            <!-- Book Card 5 -->
-            <div class="book-card">
+              <h3>The Power of Now</h3>
+            </article>
+            <article class="book" role="listitem" aria-label="Essentialism">
               <img
+                loading="lazy"
                 src="https://m.media-amazon.com/images/I/515cxRIt8GL._SL500_.jpg"
                 alt="Essentialism cover"
               />
-              <div class="book-card-content">
-                <span class="genre-tag">Self-Help</span>
-                <h4>Essentialism</h4>
-                <p>
-                  Learn how to do less, but better, by focusing on what truly
-                  matters and eliminating the non-essential.
-                </p>
-              </div>
-            </div>
-            <!-- Book Card 6 -->
-            <div class="book-card">
+              <h3>Essentialism</h3>
+            </article>
+            <article class="book" role="listitem" aria-label="Ego is the Enemy">
               <img
+                loading="lazy"
                 src="https://cdn.prod.website-files.com/5ffeed3008b274737bf1daef/605b9934ea9b8e1aea164dd7_ego-is-the-enemy-ryan-holiday.jpg"
                 alt="Ego is the Enemy cover"
               />
-              <div class="book-card-content">
-                <span class="genre-tag">Self-Help</span>
-                <h4>Ego is the Enemy</h4>
-                <p>
-                  A book that explores how to defeat your ego to achieve true
-                  success and lasting fulfillment.
-                </p>
-              </div>
-            </div>
-            <!-- Book Card 7 -->
-            <div class="book-card">
+              <h3>Ego is the Enemy</h3>
+            </article>
+            <article
+              class="book"
+              role="listitem"
+              aria-label="The Pragmatic Programmer"
+            >
               <img
+                loading="lazy"
                 src="https://m.media-amazon.com/images/I/61ztlXgCmpL._SL1500_.jpg"
                 alt="The Pragmatic Programmer cover"
               />
-              <div class="book-card-content">
-                <span class="genre-tag">Technology</span>
-                <h4>The Pragmatic Programmer</h4>
-                <p>
-                  A classic guide to mastering the fundamentals of professional
-                  software development.
-                </p>
-              </div>
-            </div>
-            <!-- Book Card 8 -->
-            <div class="book-card">
+              <h3>The Pragmatic Programmer</h3>
+            </article>
+            <article class="book" role="listitem" aria-label="Why Nations Fail">
               <img
+                loading="lazy"
                 src="https://www.washingtonpost.com/wp-apps/imrs.php?src=https://arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/NMGBRJEKEII6DMBYPGGT7FUKH4&w=1800&h=1800"
                 alt="Why Nations Fail cover"
               />
-              <div class="book-card-content">
-                <span class="genre-tag">History</span>
-                <h4>Why Nations Fail</h4>
-                <p>
-                  An examination of how political and economic institutions
-                  shape the success and failure of nations.
-                </p>
-              </div>
-            </div>
+              <h3>Why Nations Fail</h3>
+            </article>
           </div>
         </div>
       </section>
 
-      <!-- Pricing Plans -->
-      <section id="pricing">
-        <div class="container">
-          <h2>Choose Your Plan</h2>
-          <div class="pricing-grid">
-            <!-- Monthly Plan -->
-            <div class="price-card">
-              <h3>Monthly</h3>
-              <div class="price">GHS 120.00<span>/month</span></div>
-              <ul>
-                <li>Unlimited access to e-books</li>
-                <li>Cancel anytime</li>
-                <li>7-day free trial</li>
-              </ul>
-              <a href="#" class="btn">Subscribe Now</a>
-              <p class="countdown-timer">7 Days Free Trial!</p>
-            </div>
-            <!-- Yearly Plan -->
-            <div class="price-card">
-              <h3>Yearly</h3>
-              <div class="price">GHS 1200.00<span>/year</span></div>
-              <ul>
-                <li>Unlimited access to e-books</li>
-                <li>Cancel anytime</li>
-                <li>7-day free trial</li>
-              </ul>
-              <a href="#" class="btn">Subscribe Now</a>
-              <p class="countdown-timer">7 Days Free Trial!</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Contact Section -->
-      <section id="contact">
-        <div class="container">
-          <h2>Get in Touch</h2>
+      <!-- What You Will Gain (video background) -->
+      <section id="gain" class="container gain" aria-labelledby="gain-title">
+        <video
+          class="gain__video"
+          src="./meeting.mp4"
+          autoplay
+          muted
+          loop
+          playsinline
+          aria-hidden="true"
+        ></video>
+        <div class="gain__overlay" aria-hidden="true"></div>
+        <div class="gain__inner">
+          <h2 id="gain-title">What You Will Gain</h2>
           <p>
-            Have a question or need support? Fill out the form below and we'll
-            get back to you shortly.
+            Sharper thinking, clearer priorities, and a compounding advantage.
+            Build a high‑leverage reading habit with resources designed for
+            real‑world outcomes.
           </p>
-          <form id="contactForm" class="contact-form">
-            <div class="form-group">
+        </div>
+      </section>
+
+      <!-- Pricing -->
+      <section id="pricing" class="pricing" aria-labelledby="pricing-title">
+        <div class="container">
+          <h2 id="pricing-title">Simple, Transparent Pricing</h2>
+          <div class="plans">
+            <article class="plan" aria-label="Monthly Plan">
+              <h3>Monthly</h3>
+              <p class="price">GHS 120.00</p>
+              <p class="cycle">Billed monthly</p>
+              <a
+                href="#contact"
+                class="btn"
+                aria-label="Start Monthly Subscription"
+                >Start Monthly</a
+              >
+            </article>
+            <article class="plan" aria-label="Yearly Plan">
+              <h3>Yearly</h3>
+              <p class="price">GHS 1200.00</p>
+              <p class="cycle">Billed yearly • Save 17%</p>
+              <a
+                href="#contact"
+                class="btn btn--accent"
+                aria-label="Start Yearly Subscription"
+                >Start Yearly</a
+              >
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact" class="contact" aria-labelledby="contact-title">
+        <div class="container">
+          <h2 id="contact-title">Contact Us</h2>
+          <form id="contact-form" aria-describedby="contact-help">
+            <p id="contact-help" style="margin-top: -6px; color: var(--muted)">
+              We typically respond within 24 hours.
+            </p>
+            <div class="field">
               <label for="name">Name</label>
               <input
-                type="text"
                 id="name"
                 name="name"
+                type="text"
                 required
-                aria-label="Your name"
+                autocomplete="name"
+                aria-required="true"
+                aria-label="Your full name"
               />
-              <span class="error-message">Name is required.</span>
             </div>
-            <div class="form-group">
+            <div class="field">
               <label for="email">Email</label>
               <input
-                type="email"
                 id="email"
                 name="email"
+                type="email"
                 required
+                autocomplete="email"
+                aria-required="true"
                 aria-label="Your email address"
               />
-              <span class="error-message">A valid email is required.</span>
             </div>
-            <div class="form-group">
+            <div class="field">
               <label for="message">Message</label>
               <textarea
                 id="message"
                 name="message"
                 required
+                aria-required="true"
                 aria-label="Your message"
               ></textarea>
-              <span class="error-message">Message is required.</span>
             </div>
-            <button type="submit" class="btn">Send Message</button>
+            <button type="submit" class="btn" aria-label="Send Message">
+              Send Message
+            </button>
           </form>
         </div>
       </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="container">
-        <p>
-          BENCHMARK DIGITAL E-BOOKS | contact@benchmarkebooks.com | Terms &
-          Privacy
-        </p>
+    <footer aria-label="Footer">
+      <div class="container foot">
+        <span>BENCHMARK DIGITAL E-BOOKS</span>
+        <span class="divider" aria-hidden="true"></span>
+        <a href="mailto:contact@benchmarkebooks.com" style="color: inherit"
+          >contact@benchmarkebooks.com</a
+        >
+        <span class="divider" aria-hidden="true"></span>
+        <a href="#" style="color: inherit">Terms & Privacy</a>
       </div>
     </footer>
 
-    <!-- Contact Form Success Modal -->
-    <div id="successModal" class="modal">
-      <div class="modal-content">
-        <h3>Success!</h3>
+    <!-- Success Modal -->
+    <div
+      id="success-backdrop"
+      class="modal-backdrop"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="success-title"
+      aria-hidden="true"
+    >
+      <div class="modal" id="success-modal">
+        <h3 id="success-title">Message Received</h3>
         <p>Thank you! We’ll get back to you shortly.</p>
+        <button class="btn btn--accent" id="success-close" aria-label="Close">
+          Close
+        </button>
       </div>
     </div>
 
     <script>
-      window.onload = function () {
-        // Register GSAP ScrollTrigger
-        gsap.registerPlugin(ScrollTrigger);
+      // Register GSAP plugins
+      gsap.registerPlugin(ScrollTrigger);
 
-        // --- GSAP Animations ---
+      // Signature moment: reactive radial light following pointer in hero
+      const heroOverlay = document.querySelector(".hero__overlay");
+      window.addEventListener("pointermove", (e) => {
+        const x = (e.clientX / window.innerWidth) * 100;
+        const y = (e.clientY / window.innerHeight) * 100;
+        heroOverlay && heroOverlay.style.setProperty("--mx", x + "%");
+        heroOverlay && heroOverlay.style.setProperty("--my", y + "%");
+      });
 
-        // Header Animation
-        gsap.from(".header", {
-          y: -50,
+      // Entrance animations
+      gsap.from(".brand, nav a, header .btn", {
+        opacity: 0,
+        y: -12,
+        stagger: 0.06,
+        duration: 0.6,
+        ease: "power2.out",
+      });
+      gsap.from(".kicker", { opacity: 0, y: 10, duration: 0.5, delay: 0.2 });
+      gsap.from("h1", {
+        opacity: 0,
+        y: 16,
+        duration: 0.6,
+        delay: 0.25,
+        ease: "power2.out",
+      });
+      gsap.from(".lead", {
+        opacity: 0,
+        y: 16,
+        duration: 0.6,
+        delay: 0.35,
+        ease: "power2.out",
+      });
+      gsap.from(".cta .btn", {
+        opacity: 0,
+        y: 14,
+        stagger: 0.08,
+        duration: 0.6,
+        delay: 0.45,
+        ease: "power2.out",
+      });
+
+      // Scroll reveals
+      const revealUp = (el) => {
+        gsap.from(el, {
+          scrollTrigger: { trigger: el, start: "top 85%" },
+          y: 24,
           opacity: 0,
-          duration: 0.8,
+          duration: 0.6,
           ease: "power2.out",
         });
-
-        // Hero Section Animations
-        const heroTimeline = gsap.timeline({
-          defaults: { ease: "power3.out", duration: 1 },
-        });
-        heroTimeline
-          .from("#hero h1", { opacity: 0, y: 50 })
-          .from("#hero p", { opacity: 0, y: 30 }, "-=0.5")
-          .from("#hero .btn", { opacity: 0, y: 30, scale: 0.8 }, "-=0.5");
-
-        // Hero Parallax on Scroll
-        gsap.to("#hero", {
-          backgroundPosition: "50% 100%",
-          ease: "none",
-          scrollTrigger: {
-            trigger: "#hero",
-            start: "top top",
-            end: "bottom top",
-            scrub: true,
-          },
-        });
-
-        // Animation for "Why Choose Us" section
-        gsap.from("#benefits h2, #benefits p", {
-          y: 50,
-          opacity: 0,
-          duration: 1,
-          ease: "power2.out",
-          stagger: 0.2,
-          scrollTrigger: {
-            trigger: "#benefits",
-            start: "top 80%",
-            toggleActions: "play none none none",
-          },
-        });
-
-        // Animation for "What We Offer" section
-        gsap.from("#offer h2", {
-          y: 50,
-          opacity: 0,
-          duration: 1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#offer h2",
-            start: "top 80%",
-            toggleActions: "play none none none",
-          },
-        });
-        gsap.from(".offer-item", {
-          y: 30,
-          opacity: 0,
-          duration: 1,
-          ease: "power2.out",
-          stagger: 0.2,
-          scrollTrigger: {
-            trigger: ".offer-grid",
-            start: "top 80%",
-            toggleActions: "play none none none",
-          },
-        });
-
-        // Animation for "What You Will Gain" section
-        gsap.from("#gain h2, #gain p", {
-          y: 50,
-          opacity: 0,
-          duration: 1,
-          ease: "power2.out",
-          stagger: 0.2,
-          scrollTrigger: {
-            trigger: "#gain",
-            start: "top 80%",
-            toggleActions: "play none none none",
-          },
-        });
-
-        // Audiobook Collection Preview Animations
-        gsap.from("#audiobooks h2", {
-          y: 50,
-          opacity: 0,
-          duration: 1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#audiobooks h2",
-            start: "top 80%",
-            toggleActions: "play none none none",
-          },
-        });
-        gsap.from(".book-card", {
-          y: 50,
-          opacity: 0,
-          scale: 0.95,
-          duration: 1,
-          ease: "power2.out",
-          stagger: 0.1,
-          scrollTrigger: {
-            trigger: ".books-grid",
-            start: "top 80%",
-            toggleActions: "play none none none",
-          },
-        });
-
-        // Pricing Plans Animations
-        gsap.from("#pricing h2", {
-          y: 50,
-          opacity: 0,
-          duration: 1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#pricing h2",
-            start: "top 80%",
-            toggleActions: "play none none none",
-          },
-        });
-        gsap.from(".price-card", {
-          y: 50,
-          opacity: 0,
-          scale: 0.9,
-          duration: 1,
-          ease: "power2.out",
-          stagger: 0.2,
-          scrollTrigger: {
-            trigger: ".pricing-grid",
-            start: "top 80%",
-            toggleActions: "play none none none",
-          },
-        });
-
-        // Contact Section Animations
-        gsap.from("#contact h2", {
-          y: 50,
-          opacity: 0,
-          duration: 1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#contact h2",
-            start: "top 80%",
-            toggleActions: "play none none none",
-          },
-        });
-        gsap.from("#contact p", {
-          y: 50,
-          opacity: 0,
-          duration: 1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#contact p",
-            start: "top 80%",
-            toggleActions: "play none none none",
-          },
-        });
-        gsap.from(".contact-form", {
-          y: 50,
-          opacity: 0,
-          duration: 1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: ".contact-form",
-            start: "top 80%",
-            toggleActions: "play none none none",
-          },
-        });
-
-        // Footer Animations
-        gsap.from(".footer", {
-          y: 20,
-          opacity: 0,
-          duration: 1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: ".footer",
-            start: "top 95%",
-            toggleActions: "play none none none",
-          },
-        });
-
-        // Hover Animations for Buttons and Cards
-        gsap.utils.toArray(".btn").forEach((btn) => {
-          btn.addEventListener("mouseenter", () => {
-            gsap.to(btn, {
-              scale: 1.05,
-              duration: 0.3,
-              ease: "power2.out",
-              overwrite: "auto",
-            });
-          });
-          btn.addEventListener("mouseleave", () => {
-            gsap.to(btn, {
-              scale: 1,
-              duration: 0.3,
-              ease: "power2.out",
-              overwrite: "auto",
-            });
-          });
-        });
-
-        gsap.utils
-          .toArray(".book-card, .price-card, .offer-item, .benefit-item")
-          .forEach((card) => {
-            card.addEventListener("mouseenter", () => {
-              gsap.to(card, {
-                y: -5,
-                scale: 1.02,
-                duration: 0.3,
-                ease: "power2.out",
-                overwrite: "auto",
-              });
-            });
-            card.addEventListener("mouseleave", () => {
-              gsap.to(card, {
-                y: 0,
-                scale: 1,
-                duration: 0.3,
-                ease: "power2.out",
-                overwrite: "auto",
-              });
-            });
-          });
-
-        // Input Focus Animation
-        gsap.utils.toArray("input, textarea").forEach((input) => {
-          input.addEventListener("focus", () => {
-            gsap.to(input, {
-              borderColor: "#F2B632",
-              duration: 0.3,
-              ease: "power2.out",
-            });
-          });
-          input.addEventListener("blur", () => {
-            gsap.to(input, {
-              borderColor: "#2D3E50",
-              duration: 0.3,
-              ease: "power2.out",
-            });
-          });
-        });
-
-        // --- Form Handling and Modal Logic ---
-        const contactForm = document.getElementById("contactForm");
-        const successModal = document.getElementById("successModal");
-        const formElements = contactForm.elements;
-
-        contactForm.addEventListener("submit", function (event) {
-          event.preventDefault(); // Prevent page reload
-
-          let isValid = true;
-          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-          // Simple client-side validation
-          for (let i = 0; i < formElements.length; i++) {
-            const element = formElements[i];
-            const parent = element.parentElement;
-            const errorMessage = parent.querySelector(".error-message");
-
-            if (
-              element.hasAttribute("required") &&
-              element.value.trim() === ""
-            ) {
-              isValid = false;
-              parent.classList.add("invalid");
-              if (errorMessage) errorMessage.style.display = "block";
-            } else if (
-              element.type === "email" &&
-              !emailRegex.test(element.value)
-            ) {
-              isValid = false;
-              parent.classList.add("invalid");
-              if (errorMessage) errorMessage.style.display = "block";
-            } else {
-              parent.classList.remove("invalid");
-              if (errorMessage) errorMessage.style.display = "none";
-            }
-          }
-
-          if (isValid) {
-            // Show GSAP animated modal
-            gsap.to(successModal, {
-              visibility: "visible",
-              opacity: 1,
-              duration: 0.5,
-              ease: "power2.out",
-            });
-            gsap.fromTo(
-              successModal.querySelector(".modal-content"),
-              {
-                scale: 0.8,
-              },
-              {
-                scale: 1,
-                duration: 0.5,
-                ease: "back.out(1.7)",
-              }
-            );
-
-            contactForm.reset(); // Clear the form
-          }
-        });
-
-        // Modal closing logic (ESC key or clicking outside)
-        document.addEventListener("keydown", function (event) {
-          if (
-            event.key === "Escape" &&
-            successModal.style.visibility === "visible"
-          ) {
-            closeModal();
-          }
-        });
-
-        successModal.addEventListener("click", function (event) {
-          if (event.target === successModal) {
-            closeModal();
-          }
-        });
-
-        function closeModal() {
-          gsap.to(successModal, {
-            opacity: 0,
-            duration: 0.3,
-            onComplete: () => {
-              successModal.style.visibility = "hidden";
-              gsap.set(successModal.querySelector(".modal-content"), {
-                scale: 0.8,
-              }); // Reset for next animation
-            },
-          });
-        }
       };
+      document
+        .querySelectorAll(
+          ".why, .offer h2, .card, .books h2, .book, .gain, .pricing h2, .plan, .contact h2, form, footer .foot"
+        )
+        .forEach(revealUp);
+
+      // Hover micro-interactions for buttons
+      const buttons = document.querySelectorAll(".btn");
+      buttons.forEach((btn) => {
+        btn.addEventListener("mouseenter", () => {
+          gsap.to(btn, { scale: 1.03, duration: 0.15, ease: "power2.out" });
+          gsap.to(btn, {
+            boxShadow:
+              "0 0 0 10px rgba(242,182,50,0.14), 0 10px 24px rgba(45,62,80,0.30)",
+            duration: 0.25,
+            ease: "power2.out",
+          });
+        });
+        btn.addEventListener("mouseleave", () => {
+          gsap.to(btn, { scale: 1, duration: 0.15, ease: "power2.inOut" });
+          gsap.to(btn, {
+            boxShadow:
+              "0 0 0 0 rgba(242,182,50,0), 0 6px 18px rgba(45,62,80,0.18)",
+            duration: 0.25,
+            ease: "power2.inOut",
+          });
+        });
+      });
+
+      // Contact form submission - prevent reload & show modal
+      const form = document.getElementById("contact-form");
+      const backdrop = document.getElementById("success-backdrop");
+      const modal = document.getElementById("success-modal");
+      const closeBtn = document.getElementById("success-close");
+
+      function openModal() {
+        backdrop.style.display = "flex";
+        // animate modal
+        gsap.fromTo(
+          backdrop,
+          { opacity: 0 },
+          { opacity: 1, duration: 0.2, ease: "power1.out" }
+        );
+        gsap.fromTo(
+          modal,
+          { scale: 0.9, opacity: 0 },
+          { scale: 1, opacity: 1, duration: 0.35, ease: "power2.out" }
+        );
+        // focus management
+        setTimeout(() => closeBtn.focus(), 50);
+      }
+      function closeModal() {
+        const tl = gsap.timeline({
+          onComplete: () => {
+            backdrop.style.display = "none";
+          },
+        });
+        tl.to(modal, {
+          scale: 0.96,
+          opacity: 0,
+          duration: 0.2,
+          ease: "power1.in",
+        }).to(backdrop, { opacity: 0, duration: 0.2, ease: "power1.in" }, "<");
+      }
+
+      backdrop.addEventListener("click", (e) => {
+        if (e.target === backdrop) closeModal();
+      });
+      closeBtn.addEventListener("click", closeModal);
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && backdrop.style.display === "flex")
+          closeModal();
+      });
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        // Simulate async submission
+        setTimeout(() => {
+          form.reset();
+          openModal();
+        }, 300);
+      });
+
+      // Footer slide-up fade-in on scroll (reinforced)
+      gsap.from("footer", {
+        scrollTrigger: { trigger: "footer", start: "top 95%" },
+        y: 20,
+        opacity: 0,
+        duration: 0.5,
+        ease: "power2.out",
+      });
     </script>
   </body>
 </html>
