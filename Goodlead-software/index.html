@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GOODLEAD SOFTWARE - Building Solutions That Drive Growth</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Poppins:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- GSAP Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js"></script>
+    <style>
+      /* CSS Reset and Global Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary-color: #0057b8;
+        --accent-color: #ff9900;
+        --background-color: #f5f8fa;
+        --text-color: #1c1c1c;
+        --max-width: 1200px;
+        --spacing: 16px;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: var(--background-color);
+        color: var(--text-color);
+        line-height: 1.5;
+        letter-spacing: normal;
+        font-size: 1rem;
+        overflow-x: hidden;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Poppins", sans-serif;
+        line-height: 1.2;
+        color: var(--text-color);
+        font-weight: 700;
+      }
+
+      h1 {
+        font-size: 3rem;
+      }
+      h2 {
+        font-size: 2rem;
+      }
+      h3 {
+        font-size: 1.5rem;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .container {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding: 0 var(--spacing);
+      }
+
+      /* Utility Classes */
+      .uppercase {
+        text-transform: uppercase;
+      }
+      .text-center {
+        text-align: center;
+      }
+
+      /* Navigation */
+      .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: var(--spacing) 0;
+        z-index: 1000;
+        backdrop-filter: blur(5px);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      }
+
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        font-family: "Poppins", sans-serif;
+      }
+
+      .cta-button {
+        padding: 12px 24px;
+        background-color: var(--accent-color);
+        color: white;
+        border: none;
+        border-radius: 999px;
+        font-family: "Inter", sans-serif;
+        font-weight: 700;
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .cta-button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 15px rgba(255, 153, 0, 0.6);
+      }
+
+      /* Hero Section */
+      .hero {
+        position: relative;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        text-align: center;
+        overflow: hidden;
+        background-image: url("https://www.koombea.com/wp-content/uploads/2023/02/software-development-vs-software-engineering-banner@2x.webp");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(
+          0,
+          0,
+          0,
+          0.4
+        ); /* Dark overlay for text readability */
+        z-index: 1;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 10;
+      }
+
+      .hero-headline {
+        font-size: clamp(2rem, 5vw, 3rem);
+        margin-bottom: var(--spacing);
+        font-weight: 700;
+      }
+
+      .hero-subtext {
+        font-size: clamp(1rem, 2.5vw, 1.2rem);
+        max-width: 600px;
+        margin: 0 auto 32px auto;
+      }
+
+      /* Sections */
+      .section {
+        padding: 80px 0;
+        min-height: 100vh;
+      }
+
+      .section-heading {
+        margin-bottom: 48px;
+        font-size: clamp(1.8rem, 4vw, 2.5rem);
+        font-weight: 700;
+        text-align: center;
+      }
+
+      /* Services Section */
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+      }
+
+      .service-card {
+        background-color: white;
+        padding: 32px;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .service-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+      }
+
+      .service-icon {
+        width: 64px;
+        height: 64px;
+        margin: 0 auto 16px;
+        background-color: var(--primary-color);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 2rem;
+      }
+
+      /* Projects Section */
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+      }
+
+      .project-card {
+        background-color: white;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+      }
+
+      .project-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+      }
+
+      .project-thumbnail-wrapper {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .project-thumbnail {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+      }
+
+      .project-card:hover .project-thumbnail {
+        transform: scale(1.05);
+      }
+
+      .project-info {
+        padding: var(--spacing);
+      }
+
+      .project-title {
+        font-size: 1.25rem;
+        margin-bottom: 8px;
+      }
+
+      .project-tag {
+        display: inline-block;
+        background-color: var(--accent-color);
+        color: white;
+        padding: 4px 12px;
+        font-size: 0.8rem;
+        border-radius: 999px;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+      }
+
+      /* Pricing Section */
+      .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        align-items: stretch;
+      }
+
+      .pricing-card {
+        background-color: white;
+        padding: 40px;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .pricing-card h3 {
+        color: var(--primary-color);
+        margin-bottom: 16px;
+      }
+
+      .price {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 16px;
+        color: var(--accent-color);
+      }
+
+      .price-details {
+        font-size: 1rem;
+        color: #555;
+        margin-bottom: 32px;
+        flex-grow: 1;
+      }
+
+      .pricing-cta {
+        width: 100%;
+      }
+
+      /* Contact Section */
+      .contact-content {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .contact-form {
+        display: grid;
+        gap: var(--spacing);
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .form-group label {
+        font-weight: 500;
+        margin-bottom: 8px;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-family: "Inter", sans-serif;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 5px rgba(0, 87, 184, 0.4);
+      }
+
+      .submit-button {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 14px 24px;
+        border: none;
+        border-radius: 999px;
+        font-weight: 700;
+        font-family: "Inter", sans-serif;
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        text-transform: uppercase;
+      }
+
+      .submit-button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 15px rgba(0, 87, 184, 0.6);
+      }
+
+      .error-message {
+        color: #e53e3e;
+        font-size: 0.8rem;
+        margin-top: 4px;
+        display: none;
+      }
+
+      /* Footer */
+      .footer {
+        background-color: #1c1c1c;
+        color: white;
+        padding: 40px 0;
+        text-align: center;
+      }
+
+      .footer-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .footer-logo {
+        font-size: 1.5rem;
+        color: white;
+        font-family: "Poppins", sans-serif;
+        font-weight: 700;
+      }
+
+      /* Modal Styles (for contact success and project details) */
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        display: none; /* Hidden by default */
+        align-items: center;
+        justify-content: center;
+        z-index: 2000;
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .modal {
+        background-color: white;
+        padding: 40px;
+        border-radius: 16px;
+        max-width: 500px;
+        text-align: center;
+        position: relative;
+      }
+
+      .modal-close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: #ccc;
+      }
+
+      .modal-close:hover {
+        color: var(--primary-color);
+      }
+
+      .modal-icon {
+        font-size: 4rem;
+        color: var(--primary-color);
+        margin-bottom: 16px;
+      }
+
+      .modal-title {
+        font-size: 1.5rem;
+        margin-bottom: 8px;
+      }
+
+      .modal-body {
+        font-size: 1rem;
+        color: #555;
+      }
+
+      /* Mobile Breakpoint */
+      @media (max-width: 767px) {
+        h1 {
+          font-size: 2.5rem;
+        }
+        h2 {
+          font-size: 1.8rem;
+        }
+        .hero {
+          height: auto;
+          padding: 150px 0;
+        }
+        .navbar {
+          flex-direction: column;
+          gap: 1rem;
+        }
+        .header {
+          padding: 1rem;
+        }
+        .section {
+          padding: 40px 0;
+        }
+      }
+
+      /* Tablet Breakpoint */
+      @media (min-width: 768px) and (max-width: 1023px) {
+        .navbar {
+          padding: 0 2rem;
+        }
+        .hero-headline {
+          font-size: 3.5rem;
+        }
+        .projects-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header & Navigation -->
+    <header class="header">
+      <nav class="container navbar">
+        <div class="logo">GOODLEAD SOFTWARE</div>
+        <a href="#contact" class="cta-button uppercase">Get Started Today</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="hero" id="hero">
+        <div class="hero-content">
+          <h1 class="hero-headline gs-hero-text">
+            Building Software Solutions<br />That Drive Growth
+          </h1>
+          <p class="hero-subtext gs-hero-text">
+            Your trusted partner for scalable, reliable, and high-performance IT
+            solutions.
+          </p>
+          <a href="#contact" class="cta-button uppercase gs-hero-text"
+            >Get Started Today</a
+          >
+        </div>
+      </section>
+
+      <!-- Core Services Section -->
+      <section class="section services-section" id="services">
+        <div class="container">
+          <h2 class="section-heading">Our Core Services</h2>
+          <div class="services-grid">
+            <div class="service-card gs-card">
+              <div class="service-icon">&#x1F4BB;</div>
+              <h3>Custom Software Development</h3>
+              <p>
+                Tailored solutions built from the ground up to meet your unique
+                business needs and objectives.
+              </p>
+            </div>
+            <div class="service-card gs-card">
+              <div class="service-icon">&#x1F50C;</div>
+              <h3>API & System Integration</h3>
+              <p>
+                Seamlessly connect your disparate systems to create a unified,
+                efficient workflow.
+              </p>
+            </div>
+            <div class="service-card gs-card">
+              <div class="service-icon">&#x2601;</div>
+              <h3>Cloud-based Applications</h3>
+              <p>
+                Leverage the power of the cloud for flexible, scalable, and
+                secure application deployment.
+              </p>
+            </div>
+            <div class="service-card gs-card">
+              <div class="service-icon">&#x1F6E0;</div>
+              <h3>Ongoing Maintenance & Support</h3>
+              <p>
+                Keep your software running flawlessly with our dedicated team
+                providing continuous support and updates.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Featured Projects Preview -->
+      <section class="section projects-section" id="projects">
+        <div class="container">
+          <h2 class="section-heading">Featured Projects</h2>
+          <div class="projects-grid">
+            <div
+              class="project-card gs-project-card"
+              data-project-id="project1"
+            >
+              <div class="project-thumbnail-wrapper">
+                <img
+                  src="https://diro.io/wp-content/uploads/2021/06/benefits-of-fintech-for-banks-1.jpg"
+                  onerror="this.onerror=null; this.src='https://placehold.co/600x400/0057b8/ffffff?text=Project+1+Detail';"
+                  alt="Secure Banking Platform"
+                  class="project-thumbnail"
+                />
+              </div>
+              <div class="project-info">
+                <span class="project-tag">FinTech</span>
+                <h3 class="project-title">Secure Banking Platform</h3>
+                <p>
+                  A robust and secure online banking system with real-time
+                  transaction processing.
+                </p>
+              </div>
+            </div>
+            <div
+              class="project-card gs-project-card"
+              data-project-id="project2"
+            >
+              <div class="project-thumbnail-wrapper">
+                <img
+                  src="https://5.imimg.com/data5/SELLER/Default/2024/9/449979644/XR/ET/TT/182816407/customer-relationship-management-crm-software-500x500.jpg"
+                  onerror="this.onerror=null; this.src='https://placehold.co/600x400/ff9900/ffffff?text=Project+2+Detail';"
+                  alt="Cloud-Based CRM"
+                  class="project-thumbnail"
+                />
+              </div>
+              <div class="project-info">
+                <span class="project-tag">SaaS</span>
+                <h3 class="project-title">Cloud-Based CRM</h3>
+                <p>
+                  A scalable customer relationship management tool to streamline
+                  sales and marketing.
+                </p>
+              </div>
+            </div>
+            <div
+              class="project-card gs-project-card"
+              data-project-id="project3"
+            >
+              <div class="project-thumbnail-wrapper">
+                <img
+                  src="https://5.imimg.com/data5/SELLER/Default/2021/7/IR/GY/SG/134313690/e-commerce-png-500x500.png"
+                  onerror="this.onerror=null; this.src='https://placehold.co/600x400/0057b8/ffffff?text=Project+3+Detail';"
+                  alt="Modern Retail Solution"
+                  class="project-thumbnail"
+                />
+              </div>
+              <div class="project-info">
+                <span class="project-tag">E-commerce</span>
+                <h3 class="project-title">Modern Retail Solution</h3>
+                <p>
+                  An intuitive e-commerce platform with integrated inventory
+                  management.
+                </p>
+              </div>
+            </div>
+            <div
+              class="project-card gs-project-card"
+              data-project-id="project4"
+            >
+              <div class="project-thumbnail-wrapper">
+                <img
+                  src="https://mma.prnewswire.com/media/1099715/Bridge_Patient_Portal.jpg?p=twitter"
+                  onerror="this.onerror=null; this.src='https://placehold.co/600x400/ff9900/ffffff?text=Project+4+Detail';"
+                  alt="Patient Portal App"
+                  class="project-thumbnail"
+                />
+              </div>
+              <div class="project-info">
+                <span class="project-tag">Healthcare</span>
+                <h3 class="project-title">Patient Portal App</h3>
+                <p>
+                  A secure mobile application for patients to manage
+                  appointments and health records.
+                </p>
+              </div>
+            </div>
+            <div
+              class="project-card gs-project-card"
+              data-project-id="project5"
+            >
+              <div class="project-thumbnail-wrapper">
+                <img
+                  src="https://inciflo.com/wp-content/uploads/2024/12/supply-chain-tracebility.jpg"
+                  onerror="this.onerror=null; this.src='https://placehold.co/600x400/0057b8/ffffff?text=Project+5+Detail';"
+                  alt="Supply Chain Tracker"
+                  class="project-thumbnail"
+                />
+              </div>
+              <div class="project-info">
+                <span class="project-tag">Logistics</span>
+                <h3 class="project-title">Supply Chain Tracker</h3>
+                <p>
+                  An advanced tracking system to monitor shipments and optimize
+                  supply chains.
+                </p>
+              </div>
+            </div>
+            <div
+              class="project-card gs-project-card"
+              data-project-id="project6"
+            >
+              <div class="project-thumbnail-wrapper">
+                <img
+                  src="https://www.paradisosolutions.com/blog/wp-content/uploads/2023/08/E-Learning-Platform-Requirements-A-Comprehensive-Checklist-image1-min.png"
+                  onerror="this.onerror=null; this.src='https://placehold.co/600x400/ff9900/ffffff?text=Project+6+Detail';"
+                  alt="E-learning Platform"
+                  class="project-thumbnail"
+                />
+              </div>
+              <div class="project-info">
+                <span class="project-tag">Education</span>
+                <h3 class="project-title">E-learning Platform</h3>
+                <p>
+                  A comprehensive educational platform with live classes and
+                  interactive content.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pricing Plans Section -->
+      <section class="section pricing-section" id="pricing">
+        <div class="container">
+          <h2 class="section-heading">Our Flexible Pricing</h2>
+          <div class="pricing-grid">
+            <div class="pricing-card gs-pricing-card">
+              <h3>Starter</h3>
+              <p class="price">
+                ₵2,999<span style="font-size: 1rem">/solution</span>
+              </p>
+              <p class="price-details">
+                Small-scale solutions, perfect for new businesses or simple
+                projects. Includes email support.
+              </p>
+              <a href="#contact" class="cta-button pricing-cta uppercase"
+                >Start Project</a
+              >
+            </div>
+            <div class="pricing-card gs-pricing-card">
+              <h3>Professional</h3>
+              <p class="price">
+                ₵9,999<span style="font-size: 1rem">/solution</span>
+              </p>
+              <p class="price-details">
+                Ideal for growing businesses with complex needs. Includes a
+                dedicated developer for your project.
+              </p>
+              <a href="#contact" class="cta-button pricing-cta uppercase"
+                >Start Project</a
+              >
+            </div>
+            <div class="pricing-card gs-pricing-card">
+              <h3>Enterprise</h3>
+              <p class="price">
+                ₵15,999<span style="font-size: 1rem">/solution</span>
+              </p>
+              <p class="price-details">
+                Our premium offering for large-scale solutions. Includes a full
+                dedicated team for comprehensive support.
+              </p>
+              <a href="#contact" class="cta-button pricing-cta uppercase"
+                >Start Project</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section class="section contact-section" id="contact">
+        <div class="container">
+          <h2 class="section-heading">Let's Build Something Great Together</h2>
+          <div class="contact-content">
+            <form class="contact-form" id="contact-form">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  aria-label="Name"
+                />
+                <p class="error-message" id="name-error">
+                  Please enter your name.
+                </p>
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  aria-label="Email"
+                />
+                <p class="error-message" id="email-error">
+                  Please enter a valid email address.
+                </p>
+              </div>
+              <div class="form-group">
+                <label for="project-details">Project Details</label>
+                <textarea
+                  id="project-details"
+                  name="project-details"
+                  rows="5"
+                  required
+                  aria-label="Project Details"
+                ></textarea>
+                <p class="error-message" id="project-details-error">
+                  Please provide some project details.
+                </p>
+              </div>
+              <button type="submit" class="submit-button uppercase">
+                Submit Inquiry
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer gs-footer-fade">
+      <div class="container footer-content">
+        <div class="footer-logo">GOODLEAD SOFTWARE</div>
+        <p>Email: contact@goodleadsoftware.com</p>
+        <p>© 2025 Goodlead Software | Terms & Privacy</p>
+      </div>
+    </footer>
+
+    <!-- Modals -->
+    <!-- Contact Success Modal -->
+    <div class="modal-overlay" id="success-modal">
+      <div class="modal">
+        <button class="modal-close" aria-label="Close modal">&times;</button>
+        <div class="modal-icon">&#x2714;</div>
+        <h3 class="modal-title">Thank You!</h3>
+        <p class="modal-body">
+          We've received your inquiry and will contact you within 24 hours.
+        </p>
+      </div>
+    </div>
+
+    <!-- Project Details Modal -->
+    <div class="modal-overlay" id="project-modal">
+      <div class="modal">
+        <button class="modal-close" aria-label="Close modal">&times;</button>
+        <div id="modal-project-content">
+          <!-- Project content will be inserted here by JavaScript -->
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // GSAP Registration
+      gsap.registerPlugin(ScrollTrigger);
+
+      // --- GSAP Animations ---
+
+      // Hero Section Parallax and Text Fade
+      gsap.from(".gs-hero-text", {
+        y: 50,
+        opacity: 0,
+        stagger: 0.2,
+        ease: "power2.out",
+        duration: 1,
+      });
+
+      gsap.to(".hero", {
+        backgroundPositionY: "20%",
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".hero",
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
+
+      // Services Card Staggered Fade-up
+      gsap.from(".gs-card", {
+        y: 50,
+        opacity: 0,
+        stagger: 0.2,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: ".services-grid",
+          start: "top 80%",
+          toggleActions: "play none none none",
+        },
+      });
+
+      // Projects Card Scroll-triggered fade and slide-in
+      gsap.utils.toArray(".gs-project-card").forEach((card) => {
+        gsap.from(card, {
+          opacity: 0,
+          y: 50,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: card,
+            start: "top 90%",
+            toggleActions: "play none none none",
+          },
+        });
+      });
+
+      // Pricing Cards Pop-in on scroll
+      gsap.from(".gs-pricing-card", {
+        scale: 0.8,
+        opacity: 0,
+        stagger: 0.2,
+        duration: 1,
+        ease: "back.out(1.7)",
+        scrollTrigger: {
+          trigger: ".pricing-grid",
+          start: "top 80%",
+          toggleActions: "play none none none",
+        },
+      });
+
+      // Footer Fade-in
+      gsap.from(".gs-footer-fade", {
+        opacity: 0,
+        duration: 1,
+        scrollTrigger: {
+          trigger: "footer",
+          start: "top 90%",
+          toggleActions: "play none none none",
+        },
+      });
+
+      // --- JavaScript for Modals and Forms ---
+
+      const contactForm = document.getElementById("contact-form");
+      const successModal = document.getElementById("success-modal");
+      const projectModal = document.getElementById("project-modal");
+      const modalProjectContent = document.getElementById(
+        "modal-project-content"
+      );
+      const modals = document.querySelectorAll(".modal-overlay");
+      const closeButtons = document.querySelectorAll(".modal-close");
+
+      const projectData = {
+        project1: {
+          title: "Secure Banking Platform",
+          category: "FinTech",
+          description:
+            "This project involved the development of a highly secure online banking platform. Features include two-factor authentication, real-time fraud detection, and a user-friendly interface. The system was built with a focus on scalability and compliance with financial regulations.",
+          image:
+            "https://diro.io/wp-content/uploads/2021/06/benefits-of-fintech-for-banks-1.jpg",
+        },
+        project2: {
+          title: "Cloud-Based CRM",
+          category: "SaaS",
+          description:
+            "We developed a powerful cloud-based Customer Relationship Management (CRM) tool. It enables businesses to manage sales pipelines, track customer interactions, and automate marketing campaigns. The solution is fully responsive and integrates with popular email services.",
+          image:
+            "https://5.imimg.com/data5/SELLER/Default/2024/9/449979644/XR/ET/TT/182816407/customer-relationship-management-crm-software-500x500.jpg",
+        },
+        project3: {
+          title: "Modern Retail Solution",
+          category: "E-commerce",
+          description:
+            "Our team created a state-of-the-art e-commerce platform for a fashion retailer. It features a custom storefront, integrated payment gateways, and a robust inventory management system. The design is clean, modern, and provides a seamless shopping experience.",
+          image:
+            "https://5.imimg.com/data5/SELLER/Default/2021/7/IR/GY/SG/134313690/e-commerce-png-500x500.png",
+        },
+        project4: {
+          title: "Patient Portal App",
+          category: "Healthcare",
+          description:
+            "This project was a mobile application designed to simplify the patient experience. Users can book appointments, view lab results, and securely message their doctors. The app adheres to strict HIPAA compliance and ensures data privacy.",
+          image:
+            "https://mma.prnewswire.com/media/1099715/Bridge_Patient_Portal.jpg?p=twitter",
+        },
+        project5: {
+          title: "Supply Chain Tracker",
+          category: "Logistics",
+          description:
+            "We built an advanced logistics and supply chain management system. It provides real-time tracking of goods, predictive analytics for delivery times, and automated alerts for potential delays. The solution significantly improved operational efficiency for our client.",
+          image:
+            "https://inciflo.com/wp-content/uploads/2024/12/supply-chain-tracebility.jpg",
+        },
+        project6: {
+          title: "E-learning Platform",
+          category: "Education",
+          description:
+            "A comprehensive e-learning platform was developed to support online education. It includes features for course creation, student enrollment, and interactive learning modules. The platform is accessible across all devices and supports multiple media formats.",
+          image:
+            "https://www.paradisosolutions.com/blog/wp-content/uploads/2023/08/E-Learning-Platform-Requirements-A-Comprehensive-Checklist-image1-min.png",
+        },
+      };
+
+      function showModal(modalElement) {
+        modalElement.style.display = "flex";
+        gsap.to(modalElement, {
+          opacity: 1,
+          visibility: "visible",
+          duration: 0.3,
+          ease: "power2.out",
+        });
+        gsap.from(modalElement.querySelector(".modal"), {
+          scale: 0.5,
+          opacity: 0,
+          duration: 0.5,
+          ease: "back.out(1.7)",
+        });
+      }
+
+      function hideModal(modalElement) {
+        gsap.to(modalElement, {
+          opacity: 0,
+          visibility: "hidden",
+          duration: 0.3,
+          ease: "power2.in",
+          onComplete: () => {
+            modalElement.style.display = "none";
+            if (modalElement === projectModal) {
+              modalProjectContent.innerHTML = "";
+            }
+          },
+        });
+      }
+
+      // Handle form submission
+      contactForm.addEventListener("submit", function (event) {
+        event.preventDefault(); // Prevent page reload
+
+        if (validateForm()) {
+          // Here you would typically send the form data to a server
+          // For this example, we'll just show the success modal
+          showModal(successModal);
+          contactForm.reset();
+        }
+      });
+
+      function validateForm() {
+        let isValid = true;
+
+        // Name validation
+        const nameInput = document.getElementById("name");
+        const nameError = document.getElementById("name-error");
+        if (nameInput.value.trim() === "") {
+          nameError.style.display = "block";
+          isValid = false;
+        } else {
+          nameError.style.display = "none";
+        }
+
+        // Email validation
+        const emailInput = document.getElementById("email");
+        const emailError = document.getElementById("email-error");
+        const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        if (!emailPattern.test(emailInput.value.trim())) {
+          emailError.style.display = "block";
+          isValid = false;
+        } else {
+          emailError.style.display = "none";
+        }
+
+        // Project Details validation
+        const detailsInput = document.getElementById("project-details");
+        const detailsError = document.getElementById("project-details-error");
+        if (detailsInput.value.trim() === "") {
+          detailsError.style.display = "block";
+          isValid = false;
+        } else {
+          detailsError.style.display = "none";
+        }
+
+        return isValid;
+      }
+
+      // Handle modal closing
+      closeButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const modalOverlay = button.closest(".modal-overlay");
+          if (modalOverlay) {
+            hideModal(modalOverlay);
+          }
+        });
+      });
+
+      modals.forEach((modal) => {
+        modal.addEventListener("click", (event) => {
+          if (event.target === modal) {
+            hideModal(modal);
+          }
+        });
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          modals.forEach((modal) => {
+            if (modal.style.display === "flex") {
+              hideModal(modal);
+            }
+          });
+        }
+      });
+
+      // Handle project card clicks to show modal
+      const projectCards = document.querySelectorAll(".project-card");
+      projectCards.forEach((card) => {
+        card.addEventListener("click", () => {
+          const projectId = card.getAttribute("data-project-id");
+          const project = projectData[projectId];
+
+          modalProjectContent.innerHTML = `
+                    <div class="project-detail-modal">
+                        <img src="${project.image}" alt="${project.title}" style="max-width: 100%; height: auto; border-radius: 8px; margin-bottom: 16px;">
+                        <span class="project-tag" style="margin: 0 auto 16px;">${project.category}</span>
+                        <h3 class="modal-title">${project.title}</h3>
+                        <p class="modal-body">${project.description}</p>
+                    </div>
+                `;
+          showModal(projectModal);
+        });
+      });
+
+      // Smooth scroll for nav links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

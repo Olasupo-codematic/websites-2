@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KICKSTEP SOFTWARE - Professional Remote Development Services</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome for Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      /*
+        * CSS Design System & Layout
+        * Using CSS Grid for the main layout and Flexbox for components.
+        * All styles are custom, no frameworks.
+        */
+      :root {
+        --primary-color: #0070f3;
+        --accent-color: #ff6600;
+        --background-color: #f5f7fa;
+        --text-color: #1a1a1a;
+        --light-text-color: #ffffff;
+        --spacing-unit: 16px;
+        --max-width: 1200px;
+        --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        --card-shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.15);
+        --border-radius-pill: 9999px;
+        --border-radius-card: 16px;
+      }
+
+      /* Base & Typography */
+      body {
+        font-family: "Inter", sans-serif;
+        color: var(--text-color);
+        background-color: var(--background-color);
+        margin: 0;
+        padding: 0;
+        line-height: 1.5;
+        letter-spacing: normal;
+        overflow-x: hidden;
+      }
+
+      h1,
+      h2 {
+        font-family: "Poppins", sans-serif;
+        color: var(--text-color);
+        line-height: 1.2;
+        margin-bottom: var(--spacing-unit);
+      }
+
+      h1 {
+        font-size: 3rem;
+      }
+      h2 {
+        font-size: 2rem;
+      }
+
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 2.5rem;
+        }
+        h2 {
+          font-size: 1.75rem;
+        }
+      }
+
+      @media (max-width: 320px) {
+        h1 {
+          font-size: 2rem;
+        }
+        h2 {
+          font-size: 1.5rem;
+        }
+      }
+
+      p {
+        font-size: 1rem;
+        margin-bottom: var(--spacing-unit);
+      }
+
+      a {
+        text-decoration: none;
+        color: var(--primary-color);
+        transition: color 0.3s ease;
+      }
+
+      a:hover {
+        color: var(--accent-color);
+      }
+
+      .container {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding: 0 calc(2 * var(--spacing-unit));
+      }
+
+      section {
+        padding: calc(6 * var(--spacing-unit)) 0;
+      }
+
+      /* Button Component */
+      .btn {
+        display: inline-block;
+        padding: var(--spacing-unit) calc(2 * var(--spacing-unit));
+        border-radius: var(--border-radius-pill);
+        text-align: center;
+        font-family: "Poppins", sans-serif;
+        font-weight: 600;
+        text-transform: uppercase;
+        cursor: pointer;
+        border: none;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .btn-primary {
+        background-color: var(--accent-color);
+        color: var(--light-text-color);
+      }
+
+      .btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 15px rgba(255, 102, 0, 0.6);
+      }
+
+      /* --- Hero Section --- */
+      .hero {
+        position: relative;
+        background-image: url("https://media.istockphoto.com/id/2114295998/photo/asian-and-indian-developer-devops-team-discussion-about-coding-promgram-with-software.jpg?s=612x612&w=0&k=20&c=LKwTqUnNPgasiwnhKSHfnwxZMxQdD5ziIZRrhGSOlu0=");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        color: var(--light-text-color);
+        padding: calc(10 * var(--spacing-unit)) 0 calc(12 * var(--spacing-unit));
+        text-align: center;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          rgba(0, 112, 243, 0.85) 0%,
+          rgba(48, 143, 245, 0.75) 100%
+        );
+        z-index: 1;
+      }
+
+      .hero-content {
+        z-index: 2;
+        position: relative;
+      }
+
+      /* --- Benefits & Services & Pricing Sections --- */
+      .section-title {
+        text-align: center;
+        margin-bottom: calc(4 * var(--spacing-unit));
+      }
+
+      .grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: calc(3 * var(--spacing-unit));
+      }
+
+      .grid-2 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: calc(3 * var(--spacing-unit));
+      }
+
+      @media (max-width: 768px) {
+        .grid-3,
+        .grid-2 {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* Card Component */
+      .card {
+        background-color: var(--light-text-color);
+        padding: calc(3 * var(--spacing-unit));
+        border-radius: var(--border-radius-card);
+        box-shadow: var(--card-shadow);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--card-shadow-hover);
+      }
+
+      .card-icon {
+        font-size: 2rem;
+        color: var(--primary-color);
+        margin-bottom: var(--spacing-unit);
+      }
+
+      .card-title {
+        font-family: "Poppins", sans-serif;
+        font-weight: 600;
+        margin-top: 0;
+        margin-bottom: var(--spacing-unit);
+      }
+
+      .service-card {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+        height: 100%;
+      }
+
+      .service-card .card-icon {
+        font-size: 2.5rem;
+        margin-bottom: calc(2 * var(--spacing-unit));
+      }
+
+      .service-category {
+        background-color: rgba(0, 112, 243, 0.1);
+        color: var(--primary-color);
+        padding: 4px 12px;
+        border-radius: var(--border-radius-pill);
+        font-size: 0.8rem;
+        font-weight: 500;
+        display: inline-block;
+        margin-top: calc(1 * var(--spacing-unit));
+      }
+
+      .pricing-card {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .pricing-card h3 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-top: 0;
+      }
+
+      .pricing-price {
+        font-family: "Poppins", sans-serif;
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--accent-color);
+        margin: var(--spacing-unit) 0;
+      }
+
+      .pricing-price span {
+        font-size: 1rem;
+        color: var(--text-color);
+        font-weight: 400;
+      }
+
+      .pricing-benefits {
+        text-align: left;
+        list-style: none;
+        padding: 0;
+        margin: 0 0 calc(2 * var(--spacing-unit));
+      }
+
+      .pricing-benefits li {
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        font-size: 0.9rem;
+      }
+
+      .pricing-benefits li i {
+        color: var(--primary-color);
+        margin-right: 8px;
+      }
+
+      /* --- Contact Section --- */
+      .contact-form-container {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .form-group {
+        margin-bottom: calc(2 * var(--spacing-unit));
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: var(--spacing-unit);
+        border-radius: var(--border-radius-card);
+        border: 1px solid #ddd;
+        font-family: "Inter", sans-serif;
+        font-size: 1rem;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        box-sizing: border-box;
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 5px rgba(0, 112, 243, 0.4);
+      }
+
+      .form-group textarea {
+        resize: vertical;
+        height: 150px;
+      }
+
+      .error-message {
+        color: var(--accent-color);
+        font-size: 0.8rem;
+        margin-top: 5px;
+        opacity: 0;
+        height: 0;
+        overflow: hidden;
+        transition: opacity 0.3s ease, height 0.3s ease;
+      }
+
+      .error-message.show {
+        opacity: 1;
+        height: auto;
+      }
+
+      /* --- Footer --- */
+      .footer {
+        background-color: var(--text-color);
+        color: #ccc;
+        text-align: center;
+        padding: calc(3 * var(--spacing-unit)) 0;
+      }
+
+      .footer-content a {
+        color: #eee;
+      }
+
+      .footer p {
+        margin: 0;
+        font-size: 0.9rem;
+      }
+
+      /* --- Success Modal --- */
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+      }
+
+      .modal-overlay.active {
+        visibility: visible;
+        opacity: 1;
+      }
+
+      .modal-content {
+        background: var(--light-text-color);
+        color: var(--text-color);
+        padding: calc(4 * var(--spacing-unit));
+        border-radius: var(--border-radius-card);
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        max-width: 500px;
+        width: 90%;
+        transform: scale(0.8);
+        opacity: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- GSAP CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Header & Hero Section -->
+    <header class="hero">
+      <div class="hero-overlay"></div>
+      <div class="hero-content container">
+        <h1 class="hero-headline">
+          Professional Software Development Services — Fully Remote
+        </h1>
+        <p class="hero-subtext">
+          Subscribe to expert software solutions delivered seamlessly via email
+          and online.
+        </p>
+        <a href="#contact" class="btn btn-primary hero-cta"
+          >Get Started Today</a
+        >
+      </div>
+    </header>
+
+    <main>
+      <!-- Subscription Benefits Section -->
+      <section id="benefits">
+        <div class="container">
+          <div class="section-title">
+            <h2>Why KICKSTEP SOFTWARE?</h2>
+          </div>
+          <div class="grid-3 benefits-grid">
+            <!-- Benefit Card 1 -->
+            <div class="card benefit-card">
+              <i class="fas fa-headset card-icon"></i>
+              <h3 class="card-title">Dedicated Remote Services</h3>
+              <p>
+                Enjoy fast email support and dedicated remote software services
+                whenever you need them.
+              </p>
+            </div>
+            <!-- Benefit Card 2 -->
+            <div class="card benefit-card">
+              <i class="fas fa-wallet card-icon"></i>
+              <h3 class="card-title">Flexible Monthly Subscription</h3>
+              <p>
+                No long-term commitments. Scale up or down with our flexible
+                monthly subscription plans.
+              </p>
+            </div>
+            <!-- Benefit Card 3 -->
+            <div class="card benefit-card">
+              <i class="fas fa-laptop-code card-icon"></i>
+              <h3 class="card-title">All Work Delivered Online</h3>
+              <p>
+                We work efficiently and remotely. No meetings, no hassle—just
+                high-quality work delivered online.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Services Overview Section -->
+      <section id="services">
+        <div class="container">
+          <div class="section-title">
+            <h2>Our Services</h2>
+          </div>
+          <div class="grid-2 services-grid">
+            <!-- Service Card 1 -->
+            <div class="card service-card service-1">
+              <i class="fas fa-server card-icon"></i>
+              <h3 class="card-title">API Development</h3>
+              <p>
+                Build robust and scalable backend APIs for your applications.
+              </p>
+              <span class="service-category">Backend</span>
+            </div>
+            <!-- Service Card 2 -->
+            <div class="card service-card service-2">
+              <i class="fas fa-bug card-icon"></i>
+              <h3 class="card-title">Bug Fixing</h3>
+              <p>
+                Resolve critical bugs and technical issues with expert
+                precision.
+              </p>
+              <span class="service-category">Full-Stack</span>
+            </div>
+            <!-- Service Card 3 -->
+            <div class="card service-card service-3">
+              <i class="fas fa-code-branch card-icon"></i>
+              <h3 class="card-title">Code Review</h3>
+              <p>
+                Improve code quality, performance, and security with
+                professional reviews.
+              </p>
+              <span class="service-category">Full-Stack</span>
+            </div>
+            <!-- Service Card 4 -->
+            <div class="card service-card service-4">
+              <i class="fas fa-palette card-icon"></i>
+              <h3 class="card-title">UI/UX Development</h3>
+              <p>
+                Create beautiful and intuitive user interfaces for your web
+                apps.
+              </p>
+              <span class="service-category">Frontend</span>
+            </div>
+            <!-- Service Card 5 -->
+            <div class="card service-card service-5">
+              <i class="fas fa-database card-icon"></i>
+              <h3 class="card-title">Database Management</h3>
+              <p>
+                Optimize your database for speed, scalability, and reliability.
+              </p>
+              <span class="service-category">Backend</span>
+            </div>
+            <!-- Service Card 6 -->
+            <div class="card service-card service-6">
+              <i class="fas fa-file-code card-icon"></i>
+              <h3 class="card-title">Technical Documentation</h3>
+              <p>
+                Generate clear, comprehensive documentation for your software.
+              </p>
+              <span class="service-category">Full-Stack</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pricing Plans Section -->
+      <section id="pricing">
+        <div class="container">
+          <div class="section-title">
+            <h2>Flexible Pricing Plans</h2>
+          </div>
+          <div class="grid-3 pricing-grid">
+            <!-- Pricing Card 1: Starter -->
+            <div class="card pricing-card pricing-1">
+              <div>
+                <h3>Starter</h3>
+                <p class="pricing-price">¢435<span>/month</span></p>
+                <ul class="pricing-benefits">
+                  <li>
+                    <i class="fas fa-check-circle"></i> Basic remote dev
+                    services
+                  </li>
+                  <li>
+                    <i class="fas fa-check-circle"></i> Fast email support
+                  </li>
+                  <li>
+                    <i class="fas fa-check-circle"></i> 1 project at a time
+                  </li>
+                </ul>
+              </div>
+              <a href="#" class="btn btn-primary">Start Trial</a>
+            </div>
+            <!-- Pricing Card 2: Professional -->
+            <div class="card pricing-card pricing-2">
+              <div>
+                <h3>Professional</h3>
+                <p class="pricing-price">¢1,185<span>/month</span></p>
+                <ul class="pricing-benefits">
+                  <li><i class="fas fa-check-circle"></i> Advanced services</li>
+                  <li><i class="fas fa-check-circle"></i> Priority response</li>
+                  <li>
+                    <i class="fas fa-check-circle"></i> Unlimited projects
+                  </li>
+                </ul>
+              </div>
+              <a href="#" class="btn btn-primary">Start Trial</a>
+            </div>
+            <!-- Pricing Card 3: Enterprise -->
+            <div class="card pricing-card pricing-3">
+              <div>
+                <h3>Enterprise</h3>
+                <p class="pricing-price">¢2,999<span>/month</span></p>
+                <ul class="pricing-benefits">
+                  <li>
+                    <i class="fas fa-check-circle"></i> Full service + dedicated
+                    engineer
+                  </li>
+                  <li>
+                    <i class="fas fa-check-circle"></i> White-glove support
+                  </li>
+                  <li>
+                    <i class="fas fa-check-circle"></i> Custom integrations
+                  </li>
+                </ul>
+              </div>
+              <a href="#" class="btn btn-primary">Contact Sales</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact">
+        <div class="container">
+          <div class="section-title">
+            <h2>Get in Touch</h2>
+          </div>
+          <div class="contact-form-container">
+            <form id="contact-form">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  placeholder="Your Name"
+                  required
+                />
+                <div class="error-message name-error">Name is required.</div>
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="you@example.com"
+                  required
+                />
+                <div class="error-message email-error">
+                  A valid email is required.
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  placeholder="What can we build for you?"
+                  required
+                ></textarea>
+                <div class="error-message message-error">
+                  Message is required.
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary">
+                Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+      <div class="container">
+        <p><strong>KICKSTEP SOFTWARE</strong></p>
+        <p>contact@kickstepsoftware.com</p>
+        <p>&copy; 2025 Kickstep Software | Terms & Privacy</p>
+      </div>
+    </footer>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="modal-overlay">
+      <div class="modal-content">
+        <h3>Thank You!</h3>
+        <p>Your request has been received. We’ll respond via email soon.</p>
+      </div>
+    </div>
+
+    <script>
+      // GSAP Animations and Form Handling
+      document.addEventListener("DOMContentLoaded", () => {
+        // --- GSAP Hero Animations ---
+        const heroTimeline = gsap.timeline();
+        heroTimeline
+          .from(".hero-headline", {
+            duration: 1,
+            y: 50,
+            opacity: 0,
+            ease: "power3.out",
+          })
+          .from(
+            ".hero-subtext",
+            { duration: 0.8, y: 50, opacity: 0, ease: "power3.out" },
+            "-=0.5"
+          )
+          .from(
+            ".hero-cta",
+            { duration: 0.6, scale: 0.8, opacity: 0, ease: "back.out(1.7)" },
+            "-=0.3"
+          );
+
+        // --- GSAP ScrollTrigger Animations ---
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Benefits Section
+        gsap.from(".benefits-grid .card", {
+          y: 50,
+          opacity: 0,
+          stagger: 0.2,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: "#benefits",
+            start: "top 80%",
+          },
+        });
+
+        // Services Section
+        gsap.from(".services-grid .card", {
+          y: 50,
+          opacity: 0,
+          stagger: 0.15,
+          duration: 0.8,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: "#services",
+            start: "top 80%",
+          },
+        });
+
+        // Pricing Section
+        gsap.from(".pricing-grid .card", {
+          y: 50,
+          opacity: 0,
+          stagger: 0.2,
+          duration: 1,
+          ease: "back.out(1.2)",
+          scrollTrigger: {
+            trigger: "#pricing",
+            start: "top 80%",
+          },
+        });
+
+        // Footer Fade-in
+        gsap.from(".footer", {
+          opacity: 0,
+          duration: 1,
+          ease: "power1.out",
+          scrollTrigger: {
+            trigger: ".footer",
+            start: "top 95%",
+          },
+        });
+
+        // --- GSAP Hover Animations ---
+        const cards = document.querySelectorAll(".card");
+        cards.forEach((card) => {
+          card.addEventListener("mouseenter", () => {
+            gsap.to(card, {
+              y: -5,
+              boxShadow: "0 8px 24px rgba(0, 0, 0, 0.15)",
+              duration: 0.3,
+              ease: "power2.out",
+            });
+          });
+          card.addEventListener("mouseleave", () => {
+            gsap.to(card, {
+              y: 0,
+              boxShadow: "0 4px 12px rgba(0, 0, 0, 0.05)",
+              duration: 0.3,
+              ease: "power2.out",
+            });
+          });
+        });
+
+        // Button Hover
+        const buttons = document.querySelectorAll(".btn");
+        buttons.forEach((btn) => {
+          btn.addEventListener("mouseenter", () => {
+            gsap.to(btn, {
+              scale: 1.05,
+              boxShadow: "0 0 15px rgba(255, 102, 0, 0.6)",
+              duration: 0.3,
+            });
+          });
+          btn.addEventListener("mouseleave", () => {
+            gsap.to(btn, {
+              scale: 1,
+              boxShadow: "0 0 0 rgba(0,0,0,0)",
+              duration: 0.3,
+            });
+          });
+        });
+
+        // --- Contact Form & Modal Handling ---
+        const contactForm = document.getElementById("contact-form");
+        const successModal = document.getElementById("success-modal");
+        const modalContent = document.querySelector(".modal-content");
+
+        contactForm.addEventListener("submit", (event) => {
+          event.preventDefault(); // Prevent page reload
+
+          // Client-side validation
+          let isValid = true;
+          const nameInput = document.getElementById("name");
+          const emailInput = document.getElementById("email");
+          const messageInput = document.getElementById("message");
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+          // Simple validation check for each field
+          if (nameInput.value.trim() === "") {
+            isValid = false;
+            document.querySelector(".name-error").classList.add("show");
+          } else {
+            document.querySelector(".name-error").classList.remove("show");
+          }
+
+          if (!emailRegex.test(emailInput.value.trim())) {
+            isValid = false;
+            document.querySelector(".email-error").classList.add("show");
+          } else {
+            document.querySelector(".email-error").classList.remove("show");
+          }
+
+          if (messageInput.value.trim() === "") {
+            isValid = false;
+            document.querySelector(".message-error").classList.add("show");
+          } else {
+            document.querySelector(".message-error").classList.remove("show");
+          }
+
+          // If form is valid, show the modal
+          if (isValid) {
+            // GSAP animation for the modal
+            gsap.set(successModal, { visibility: "visible", opacity: 0 });
+            gsap.set(modalContent, { scale: 0.8, opacity: 0 });
+            gsap.to(successModal, { opacity: 1, duration: 0.3 });
+            gsap.to(modalContent, {
+              scale: 1,
+              opacity: 1,
+              duration: 0.5,
+              ease: "back.out(1.7)",
+            });
+
+            // Reset the form after successful submission
+            contactForm.reset();
+          }
+        });
+
+        // --- Modal Close Logic ---
+        function closeModal() {
+          gsap.to(successModal, {
+            opacity: 0,
+            duration: 0.3,
+            onComplete: () => {
+              successModal.style.visibility = "hidden";
+            },
+          });
+        }
+
+        // Close modal on outside click
+        successModal.addEventListener("click", (event) => {
+          if (event.target === successModal) {
+            closeModal();
+          }
+        });
+
+        // Close modal on ESC key press
+        document.addEventListener("keydown", (event) => {
+          if (
+            event.key === "Escape" &&
+            successModal.classList.contains("active")
+          ) {
+            closeModal();
+          }
+        });
+
+        // Smooth scroll for hero CTA
+        document
+          .querySelector(".hero-cta")
+          .addEventListener("click", (event) => {
+            event.preventDefault();
+            const targetId = event.target.getAttribute("href");
+            gsap.to(window, {
+              duration: 1,
+              scrollTo: targetId,
+              ease: "power2.inOut",
+            });
+          });
+      });
+    </script>
+  </body>
+</html>
