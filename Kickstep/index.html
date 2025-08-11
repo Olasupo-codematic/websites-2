@@ -1,878 +1,1268 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KICKSTEP SOFTWARE - Professional Remote Development Services</title>
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
-    <!-- Font Awesome for Icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-    />
+    <meta name="description" content="Subscribe to expert software development services delivered remotely. Professional developers, flexible monthly plans, all work delivered online." />
+    <meta name="author" content="KICKSTEP SOFTWARE" />
+    <meta name="keywords" content="software development, remote development, subscription development, API development, bug fixing, code review" />
+
+    <meta property="og:title" content="KICKSTEP SOFTWARE - Professional Remote Development Services" />
+    <meta property="og:description" content="Subscribe to expert software development services delivered remotely. Professional developers, flexible monthly plans, all work delivered online." />
+    <meta property="og:type" content="website" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+    
     <style>
-      /*
-        * CSS Design System & Layout
-        * Using CSS Grid for the main layout and Flexbox for components.
-        * All styles are custom, no frameworks.
-        */
-      :root {
-        --primary-color: #0070f3;
-        --accent-color: #ff6600;
-        --background-color: #f5f7fa;
-        --text-color: #1a1a1a;
-        --light-text-color: #ffffff;
-        --spacing-unit: 16px;
-        --max-width: 1200px;
-        --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-        --card-shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.15);
-        --border-radius-pill: 9999px;
-        --border-radius-card: 16px;
-      }
+        /* KICKSTEP SOFTWARE Design System */
+        :root {
+            /* KICKSTEP Brand Colors */
+            --background: #f5f7fa; /* Soft, Clean Light Gray */
+            --foreground: #1a1a1a; /* Dark Charcoal */
+            --card: #ffffff;
+            --card-foreground: #1a1a1a;
+            --primary: #0070f3; /* Trustworthy Blue */
+            --primary-foreground: #ffffff;
+            --secondary: #f5f7fa;
+            --secondary-foreground: #1a1a1a;
+            --muted: #e5e7eb;
+            --muted-foreground: #6b7280;
+            --accent: #ff6600; /* Energetic Orange */
+            --accent-foreground: #ffffff;
+            --destructive: #ef4444;
+            --destructive-foreground: #ffffff;
+            --border: #e5e7eb;
+            --input: #e5e7eb;
+            --ring: #0070f3;
+        }
 
-      /* Base & Typography */
-      body {
-        font-family: "Inter", sans-serif;
-        color: var(--text-color);
-        background-color: var(--background-color);
-        margin: 0;
-        padding: 0;
-        line-height: 1.5;
-        letter-spacing: normal;
-        overflow-x: hidden;
-      }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-      h1,
-      h2 {
-        font-family: "Poppins", sans-serif;
-        color: var(--text-color);
-        line-height: 1.2;
-        margin-bottom: var(--spacing-unit);
-      }
+        body {
+            background-color: var(--background);
+            color: var(--foreground);
+            font-family: "Mona Sans", sans-serif;
+            line-height: 1.5;
+        }
 
-      h1 {
-        font-size: 3rem;
-      }
-      h2 {
-        font-size: 2rem;
-      }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: "Mona Sans", sans-serif;
+        }
 
-      @media (max-width: 768px) {
         h1 {
-          font-size: 2.5rem;
+            font-size: 3rem;
+            font-weight: 700;
         }
+
         h2 {
-          font-size: 1.75rem;
+            font-size: 2rem;
+            font-weight: 600;
         }
-      }
 
-      @media (max-width: 320px) {
-        h1 {
-          font-size: 2rem;
+        /* Utility Classes */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
         }
-        h2 {
-          font-size: 1.5rem;
+
+        .btn-hero {
+            background-color: var(--primary);
+            color: var(--primary-foreground);
+            padding: 1rem 2rem;
+            border-radius: 9999px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
         }
-      }
 
-      p {
-        font-size: 1rem;
-        margin-bottom: var(--spacing-unit);
-      }
-
-      a {
-        text-decoration: none;
-        color: var(--primary-color);
-        transition: color 0.3s ease;
-      }
-
-      a:hover {
-        color: var(--accent-color);
-      }
-
-      .container {
-        max-width: var(--max-width);
-        margin: 0 auto;
-        padding: 0 calc(2 * var(--spacing-unit));
-      }
-
-      section {
-        padding: calc(6 * var(--spacing-unit)) 0;
-      }
-
-      /* Button Component */
-      .btn {
-        display: inline-block;
-        padding: var(--spacing-unit) calc(2 * var(--spacing-unit));
-        border-radius: var(--border-radius-pill);
-        text-align: center;
-        font-family: "Poppins", sans-serif;
-        font-weight: 600;
-        text-transform: uppercase;
-        cursor: pointer;
-        border: none;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-      }
-
-      .btn-primary {
-        background-color: var(--accent-color);
-        color: var(--light-text-color);
-      }
-
-      .btn:hover {
-        transform: scale(1.05);
-        box-shadow: 0 0 15px rgba(255, 102, 0, 0.6);
-      }
-
-      /* --- Hero Section --- */
-      .hero {
-        position: relative;
-        background-image: url("https://media.istockphoto.com/id/2114295998/photo/asian-and-indian-developer-devops-team-discussion-about-coding-promgram-with-software.jpg?s=612x612&w=0&k=20&c=LKwTqUnNPgasiwnhKSHfnwxZMxQdD5ziIZRrhGSOlu0=");
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
-        color: var(--light-text-color);
-        padding: calc(10 * var(--spacing-unit)) 0 calc(12 * var(--spacing-unit));
-        text-align: center;
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-      }
-
-      .hero-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-          135deg,
-          rgba(0, 112, 243, 0.85) 0%,
-          rgba(48, 143, 245, 0.75) 100%
-        );
-        z-index: 1;
-      }
-
-      .hero-content {
-        z-index: 2;
-        position: relative;
-      }
-
-      /* --- Benefits & Services & Pricing Sections --- */
-      .section-title {
-        text-align: center;
-        margin-bottom: calc(4 * var(--spacing-unit));
-      }
-
-      .grid-3 {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: calc(3 * var(--spacing-unit));
-      }
-
-      .grid-2 {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: calc(3 * var(--spacing-unit));
-      }
-
-      @media (max-width: 768px) {
-        .grid-3,
-        .grid-2 {
-          grid-template-columns: 1fr;
+        .btn-hero:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 112, 243, 0.3);
         }
-      }
 
-      /* Card Component */
-      .card {
-        background-color: var(--light-text-color);
-        padding: calc(3 * var(--spacing-unit));
-        border-radius: var(--border-radius-card);
-        box-shadow: var(--card-shadow);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-      }
+        .btn-secondary {
+            padding: 1rem 2rem;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            border-radius: 9999px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            background: transparent;
+            cursor: pointer;
+        }
 
-      .card:hover {
-        transform: translateY(-5px);
-        box-shadow: var(--card-shadow-hover);
-      }
+        .btn-secondary:hover {
+            background-color: var(--primary);
+            color: var(--primary-foreground);
+            transform: scale(1.05);
+        }
 
-      .card-icon {
-        font-size: 2rem;
-        color: var(--primary-color);
-        margin-bottom: var(--spacing-unit);
-      }
+        .service-card {
+            background-color: var(--card);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
 
-      .card-title {
-        font-family: "Poppins", sans-serif;
-        font-weight: 600;
-        margin-top: 0;
-        margin-bottom: var(--spacing-unit);
-      }
+        .service-card:hover {
+            box-shadow: 0 20px 25px rgba(0, 0, 0, 0.1);
+            transform: translateY(-8px);
+        }
 
-      .service-card {
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        text-align: center;
-        height: 100%;
-      }
+        .pricing-card {
+            background-color: var(--card);
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
 
-      .service-card .card-icon {
-        font-size: 2.5rem;
-        margin-bottom: calc(2 * var(--spacing-unit));
-      }
+        .pricing-card:hover {
+            box-shadow: 0 20px 25px rgba(0, 0, 0, 0.1);
+            transform: translateY(-4px);
+        }
 
-      .service-category {
-        background-color: rgba(0, 112, 243, 0.1);
-        color: var(--primary-color);
-        padding: 4px 12px;
-        border-radius: var(--border-radius-pill);
-        font-size: 0.8rem;
-        font-weight: 500;
-        display: inline-block;
-        margin-top: calc(1 * var(--spacing-unit));
-      }
+        .pricing-card.highlighted {
+            border: 2px solid var(--primary);
+            position: relative;
+        }
 
-      .pricing-card {
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-      }
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
 
-      .pricing-card h3 {
-        font-size: 1.5rem;
-        font-weight: 700;
-        margin-top: 0;
-      }
+        .form-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 112, 243, 0.2);
+            outline: none;
+        }
 
-      .pricing-price {
-        font-family: "Poppins", sans-serif;
-        font-size: 2.5rem;
-        font-weight: 700;
-        color: var(--accent-color);
-        margin: var(--spacing-unit) 0;
-      }
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.7s ease;
+        }
 
-      .pricing-price span {
-        font-size: 1rem;
-        color: var(--text-color);
-        font-weight: 400;
-      }
+        .fade-in.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-      .pricing-benefits {
-        text-align: left;
-        list-style: none;
-        padding: 0;
-        margin: 0 0 calc(2 * var(--spacing-unit));
-      }
+        .slide-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.7s ease;
+        }
 
-      .pricing-benefits li {
-        margin-bottom: 8px;
-        display: flex;
-        align-items: center;
-        font-size: 0.9rem;
-      }
+        .slide-up.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-      .pricing-benefits li i {
-        color: var(--primary-color);
-        margin-right: 8px;
-      }
+        .stagger-1 { transition-delay: 100ms; }
+        .stagger-2 { transition-delay: 200ms; }
+        .stagger-3 { transition-delay: 300ms; }
 
-      /* --- Contact Section --- */
-      .contact-form-container {
-        max-width: 600px;
-        margin: 0 auto;
-      }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
 
-      .form-group {
-        margin-bottom: calc(2 * var(--spacing-unit));
-      }
+        @keyframes bounce {
+            0%, 20%, 53%, 80%, 100% { transform: translateY(0); }
+            40%, 43% { transform: translateY(-10px); }
+            70% { transform: translateY(-5px); }
+        }
 
-      .form-group label {
-        display: block;
-        margin-bottom: 8px;
-        font-weight: 500;
-      }
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
 
-      .form-group input,
-      .form-group textarea {
-        width: 100%;
-        padding: var(--spacing-unit);
-        border-radius: var(--border-radius-card);
-        border: 1px solid #ddd;
-        font-family: "Inter", sans-serif;
-        font-size: 1rem;
-        transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        box-sizing: border-box;
-      }
+        .animate-bounce {
+            animation: bounce 2s infinite;
+        }
 
-      .form-group input:focus,
-      .form-group textarea:focus {
-        outline: none;
-        border-color: var(--primary-color);
-        box-shadow: 0 0 5px rgba(0, 112, 243, 0.4);
-      }
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background-image: url('https://ddi-dev.com/uploads/agile-software-development-team-structure.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        } 
 
-      .form-group textarea {
-        resize: vertical;
-        height: 150px;
-      }
+        .hero::before {  
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 100%);
+        }
 
-      .error-message {
-        color: var(--accent-color);
-        font-size: 0.8rem;
-        margin-top: 5px;
-        opacity: 0;
-        height: 0;
-        overflow: hidden;
-        transition: opacity 0.3s ease, height 0.3s ease;
-      }
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            color: white;
+            max-width: 80rem;
+            padding: 0 1.5rem;
+        }
 
-      .error-message.show {
-        opacity: 1;
-        height: auto;
-      }
+        .floating-elements {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
 
-      /* --- Footer --- */
-      .footer {
-        background-color: var(--text-color);
-        color: #ccc;
-        text-align: center;
-        padding: calc(3 * var(--spacing-unit)) 0;
-      }
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+        }
 
-      .footer-content a {
-        color: #eee;
-      }
+        .floating-element:nth-child(1) {
+            top: 5rem;
+            left: 2.5rem;
+            width: 5rem;
+            height: 5rem;
+            background-color: white;
+            animation: float 3s ease-in-out infinite;
+        }
 
-      .footer p {
-        margin: 0;
-        font-size: 0.9rem;
-      }
+        .floating-element:nth-child(2) {
+            top: 10rem;
+            right: 5rem;
+            width: 4rem;
+            height: 4rem;
+            background-color: var(--accent);
+            animation: float 3s ease-in-out infinite 1s;
+        }
 
-      /* --- Success Modal --- */
-      .modal-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.6);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 1000;
-        visibility: hidden;
-        opacity: 0;
-        transition: opacity 0.3s ease, visibility 0.3s ease;
-      }
+        .floating-element:nth-child(3) {
+            bottom: 10rem;
+            left: 5rem;
+            width: 3rem;
+            height: 3rem;
+            background-color: white;
+            animation: float 3s ease-in-out infinite 2s;
+        }
 
-      .modal-overlay.active {
-        visibility: visible;
-        opacity: 1;
-      }
+        .trust-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: var(--accent);
+            color: var(--accent-foreground);
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.5rem;
+        }
 
-      .modal-content {
-        background: var(--light-text-color);
-        color: var(--text-color);
-        padding: calc(4 * var(--spacing-unit));
-        border-radius: var(--border-radius-card);
-        text-align: center;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        max-width: 500px;
-        width: 90%;
-        transform: scale(0.8);
-        opacity: 0;
-      }
+        .hero-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            justify-content: center;
+            align-items: center;
+            margin-top: 2rem;
+        }
+
+        @media (min-width: 640px) {
+            .hero-buttons {
+                flex-direction: row;
+            }
+        }
+
+        .hero-stats {
+            margin-top: 3rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 32rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.875rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.8);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-white {
+            background-color: white;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: rgba(0, 112, 243, 0.1);
+            color: var(--primary);
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+
+        .grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .grid-cols-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .grid-cols-2 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (max-width: 768px) {
+            .grid-cols-3,
+            .grid-cols-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .lg-grid-cols-3 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: var(--card);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            max-width: 28rem;
+            width: 100%;
+            transform: scale(0.95);
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.show .modal-content {
+            transform: scale(1);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--foreground);
+            color: var(--background);
+            padding: 3rem 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
     </style>
-  </head>
-  <body>
-    <!-- GSAP CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-
-    <!-- Header & Hero Section -->
-    <header class="hero">
-      <div class="hero-overlay"></div>
-      <div class="hero-content container">
-        <h1 class="hero-headline">
-          Professional Software Development Services — Fully Remote
-        </h1>
-        <p class="hero-subtext">
-          Subscribe to expert software solutions delivered seamlessly via email
-          and online.
-        </p>
-        <a href="#contact" class="btn btn-primary hero-cta"
-          >Get Started Today</a
-        >
-      </div>
-    </header>
-
-    <main>
-      <!-- Subscription Benefits Section -->
-      <section id="benefits">
-        <div class="container">
-          <div class="section-title">
-            <h2>Why KICKSTEP SOFTWARE?</h2>
-          </div>
-          <div class="grid-3 benefits-grid">
-            <!-- Benefit Card 1 -->
-            <div class="card benefit-card">
-              <i class="fas fa-headset card-icon"></i>
-              <h3 class="card-title">Dedicated Remote Services</h3>
-              <p>
-                Enjoy fast email support and dedicated remote software services
-                whenever you need them.
-              </p>
-            </div>
-            <!-- Benefit Card 2 -->
-            <div class="card benefit-card">
-              <i class="fas fa-wallet card-icon"></i>
-              <h3 class="card-title">Flexible Monthly Subscription</h3>
-              <p>
-                No long-term commitments. Scale up or down with our flexible
-                monthly subscription plans.
-              </p>
-            </div>
-            <!-- Benefit Card 3 -->
-            <div class="card benefit-card">
-              <i class="fas fa-laptop-code card-icon"></i>
-              <h3 class="card-title">All Work Delivered Online</h3>
-              <p>
-                We work efficiently and remotely. No meetings, no hassle—just
-                high-quality work delivered online.
-              </p>
-            </div>
-          </div>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="floating-elements">
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
         </div>
-      </section>
-
-      <!-- Services Overview Section -->
-      <section id="services">
-        <div class="container">
-          <div class="section-title">
-            <h2>Our Services</h2>
-          </div>
-          <div class="grid-2 services-grid">
-            <!-- Service Card 1 -->
-            <div class="card service-card service-1">
-              <i class="fas fa-server card-icon"></i>
-              <h3 class="card-title">API Development</h3>
-              <p>
-                Build robust and scalable backend APIs for your applications.
-              </p>
-              <span class="service-category">Backend</span>
+         
+        <div class="hero-content">
+            <div class="fade-in">
+                <span class="trust-badge">Trusted by 200+ Companies</span>
             </div>
-            <!-- Service Card 2 -->
-            <div class="card service-card service-2">
-              <i class="fas fa-bug card-icon"></i>
-              <h3 class="card-title">Bug Fixing</h3>
-              <p>
-                Resolve critical bugs and technical issues with expert
-                precision.
-              </p>
-              <span class="service-category">Full-Stack</span>
+            
+            <h1 class="fade-in stagger-1">
+                Professional Software Development Services 
+                <span style="display: block; color: var(--accent);">— Fully Remote</span>
+            </h1>
+            
+            <p class="fade-in stagger-2" style="font-size: 1.25rem; margin: 2rem auto; color: rgba(255, 255, 255, 0.9); max-width: 48rem; line-height: 1.6;">
+                Subscribe to expert software solutions delivered seamlessly via email and online. 
+                From API development to bug fixes, we've got your development needs covered.
+            </p>
+            
+            <div class="hero-buttons fade-in stagger-3">
+                <button class="btn-hero" onclick="scrollToContact()">Get Started Today</button>
+                <button class="btn-secondary" onclick="scrollToPricing()" style="border-color: white; color: white;">View Pricing</button>
             </div>
-            <!-- Service Card 3 -->
-            <div class="card service-card service-3">
-              <i class="fas fa-code-branch card-icon"></i>
-              <h3 class="card-title">Code Review</h3>
-              <p>
-                Improve code quality, performance, and security with
-                professional reviews.
-              </p>
-              <span class="service-category">Full-Stack</span>
-            </div>
-            <!-- Service Card 4 -->
-            <div class="card service-card service-4">
-              <i class="fas fa-palette card-icon"></i>
-              <h3 class="card-title">UI/UX Development</h3>
-              <p>
-                Create beautiful and intuitive user interfaces for your web
-                apps.
-              </p>
-              <span class="service-category">Frontend</span>
-            </div>
-            <!-- Service Card 5 -->
-            <div class="card service-card service-5">
-              <i class="fas fa-database card-icon"></i>
-              <h3 class="card-title">Database Management</h3>
-              <p>
-                Optimize your database for speed, scalability, and reliability.
-              </p>
-              <span class="service-category">Backend</span>
-            </div>
-            <!-- Service Card 6 -->
-            <div class="card service-card service-6">
-              <i class="fas fa-file-code card-icon"></i>
-              <h3 class="card-title">Technical Documentation</h3>
-              <p>
-                Generate clear, comprehensive documentation for your software.
-              </p>
-              <span class="service-category">Full-Stack</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Pricing Plans Section -->
-      <section id="pricing">
-        <div class="container">
-          <div class="section-title">
-            <h2>Flexible Pricing Plans</h2>
-          </div>
-          <div class="grid-3 pricing-grid">
-            <!-- Pricing Card 1: Starter -->
-            <div class="card pricing-card pricing-1">
-              <div>
-                <h3>Starter</h3>
-                <p class="pricing-price">¢435<span>/month</span></p>
-                <ul class="pricing-benefits">
-                  <li>
-                    <i class="fas fa-check-circle"></i> Basic remote dev
-                    services
-                  </li>
-                  <li>
-                    <i class="fas fa-check-circle"></i> Fast email support
-                  </li>
-                  <li>
-                    <i class="fas fa-check-circle"></i> 1 project at a time
-                  </li>
-                </ul>
-              </div>
-              <a href="#" class="btn btn-primary">Start Trial</a>
-            </div>
-            <!-- Pricing Card 2: Professional -->
-            <div class="card pricing-card pricing-2">
-              <div>
-                <h3>Professional</h3>
-                <p class="pricing-price">¢1,185<span>/month</span></p>
-                <ul class="pricing-benefits">
-                  <li><i class="fas fa-check-circle"></i> Advanced services</li>
-                  <li><i class="fas fa-check-circle"></i> Priority response</li>
-                  <li>
-                    <i class="fas fa-check-circle"></i> Unlimited projects
-                  </li>
-                </ul>
-              </div>
-              <a href="#" class="btn btn-primary">Start Trial</a>
-            </div>
-            <!-- Pricing Card 3: Enterprise -->
-            <div class="card pricing-card pricing-3">
-              <div>
-                <h3>Enterprise</h3>
-                <p class="pricing-price">¢2,999<span>/month</span></p>
-                <ul class="pricing-benefits">
-                  <li>
-                    <i class="fas fa-check-circle"></i> Full service + dedicated
-                    engineer
-                  </li>
-                  <li>
-                    <i class="fas fa-check-circle"></i> White-glove support
-                  </li>
-                  <li>
-                    <i class="fas fa-check-circle"></i> Custom integrations
-                  </li>
-                </ul>
-              </div>
-              <a href="#" class="btn btn-primary">Contact Sales</a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Contact Section -->
-      <section id="contact">
-        <div class="container">
-          <div class="section-title">
-            <h2>Get in Touch</h2>
-          </div>
-          <div class="contact-form-container">
-            <form id="contact-form">
-              <div class="form-group">
-                <label for="name">Name</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  placeholder="Your Name"
-                  required
-                />
-                <div class="error-message name-error">Name is required.</div>
-              </div>
-              <div class="form-group">
-                <label for="email">Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  placeholder="you@example.com"
-                  required
-                />
-                <div class="error-message email-error">
-                  A valid email is required.
+ 
+            <div class="hero-stats fade-in stagger-3">
+                <div class="stat">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Projects Delivered</div>
                 </div>
-              </div>
-              <div class="form-group">
-                <label for="message">Message</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  placeholder="What can we build for you?"
-                  required
-                ></textarea>
-                <div class="error-message message-error">
-                  Message is required.
+                <div class="stat">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Support Available</div>
                 </div>
-              </div>
-              <button type="submit" class="btn btn-primary">
-                Send Message
-              </button>
-            </form>
-          </div>
+                <div class="stat">
+                    <div class="stat-number">99%</div>
+                    <div class="stat-label">Client Satisfaction</div>
+                </div>
+            </div>
         </div>
-      </section>
-    </main>
 
-    <!-- Footer Section -->
+        <div class="scroll-indicator animate-bounce">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7 10l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="slide-up">Why Choose KICKSTEP SOFTWARE?</h2>
+                <p class="slide-up stagger-1" style="color: var(--muted-foreground); font-size: 1.125rem; max-width: 32rem; margin: 0 auto;">
+                    We provide professional software development services designed for modern businesses
+                </p>
+            </div>
+
+            <div class="grid grid-cols-3">
+                <div class="slide-up stagger-1" style="text-align: center;">
+                    <div style="margin-bottom: 1.5rem; display: flex; justify-content: center;">
+                        <div style="padding: 1rem; background-color: rgba(0, 112, 243, 0.1); border-radius: 0.75rem;">
+                            <svg style="width: 3rem; height: 3rem; color: var(--primary);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem;">Dedicated Remote Services</h3>
+                    <p style="color: var(--muted-foreground);">Expert developers working exclusively on your projects from anywhere in the world.</p>
+                </div>
+                
+                <div class="slide-up stagger-2" style="text-align: center;">
+                    <div style="margin-bottom: 1.5rem; display: flex; justify-content: center;">
+                        <div style="padding: 1rem; background-color: rgba(0, 112, 243, 0.1); border-radius: 0.75rem;">
+                            <svg style="width: 3rem; height: 3rem; color: var(--primary);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem;">Flexible Monthly Subscription</h3>
+                    <p style="color: var(--muted-foreground);">Scale up or down based on your needs with transparent monthly pricing plans.</p>
+                </div>
+                
+                <div class="slide-up stagger-3" style="text-align: center;">
+                    <div style="margin-bottom: 1.5rem; display: flex; justify-content: center;">
+                        <div style="padding: 1rem; background-color: rgba(0, 112, 243, 0.1); border-radius: 0.75rem;">
+                            <svg style="width: 3rem; height: 3rem; color: var(--primary);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem;">All Work Delivered Online</h3>
+                    <p style="color: var(--muted-foreground);">Seamless collaboration and delivery through secure online platforms and email.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="section section-white">
+        <div class="container">
+            <div class="grid grid-cols-2" style="gap: 4rem; align-items: center;">
+                <!-- Image Side -->
+                <div class="slide-up" style="position: relative;">
+                    <img src="https://www.betterup.com/hubfs/Happy-work-team-cheering-and-celebrating-at-meeting-team-collaboration.jpg" alt="Professional development team collaboration" style="border-radius: 1rem; box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2); width: 100%; height: auto;">
+                    <div style="position: absolute; bottom: -1.5rem; right: -1.5rem; background-color: var(--accent); color: var(--accent-foreground); padding: 1.5rem; border-radius: 0.75rem; box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);">
+                        <div style="font-size: 1.5rem; font-weight: 700;">99%</div>
+                        <div style="font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em;">Success Rate</div>
+                    </div>
+                </div>
+ 
+                <!-- Content Side -->
+                <div class="slide-up stagger-1">
+                    <span class="section-badge">Why Choose Us</span>
+                    <h2 style="margin-bottom: 1.5rem;">Why KICKSTEP SOFTWARE is Your Best Choice</h2>
+                    <p style="color: var(--muted-foreground); font-size: 1.125rem; line-height: 1.6; margin-bottom: 2rem;">
+                        We're not just another development agency. We're your remote development partner, 
+                        committed to delivering exceptional software solutions that drive your business forward.
+                    </p>
+
+                    <div style="margin-bottom: 2rem;">
+                        <div class="slide-up stagger-2" style="display: flex; align-items: flex-start; margin-bottom: 1.5rem;">
+                            <div style="flex-shrink: 0; width: 3rem; height: 3rem; background-color: var(--primary); color: var(--primary-foreground); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.875rem; font-weight: 700; margin-right: 1rem;">01</div>
+                            <div>
+                                <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 0.5rem;">Expert Remote Team</h3>
+                                <p style="color: var(--muted-foreground);">Access to a curated team of senior developers with 5+ years of experience in modern technologies.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="slide-up stagger-3" style="display: flex; align-items: flex-start; margin-bottom: 1.5rem;">
+                            <div style="flex-shrink: 0; width: 3rem; height: 3rem; background-color: var(--primary); color: var(--primary-foreground); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.875rem; font-weight: 700; margin-right: 1rem;">02</div>
+                            <div>
+                                <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 0.5rem;">Proven Track Record</h3>
+                                <p style="color: var(--muted-foreground);">Over 500 successful projects delivered across various industries, from startups to enterprise solutions.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="slide-up stagger-1" style="display: flex; align-items: flex-start; margin-bottom: 1.5rem;">
+                            <div style="flex-shrink: 0; width: 3rem; height: 3rem; background-color: var(--primary); color: var(--primary-foreground); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.875rem; font-weight: 700; margin-right: 1rem;">03</div>
+                            <div>
+                                <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 0.5rem;">Transparent Communication</h3>
+                                <p style="color: var(--muted-foreground);">Regular updates, clear documentation, and direct communication channels ensure you're always in the loop.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="slide-up stagger-2" style="display: flex; align-items: flex-start;">
+                            <div style="flex-shrink: 0; width: 3rem; height: 3rem; background-color: var(--primary); color: var(--primary-foreground); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.875rem; font-weight: 700; margin-right: 1rem;">04</div>
+                            <div>
+                                <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 0.5rem;">Quality Assurance</h3>
+                                <p style="color: var(--muted-foreground);">Every line of code goes through rigorous testing and code review processes before delivery.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slide-up stagger-3" style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border);">
+                        <div style="display: flex; align-items: center; gap: 2rem;">
+                            <div style="text-align: center;">
+                                <div style="font-size: 1.5rem; font-weight: 700; color: var(--primary);">200+</div>
+                                <div style="font-size: 0.875rem; color: var(--muted-foreground);">Happy Clients</div>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="font-size: 1.5rem; font-weight: 700; color: var(--primary);">5+</div>
+                                <div style="font-size: 0.875rem; color: var(--muted-foreground);">Years Experience</div>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="font-size: 1.5rem; font-weight: 700; color: var(--primary);">24/7</div>
+                                <div style="font-size: 0.875rem; color: var(--muted-foreground);">Support</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="slide-up">Our Services</h2>
+                <p class="slide-up stagger-1" style="color: var(--muted-foreground); font-size: 1.125rem; max-width: 32rem; margin: 0 auto;">
+                    Comprehensive software development solutions for your business needs
+                </p>
+            </div>
+
+            <div class="grid lg-grid-cols-3">
+                <div class="service-card slide-up stagger-1">
+                    <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                        <div style="padding: 0.75rem; background-color: rgba(0, 112, 243, 0.1); border-radius: 0.5rem; margin-right: 1rem;">
+                            <svg style="width: 2rem; height: 2rem; color: var(--primary);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                            </svg>
+                        </div>
+                        <h3 style="font-size: 1.125rem; font-weight: 600;">API Development</h3>
+                    </div>
+                    <p style="color: var(--muted-foreground);">Custom REST and GraphQL APIs built to scale</p>
+                </div>
+
+                <div class="service-card slide-up stagger-2">
+                    <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                        <div style="padding: 0.75rem; background-color: rgba(0, 112, 243, 0.1); border-radius: 0.5rem; margin-right: 1rem;">
+                            <svg style="width: 2rem; height: 2rem; color: var(--primary);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4" />
+                            </svg>
+                        </div>
+                        <h3 style="font-size: 1.125rem; font-weight: 600;">Bug Fixing</h3>
+                    </div>
+                    <p style="color: var(--muted-foreground);">Fast resolution of critical software issues</p>
+                </div>
+
+                <div class="service-card slide-up stagger-3">
+                    <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                        <div style="padding: 0.75rem; background-color: rgba(0, 112, 243, 0.1); border-radius: 0.5rem; margin-right: 1rem;">
+                            <svg style="width: 2rem; height: 2rem; color: var(--primary);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <h3 style="font-size: 1.125rem; font-weight: 600;">Code Review</h3>
+                    </div>
+                    <p style="color: var(--muted-foreground);">Comprehensive analysis and optimization recommendations</p>
+                </div>
+
+                <div class="service-card slide-up stagger-1">
+                    <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                        <div style="padding: 0.75rem; background-color: rgba(0, 112, 243, 0.1); border-radius: 0.5rem; margin-right: 1rem;">
+                            <svg style="width: 2rem; height: 2rem; color: var(--primary);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                            </svg>
+                        </div>
+                        <h3 style="font-size: 1.125rem; font-weight: 600;">Web Applications</h3>
+                    </div>
+                    <p style="color: var(--muted-foreground);">Modern, responsive web applications and websites</p>
+                </div>
+
+                <div class="service-card slide-up stagger-2">
+                    <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                        <div style="padding: 0.75rem; background-color: rgba(0, 112, 243, 0.1); border-radius: 0.5rem; margin-right: 1rem;">
+                            <svg style="width: 2rem; height: 2rem; color: var(--primary);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4" />
+                            </svg>
+                        </div>
+                        <h3 style="font-size: 1.125rem; font-weight: 600;">Database Design</h3>
+                    </div>
+                    <p style="color: var(--muted-foreground);">Efficient database architecture and optimization</p>
+                </div>
+
+                <div class="service-card slide-up stagger-3">
+                    <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                        <div style="padding: 0.75rem; background-color: rgba(0, 112, 243, 0.1); border-radius: 0.5rem; margin-right: 1rem;">
+                            <svg style="width: 2rem; height: 2rem; color: var(--primary);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                        </div>
+                        <h3 style="font-size: 1.125rem; font-weight: 600;">Performance Optimization</h3>
+                    </div>
+                    <p style="color: var(--muted-foreground);">Speed up your applications and reduce load times</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What You Get Section -->
+    <section class="section section-white">
+        <div class="container">
+            <div class="grid grid-cols-2" style="gap: 4rem; align-items: center;">
+                <!-- Content Side -->
+                <div class="slide-up">
+                    <span class="section-badge" style="background-color: rgba(255, 102, 0, 0.1); color: var(--accent);">What You Get</span>
+                    <h2 style="margin-bottom: 1.5rem;">Everything You Need for Success</h2>
+                    <p style="color: var(--muted-foreground); font-size: 1.125rem; line-height: 1.6; margin-bottom: 2rem;">
+                        When you subscribe to KICKSTEP SOFTWARE, you're not just getting code. 
+                        You're getting a complete development solution designed for long-term success.
+                    </p>
+
+                    <div class="grid grid-cols-2" style="gap: 1.5rem;">
+                        <div class="slide-up stagger-1">
+                            <div style="display: flex; align-items: flex-start; gap: 0.75rem;">
+                                <div style="flex-shrink: 0; width: 2.5rem; height: 2.5rem; background-color: rgba(0, 112, 243, 0.1); color: var(--primary); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center;">
+                                    <svg style="width: 1.5rem; height: 1.5rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 style="font-weight: 600; margin-bottom: 0.25rem;">Complete Documentation</h3>
+                                    <p style="font-size: 0.875rem; color: var(--muted-foreground);">Detailed technical documentation and code comments</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="slide-up stagger-2">
+                            <div style="display: flex; align-items: flex-start; gap: 0.75rem;">
+                                <div style="flex-shrink: 0; width: 2.5rem; height: 2.5rem; background-color: rgba(0, 112, 243, 0.1); color: var(--primary); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center;">
+                                    <svg style="width: 1.5rem; height: 1.5rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 style="font-weight: 600; margin-bottom: 0.25rem;">Clean, Scalable Code</h3>
+                                    <p style="font-size: 0.875rem; color: var(--muted-foreground);">Production-ready code following best practices</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="slide-up stagger-3">
+                            <div style="display: flex; align-items: flex-start; gap: 0.75rem;">
+                                <div style="flex-shrink: 0; width: 2.5rem; height: 2.5rem; background-color: rgba(0, 112, 243, 0.1); color: var(--primary); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center;">
+                                    <svg style="width: 1.5rem; height: 1.5rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 style="font-weight: 600; margin-bottom: 0.25rem;">Comprehensive Testing</h3>
+                                    <p style="font-size: 0.875rem; color: var(--muted-foreground);">Unit tests and quality assurance included</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="slide-up stagger-1">
+                            <div style="display: flex; align-items: flex-start; gap: 0.75rem;">
+                                <div style="flex-shrink: 0; width: 2.5rem; height: 2.5rem; background-color: rgba(0, 112, 243, 0.1); color: var(--primary); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center;">
+                                    <svg style="width: 1.5rem; height: 1.5rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 style="font-weight: 600; margin-bottom: 0.25rem;">Performance Optimization</h3>
+                                    <p style="font-size: 0.875rem; color: var(--muted-foreground);">Optimized for speed and efficiency</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="slide-up stagger-2">
+                            <div style="display: flex; align-items: flex-start; gap: 0.75rem;">
+                                <div style="flex-shrink: 0; width: 2.5rem; height: 2.5rem; background-color: rgba(0, 112, 243, 0.1); color: var(--primary); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center;">
+                                    <svg style="width: 1.5rem; height: 1.5rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M12 3v6m0 6v6m6-12h-6m-6 0h6" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 style="font-weight: 600; margin-bottom: 0.25rem;">Ongoing Support</h3>
+                                    <p style="font-size: 0.875rem; color: var(--muted-foreground);">30-day post-delivery support included</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="slide-up stagger-3">
+                            <div style="display: flex; align-items: flex-start; gap: 0.75rem;">
+                                <div style="flex-shrink: 0; width: 2.5rem; height: 2.5rem; background-color: rgba(0, 112, 243, 0.1); color: var(--primary); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center;">
+                                    <svg style="width: 1.5rem; height: 1.5rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 style="font-weight: 600; margin-bottom: 0.25rem;">Security First</h3>
+                                    <p style="font-size: 0.875rem; color: var(--muted-foreground);">Secure coding practices and assessments</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video Side -->
+                <div class="slide-up stagger-1" style="position: relative;">
+                    <div class="video-container" style="position: relative; border-radius: 1rem; overflow: hidden; box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2); cursor: pointer;" onclick="toggleVideo()">
+                        <video  id="videoThumbnail" src="./placeholder.mp4" alt="Software development workflow demonstration" style="width: 100%; height: auto; transition: transform 0.3s ease;" autoplay  >
+                        
+                        <div class="video-overlay" style="position: absolute; inset: 0; background-color: rgba(0, 0, 0, 0.4); display: flex; align-items: center; justify-content: center; transition: opacity 0.3s ease;">
+                            <div class="play-button" style="width: 5rem; height: 5rem; background-color: rgba(255, 255, 255, 0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: transform 0.3s ease;">
+                                <svg id="playIcon" style="width: 2rem; height: 2rem; color: var(--primary); margin-left: 0.25rem;" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18c.62-.39.62-1.29 0-1.68L9.54 5.98C8.87 5.55 8 6.03 8 6.82z"/>
+                                </svg>
+                                <svg id="pauseIcon" style="width: 2rem; height: 2rem; color: var(--primary); display: none;" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="video-badge" style="position: absolute; top: 1rem; left: 1rem; background-color: var(--accent); color: var(--accent-foreground); padding: 0.5rem 0.75rem; border-radius: 9999px; font-size: 0.875rem; font-weight: 500;">
+                            <span id="videoBadgeText">Watch Demo</span>
+                        </div>
+
+                        <div style="position: absolute; bottom: 1rem; right: 1rem; background-color: rgba(0, 0, 0, 0.7); color: white; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.75rem;">
+                            2:34
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 1.5rem; text-align: center;">
+                        <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 0.5rem;">See Our Development Process in Action</h3>
+                        <p style="color: var(--muted-foreground);">Watch how we transform your requirements into production-ready software solutions</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="slide-up">Choose Your Plan</h2>
+                <p class="slide-up stagger-1" style="color: var(--muted-foreground); font-size: 1.125rem; max-width: 32rem; margin: 0 auto;">
+                    Transparent pricing with no hidden fees. Scale as your business grows.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-3">
+                <!-- Starter Plan -->
+                <div class="pricing-card slide-up stagger-1">
+                    <div style="text-center; margin-bottom: 1.5rem;">
+                        <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">Starter</h3>
+                        <div style="margin-bottom: 1rem;">
+                            <span style="font-size: 2.5rem; font-weight: 700;">¢435</span>
+                            <span style="color: var(--muted-foreground);">/month</span>
+                        </div>
+                        <p style="color: var(--muted-foreground);">Perfect for small projects and startups</p>
+                    </div>
+
+                    <ul style="margin-bottom: 2rem; list-style: none; padding: 0;">
+                        <li style="display: flex; align-items: center; margin-bottom: 0.75rem;">
+                            <svg style="width: 1.25rem; height: 1.25rem; color: var(--primary); margin-right: 0.75rem; flex-shrink: 0;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Up to 20 hours of development
+                        </li>
+                        <li style="display: flex; align-items: center; margin-bottom: 0.75rem;">
+                            <svg style="width: 1.25rem; height: 1.25rem; color: var(--primary); margin-right: 0.75rem; flex-shrink: 0;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Basic bug fixes and updates
+                        </li>
+                        <li style="display: flex; align-items: center; margin-bottom: 0.75rem;">
+                            <svg style="width: 1.25rem; height: 1.25rem; color: var(--primary); margin-right: 0.75rem; flex-shrink: 0;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Email support
+                        </li>
+                        <li style="display: flex; align-items: center; margin-bottom: 0.75rem;">
+                            <svg style="width: 1.25rem; height: 1.25rem; color: var(--primary); margin-right: 0.75rem; flex-shrink: 0;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Code review included
+                        </li>
+                        <li style="display: flex; align-items: center;">
+                            <svg style="width: 1.25rem; height: 1.25rem; color: var(--primary); margin-right: 0.75rem; flex-shrink: 0;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Monthly progress reports
+                        </li>
+                    </ul>
+
+                    <button class="btn-secondary" onclick="scrollToContact()" style="width: 100%; border-color: var(--secondary); color: var(--secondary-foreground); background-color: var(--secondary);">Get Started</button>
+                </div>
+
+                <!-- Professional Plan -->
+                <div class="pricing-card highlighted slide-up stagger-2">
+                    <div style="position: absolute; top: -0.75rem; left: 50%; transform: translateX(-50%);">
+                        <span style="background-color: var(--accent); color: var(--accent-foreground); padding: 0.25rem 1rem; border-radius: 9999px; font-size: 0.875rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em;">Most Popular</span>
+                    </div>
+
+                    <div style="text-center; margin-bottom: 1.5rem;">
+                        <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">Professional</h3>
+                        <div style="margin-bottom: 1rem;">
+                            <span style="font-size: 2.5rem; font-weight: 700;">¢1,185</span>
+                            <span style="color: var(--muted-foreground);">/month</span>
+                        </div>
+                        <p style="color: var(--muted-foreground);">Ideal for growing businesses</p>
+                    </div>
+
+                    <ul style="margin-bottom: 2rem; list-style: none; padding: 0;">
+                        <li style="display: flex; align-items: center; margin-bottom: 0.75rem;">
+                            <svg style="width: 1.25rem; height: 1.25rem; color: var(--primary); margin-right: 0.75rem; flex-shrink: 0;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Up to 50 hours of development
+                        </li>
+                        <li style="display: flex; align-items: center; margin-bottom: 0.75rem;">
+                            <svg style="width: 1.25rem; height: 1.25rem; color: var(--primary); margin-right: 0.75rem; flex-shrink: 0;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Priority bug fixes
+                        </li>
+                        <li style="display: flex; align-items: center; margin-bottom: 0.75rem;">
+                            <svg style="width: 1.25rem; height: 1.25rem; color: var(--primary); margin-right: 0.75rem; flex-shrink: 0;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            API development and integration
+                        </li>
+                        <li style="display: flex; align-items: center; margin-bottom: 0.75rem;">
+                            <svg style="width: 1.25rem; height: 1.25rem; color: var(--primary); margin-right: 0.75rem; flex-shrink: 0;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Weekly progress calls
+                        </li>
+                        <li style="display: flex; align-items: center; margin-bottom: 0.75rem;">
+                            <svg style="width: 1.25rem; height: 1.25rem; color: var(--primary); margin-right: 0.75rem; flex-shrink: 0;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Performance optimization
+                        </li>
+                        <li style="display: flex; align-items: center;">
+                            <svg style="width: 1.25rem; height: 1.25rem; color: var(--primary); margin-right: 0.75rem; flex-shrink: 0;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Database design assistance
+                        </li>
+                    </ul>
+
+                    <button class="btn-hero" onclick="scrollToContact()" style="width: 100%;">Get Started</button>
+                </div>
+
+                <!-- Enterprise Plan -->
+                <div class="pricing-card slide-up stagger-3">
+                    <div style="text-center; margin-bottom: 1.5rem;">
+                        <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">Enterprise</h3>
+                        <div style="margin-bottom: 1rem;">
+                            <span style="font-size: 2.5rem; font-weight: 700;">¢2,999</span>
+                            <span style="color: var(--muted-foreground);">/month</span>
+                        </div>
+                        <p style="color: var(--muted-foreground);">For large-scale applications</p>
+                    </div>
+
+                    <ul style="margin-bottom: 2rem; list-style: none; padding: 0;">
+                        <li style="display: flex; align-items: center; margin-bottom: 0.75rem;">
+                            <svg style="width: 1.25rem; height: 1.25rem; color: var(--primary); margin-right: 0.75rem; flex-shrink: 0;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Unlimited development hours
+                        </li>
+                        <li style="display: flex; align-items: center; margin-bottom: 0.75rem;">
+                            <svg style="width: 1.25rem; height: 1.25rem; color: var(--primary); margin-right: 0.75rem; flex-shrink: 0;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Dedicated development team
+                        </li>
+                        <li style="display: flex; align-items: center; margin-bottom: 0.75rem;">
+                            <svg style="width: 1.25rem; height: 1.25rem; color: var(--primary); margin-right: 0.75rem; flex-shrink: 0;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            24/7 priority support
+                        </li>
+                        <li style="display: flex; align-items: center; margin-bottom: 0.75rem;">
+                            <svg style="width: 1.25rem; height: 1.25rem; color: var(--primary); margin-right: 0.75rem; flex-shrink: 0;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Architecture consulting
+                        </li>
+                        <li style="display: flex; align-items: center; margin-bottom: 0.75rem;">
+                            <svg style="width: 1.25rem; height: 1.25rem; color: var(--primary); margin-right: 0.75rem; flex-shrink: 0;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Security audits
+                        </li>
+                        <li style="display: flex; align-items: center; margin-bottom: 0.75rem;">
+                            <svg style="width: 1.25rem; height: 1.25rem; color: var(--primary); margin-right: 0.75rem; flex-shrink: 0;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Custom integrations
+                        </li>
+                        <li style="display: flex; align-items: center;">
+                            <svg style="width: 1.25rem; height: 1.25rem; color: var(--primary); margin-right: 0.75rem; flex-shrink: 0;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            DevOps and deployment support
+                        </li>
+                    </ul>
+
+                    <button class="btn-secondary" onclick="scrollToContact()" style="width: 100%; border-color: var(--secondary); color: var(--secondary-foreground); background-color: var(--secondary);">Get Started</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section section-white">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="slide-up">Ready to Get Started?</h2>
+                <p class="slide-up stagger-1" style="color: var(--muted-foreground); font-size: 1.125rem; max-width: 32rem; margin: 0 auto;">
+                    Tell us about your project and we'll get back to you within 24 hours
+                </p>
+            </div>
+
+            <div class="slide-up stagger-2" style="max-width: 32rem; margin: 0 auto;">
+                <form onsubmit="handleFormSubmit(event)" style="margin-bottom: 2rem;">
+                    <div style="margin-bottom: 1.5rem;">
+                        <label for="name" style="display: block; font-size: 0.875rem; font-weight: 500; margin-bottom: 0.5rem;">Name *</label>
+                        <input type="text" id="name" name="name" class="form-input" placeholder="Your full name" required>
+                        <div id="nameError" class="error-message" style="display: none; margin-top: 0.25rem; font-size: 0.875rem; color: var(--destructive);"></div>
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <label for="email" style="display: block; font-size: 0.875rem; font-weight: 500; margin-bottom: 0.5rem;">Email *</label>
+                        <input type="email" id="email" name="email" class="form-input" placeholder="your.email@example.com" required>
+                        <div id="emailError" class="error-message" style="display: none; margin-top: 0.25rem; font-size: 0.875rem; color: var(--destructive);"></div>
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <label for="message" style="display: block; font-size: 0.875rem; font-weight: 500; margin-bottom: 0.5rem;">Message *</label>
+                        <textarea id="message" name="message" rows="5" class="form-input" placeholder="Tell us about your project requirements..." style="resize: none;" required></textarea>
+                        <div id="messageError" class="error-message" style="display: none; margin-top: 0.25rem; font-size: 0.875rem; color: var(--destructive);"></div>
+                    </div>
+
+                    <button type="submit" class="btn-hero" style="width: 100%;">Send Message</button>
+                </form>
+
+                <div style="text-align: center;">
+                    <p style="color: var(--muted-foreground); margin-bottom: 0.5rem;">Or email us directly:</p>
+                    <a href="mailto:contact@kickstepsoftware.com" style="color: var(--primary); font-weight: 500; text-decoration: none;">
+                        contact@kickstepsoftware.com
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer class="footer">
-      <div class="container">
-        <p><strong>KICKSTEP SOFTWARE</strong></p>
-        <p>contact@kickstepsoftware.com</p>
-        <p>&copy; 2025 Kickstep Software | Terms & Privacy</p>
-      </div>
+        <div class="container">
+            <div class="fade-in" style="text-align: center;">
+                <div style="margin-bottom: 2rem;">
+                    <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem;">KICKSTEP SOFTWARE</h3>
+                    <p style="color: rgba(245, 247, 250, 0.8); margin-bottom: 1rem;">Professional Software Development Services — Fully Remote</p>
+                    <a href="mailto:contact@kickstepsoftware.com" style="color: var(--primary); font-weight: 500; text-decoration: none; transition: color 0.3s ease;">
+                        contact@kickstepsoftware.com
+                    </a>
+                </div>
+
+                <div style="border-top: 1px solid rgba(245, 247, 250, 0.2); padding-top: 2rem;">
+                    <p style="color: rgba(245, 247, 250, 0.6); font-size: 0.875rem;">
+                        © 2025 Kickstep Software | Terms & Privacy
+                    </p>
+                </div>
+            </div>
+        </div>
     </footer>
 
     <!-- Success Modal -->
-    <div id="success-modal" class="modal-overlay">
-      <div class="modal-content">
-        <h3>Thank You!</h3>
-        <p>Your request has been received. We’ll respond via email soon.</p>
-      </div>
+    <div id="successModal" class="modal-overlay">
+        <div class="modal-content">
+            <div style="text-align: center;">
+                <div style="margin-bottom: 1rem;">
+                    <svg style="width: 4rem; height: 4rem; color: var(--primary); margin: 0 auto;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                </div>
+                <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem;">Thank You!</h3>
+                <p style="color: var(--muted-foreground); margin-bottom: 1.5rem;">Your request has been received. We'll respond via email soon.</p>
+                <button class="btn-hero" onclick="closeModal()">Close</button>
+            </div>
+        </div>
     </div>
 
     <script>
-      // GSAP Animations and Form Handling
-      document.addEventListener("DOMContentLoaded", () => {
-        // --- GSAP Hero Animations ---
-        const heroTimeline = gsap.timeline();
-        heroTimeline
-          .from(".hero-headline", {
-            duration: 1,
-            y: 50,
-            opacity: 0,
-            ease: "power3.out",
-          })
-          .from(
-            ".hero-subtext",
-            { duration: 0.8, y: 50, opacity: 0, ease: "power3.out" },
-            "-=0.5"
-          )
-          .from(
-            ".hero-cta",
-            { duration: 0.6, scale: 0.8, opacity: 0, ease: "back.out(1.7)" },
-            "-=0.3"
-          );
+        // Global variables
+        let isVideoPlaying = false;
 
-        // --- GSAP ScrollTrigger Animations ---
-        gsap.registerPlugin(ScrollTrigger);
-
-        // Benefits Section
-        gsap.from(".benefits-grid .card", {
-          y: 50,
-          opacity: 0,
-          stagger: 0.2,
-          duration: 1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: "#benefits",
-            start: "top 80%",
-          },
-        });
-
-        // Services Section
-        gsap.from(".services-grid .card", {
-          y: 50,
-          opacity: 0,
-          stagger: 0.15,
-          duration: 0.8,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: "#services",
-            start: "top 80%",
-          },
-        });
-
-        // Pricing Section
-        gsap.from(".pricing-grid .card", {
-          y: 50,
-          opacity: 0,
-          stagger: 0.2,
-          duration: 1,
-          ease: "back.out(1.2)",
-          scrollTrigger: {
-            trigger: "#pricing",
-            start: "top 80%",
-          },
-        });
-
-        // Footer Fade-in
-        gsap.from(".footer", {
-          opacity: 0,
-          duration: 1,
-          ease: "power1.out",
-          scrollTrigger: {
-            trigger: ".footer",
-            start: "top 95%",
-          },
-        });
-
-        // --- GSAP Hover Animations ---
-        const cards = document.querySelectorAll(".card");
-        cards.forEach((card) => {
-          card.addEventListener("mouseenter", () => {
-            gsap.to(card, {
-              y: -5,
-              boxShadow: "0 8px 24px rgba(0, 0, 0, 0.15)",
-              duration: 0.3,
-              ease: "power2.out",
+        // Animation on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.fade-in, .slide-up');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('show');
+                }
             });
-          });
-          card.addEventListener("mouseleave", () => {
-            gsap.to(card, {
-              y: 0,
-              boxShadow: "0 4px 12px rgba(0, 0, 0, 0.05)",
-              duration: 0.3,
-              ease: "power2.out",
-            });
-          });
-        });
-
-        // Button Hover
-        const buttons = document.querySelectorAll(".btn");
-        buttons.forEach((btn) => {
-          btn.addEventListener("mouseenter", () => {
-            gsap.to(btn, {
-              scale: 1.05,
-              boxShadow: "0 0 15px rgba(255, 102, 0, 0.6)",
-              duration: 0.3,
-            });
-          });
-          btn.addEventListener("mouseleave", () => {
-            gsap.to(btn, {
-              scale: 1,
-              boxShadow: "0 0 0 rgba(0,0,0,0)",
-              duration: 0.3,
-            });
-          });
-        });
-
-        // --- Contact Form & Modal Handling ---
-        const contactForm = document.getElementById("contact-form");
-        const successModal = document.getElementById("success-modal");
-        const modalContent = document.querySelector(".modal-content");
-
-        contactForm.addEventListener("submit", (event) => {
-          event.preventDefault(); // Prevent page reload
-
-          // Client-side validation
-          let isValid = true;
-          const nameInput = document.getElementById("name");
-          const emailInput = document.getElementById("email");
-          const messageInput = document.getElementById("message");
-          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-          // Simple validation check for each field
-          if (nameInput.value.trim() === "") {
-            isValid = false;
-            document.querySelector(".name-error").classList.add("show");
-          } else {
-            document.querySelector(".name-error").classList.remove("show");
-          }
-
-          if (!emailRegex.test(emailInput.value.trim())) {
-            isValid = false;
-            document.querySelector(".email-error").classList.add("show");
-          } else {
-            document.querySelector(".email-error").classList.remove("show");
-          }
-
-          if (messageInput.value.trim() === "") {
-            isValid = false;
-            document.querySelector(".message-error").classList.add("show");
-          } else {
-            document.querySelector(".message-error").classList.remove("show");
-          }
-
-          // If form is valid, show the modal
-          if (isValid) {
-            // GSAP animation for the modal
-            gsap.set(successModal, { visibility: "visible", opacity: 0 });
-            gsap.set(modalContent, { scale: 0.8, opacity: 0 });
-            gsap.to(successModal, { opacity: 1, duration: 0.3 });
-            gsap.to(modalContent, {
-              scale: 1,
-              opacity: 1,
-              duration: 0.5,
-              ease: "back.out(1.7)",
-            });
-
-            // Reset the form after successful submission
-            contactForm.reset();
-          }
-        });
-
-        // --- Modal Close Logic ---
-        function closeModal() {
-          gsap.to(successModal, {
-            opacity: 0,
-            duration: 0.3,
-            onComplete: () => {
-              successModal.style.visibility = "hidden";
-            },
-          });
         }
 
-        // Close modal on outside click
-        successModal.addEventListener("click", (event) => {
-          if (event.target === successModal) {
-            closeModal();
-          }
-        });
-
-        // Close modal on ESC key press
-        document.addEventListener("keydown", (event) => {
-          if (
-            event.key === "Escape" &&
-            successModal.classList.contains("active")
-          ) {
-            closeModal();
-          }
-        });
-
-        // Smooth scroll for hero CTA
-        document
-          .querySelector(".hero-cta")
-          .addEventListener("click", (event) => {
-            event.preventDefault();
-            const targetId = event.target.getAttribute("href");
-            gsap.to(window, {
-              duration: 1,
-              scrollTo: targetId,
-              ease: "power2.inOut",
+        // Initial animation trigger
+        setTimeout(() => {
+            const heroElements = document.querySelectorAll('.hero .fade-in');
+            heroElements.forEach(element => {
+                element.classList.add('show');
             });
-          });
-      });
+        }, 100);
+
+        // Scroll to sections
+        function scrollToContact() {
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function scrollToPricing() {
+            document.getElementById('pricing').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Video functionality
+        function toggleVideo() {
+            const playIcon = document.getElementById('playIcon');
+            const pauseIcon = document.getElementById('pauseIcon');
+            const videoBadgeText = document.getElementById('videoBadgeText');
+
+            isVideoPlaying = !isVideoPlaying;
+
+            if (isVideoPlaying) {
+                playIcon.style.display = 'none';
+                pauseIcon.style.display = 'block';
+                videoBadgeText.textContent = 'Playing...';
+            } else {
+                playIcon.style.display = 'block';
+                pauseIcon.style.display = 'none';
+                videoBadgeText.textContent = 'Watch Demo';
+            }
+        }
+
+        // Form validation and submission
+        function validateForm() {
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+            
+            let isValid = true;
+            
+            // Clear previous errors
+            document.querySelectorAll('.error-message').forEach(error => {
+                error.style.display = 'none';
+            });
+
+            // Name validation
+            if (!name) {
+                document.getElementById('nameError').textContent = 'Name is required';
+                document.getElementById('nameError').style.display = 'block';
+                isValid = false;
+            }
+
+            // Email validation
+            if (!email) {
+                document.getElementById('emailError').textContent = 'Email is required';
+                document.getElementById('emailError').style.display = 'block';
+                isValid = false;
+            } else if (!/\S+@\S+\.\S+/.test(email)) {
+                document.getElementById('emailError').textContent = 'Please enter a valid email address';
+                document.getElementById('emailError').style.display = 'block';
+                isValid = false;
+            }
+
+            // Message validation
+            if (!message) {
+                document.getElementById('messageError').textContent = 'Message is required';
+                document.getElementById('messageError').style.display = 'block';
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            
+            if (validateForm()) {
+                // Show success modal
+                document.getElementById('successModal').classList.add('show');
+                document.body.style.overflow = 'hidden';
+                
+                // Reset form
+                document.querySelector('form').reset();
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('successModal').classList.remove('show');
+            document.body.style.overflow = 'unset';
+        }
+
+        // Keyboard event for modal
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Click outside modal to close
+        document.getElementById('successModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Clear form errors on input
+        document.getElementById('name').addEventListener('input', function() {
+            document.getElementById('nameError').style.display = 'none';
+        });
+
+        document.getElementById('email').addEventListener('input', function() {
+            document.getElementById('emailError').style.display = 'none';
+        });
+
+        document.getElementById('message').addEventListener('input', function() {
+            document.getElementById('messageError').style.display = 'none';
+        });
+
+        // Event listeners
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+
+        // Hover effects for video container
+        document.addEventListener('DOMContentLoaded', function() {
+            const videoContainer = document.querySelector('.video-container');
+            const videoThumbnail = document.getElementById('videoThumbnail');
+            const playButton = document.querySelector('.play-button');
+
+            if (videoContainer) {
+                videoContainer.addEventListener('mouseenter', function() {
+                    videoThumbnail.style.transform = 'scale(1.05)';
+                    playButton.style.transform = 'scale(1.1)';
+                });
+
+                videoContainer.addEventListener('mouseleave', function() {
+                    videoThumbnail.style.transform = 'scale(1)';
+                    playButton.style.transform = 'scale(1)';
+                });
+            }
+        });
     </script>
-  </body>
+</body>
 </html>
