@@ -4,672 +4,429 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NOOKSTRIDE GIFT SHOP - Guides for Your E-commerce Journey</title>
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@400;700&display=swap"
-      rel="stylesheet"
-    /> 
-    <!-- Font Awesome for Icons -->
-    <link     
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-      xintegrity="sha512-SnH5WK+bZxgPHs44u4Lw4tT4jQ+xR7J1iU4wT7I8x08kK4lG4P0R3F5jK4sL6P0+x+fF6g4i4u3U4fF6g4u4w=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
+    <meta
+      name="description"
+      content="Expert ebooks and guides to help you build and grow a successful retail or e-commerce gift shop. Premium digital products for entrepreneurs."
     />
-    <style>
-      /* CSS Reset and Global Styles */
-      :root {
-        --primary-color: #a63e4b;
-        --accent-color: #f5c04d;
-        --background-color: #fff8f0;
-        --text-color: #2e2e2e;
-        --max-content-width: 1200px;
-        --spacing-unit: 16px;
-      }
-
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-
-      html {
-        scroll-behavior: smooth;
-      }
-
-      body {
-        font-family: "Lato", sans-serif;
-        background-color: var(--background-color);
-        color: var(--text-color);
-        line-height: 1.6;
-        letter-spacing: 0.5px;
-        overflow-x: hidden; /* Prevent horizontal scroll */
-      }
-
-      h1,
-      h2,
-      h3 {
-        font-family: "Playfair Display", serif;
-        text-transform: capitalize;
-        color: var(--primary-color);
-      }
-
-      h1 {
-        font-size: 3rem;
-      }
-      h2 {
-        font-size: 2.25rem;
-      }
-      p {
-        font-size: 1rem;
-      }
-
-      .container {
-        max-width: var(--max-content-width);
-        margin: 0 auto;
-        padding: 0 var(--spacing-unit);
-      }
-
-      section {
-        padding: calc(var(--spacing-unit) * 4) 0;
-      }
-
-      /* --- UI Components --- */
-      .btn {
-        background-color: var(--primary-color);
-        color: var(--background-color);
-        padding: calc(var(--spacing-unit) * 1) calc(var(--spacing-unit) * 2);
-        border: 2px solid transparent;
-        border-radius: 9999px;
-        text-decoration: none;
-        font-weight: bold;
-        display: inline-block;
-        cursor: pointer;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .btn::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border: 2px solid var(--accent-color);
-        border-radius: 9999px;
-        transform: scaleX(0);
-        transform-origin: left;
-        transition: transform 0.3s ease;
-      }
-
-      .btn:hover::before {
-        transform: scaleX(1);
-      }
-
-      .card {
-        background-color: #fff;
-        border-radius: calc(var(--spacing-unit) * 1.5);
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05),
-          0 10px 15px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-        will-change: transform, box-shadow;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .card::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border: 3px solid var(--accent-color);
-        border-radius: calc(var(--spacing-unit) * 1.5);
-        transform: scale(0.95);
-        opacity: 0;
-        transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-      }
-
-      .card:hover {
-        transform: translateY(-8px) scale(1.02);
-        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1),
-          0 20px 25px rgba(0, 0, 0, 0.15);
-      }
-
-      .card:hover::before {
-        transform: scale(1);
-        opacity: 1;
-      }
-
-      input,
-      textarea {
-        width: 100%;
-        padding: var(--spacing-unit);
-        border: 2px solid var(--primary-color);
-        border-radius: calc(var(--spacing-unit) * 1.5);
-        background-color: var(--background-color);
-        font-family: "Lato", sans-serif;
-        color: var(--text-color);
-        transition: border-color 0.3s ease;
-      }
-
-      input:focus,
-      textarea:focus {
-        outline: none;
-        border-color: var(--accent-color);
-        box-shadow: 0 0 0 3px rgba(245, 192, 77, 0.5);
-      }
-
-      /* Modal for form success */
-
-      /* --- Header & Navigation --- */
-      header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        padding: calc(var(--spacing-unit) * 1.5) 0;
-        background-color: rgba(255, 248, 240, 0.9);
-        z-index: 10;
-        backdrop-filter: blur(5px);
-      }
-
-      .nav-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .logo {
-        font-family: "Playfair Display", serif;
-        font-size: 1.5rem;
-        color: var(--primary-color);
-        text-decoration: none;
-        font-weight: bold;
-      }
-
-      nav ul {
-        display: flex;
-        list-style: none;
-        gap: calc(var(--spacing-unit) * 2);
-      }
-
-      nav a {
-        text-decoration: none;
-        color: var(--text-color);
-        font-weight: bold;
-        transition: color 0.3s ease;
-      }
-
-      nav a:hover {
-        color: var(--accent-color);
-      }
-
-      /* --- Hero Section --- */
-      .hero {
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        position: relative;
-        background-size: cover;
-        background-position: center;
-        background-image: url("https://media.istockphoto.com/id/1414065914/photo/teen-redhead-girl-wearing-headphones-using-smartphone-in-big-city.jpg?s=612x612&w=0&k=20&c=JYSJvFxp0JiT0YWHuv_r8M1g7vDPYT7OfH0KvmlG4d8=");
-      }
-
-      .hero .container {
-        position: relative;
-        text-align: center;
-        color: var(--text-color);
-      }
-
-      .hero h1 {
-        font-size: 4rem;
-        color: var(
-          --text-color
-        ); /* Changed for readability on the new background */
-        margin-bottom: var(--spacing-unit);
-        text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7); /* Added shadow for better contrast */
-      }
-
-      .hero p {
-        font-size: 1.25rem;
-        max-width: 600px;
-        margin: 0 auto calc(var(--spacing-unit) * 2);
-        color: var(
-          --text-color
-        ); /* Changed for readability on the new background */
-        text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7); /* Added shadow for better contrast */
-      }
-
-      /* --- Guides Collection --- */
-      .gift-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: calc(var(--spacing-unit) * 2);
-      }
-
-      .gift-item {
-        text-align: center;
-        padding: calc(var(--spacing-unit) * 1.5);
-      }
-
-      .gift-item img {
-        width: 100%;
-        height: 250px;
-        object-fit: cover;
-        border-radius: calc(var(--spacing-unit) * 1.5);
-        margin-bottom: var(--spacing-unit);
-      }
-
-      .gift-item h3 {
-        font-size: 1.25rem;
-        margin-bottom: calc(var(--spacing-unit) * 0.5);
-      }
-
-      .gift-item .price {
-        font-weight: bold;
-        color: var(--accent-color);
-        margin-bottom: calc(var(--spacing-unit) * 0.5);
-      }
-
-      /* --- Shop Benefits --- */
-      .benefits-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: calc(var(--spacing-unit) * 2);
-        text-align: center;
-      }
-
-      .benefit-item {
-        padding: calc(var(--spacing-unit) * 2);
-      }
-
-      .benefit-item .icon {
-        font-size: 3rem;
-        color: var(--accent-color);
-        margin-bottom: var(--spacing-unit);
-      }
-
-      .benefit-item h3 {
-        font-size: 1.5rem;
-        margin-bottom: calc(var(--spacing-unit) * 0.5);
-      }
-
-      /* --- Pricing Packages --- */
-      .packages-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: calc(var(--spacing-unit) * 2);
-      }
-
-      .package-card {
-        padding: calc(var(--spacing-unit) * 2);
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-      }
-
-      .package-card h3 {
-        font-size: 1.5rem;
-      }
-
-      .package-card .price {
-        font-size: 2rem;
-        font-weight: bold;
-        color: var(--accent-color);
-        margin-top: calc(var(--spacing-unit) * 0.5);
-      }
-
-      .package-card .cta-btn {
-        margin-top: calc(var(--spacing-unit) * 2);
-      }
-
-      /* --- Contact Section --- */
-      .contact-form {
-        max-width: 600px;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        gap: var(--spacing-unit);
-      }
-
-      .contact-form label {
-        font-weight: bold;
-      }
-
-      .contact-form .form-group {
-        display: flex;
-        flex-direction: column;
-        gap: calc(var(--spacing-unit) * 0.5);
-      }
-
-      .contact-form .submit-btn {
-        margin-top: var(--spacing-unit);
-      }
-
-      /* --- Footer --- */
-      footer {
-        padding: calc(var(--spacing-unit) * 4) 0;
-        text-align: center;
-        border-top: 1px solid rgba(46, 46, 46, 0.1);
-      }
-
-      footer a {
-        color: var(--text-color);
-        text-decoration: none;
-        margin: 0 var(--spacing-unit);
-      }
-
-      footer a:hover {
-        color: var(--primary-color);
-        text-decoration: underline;
-      }
-
-      /* --- Responsive Styles --- */
-      @media (max-width: 1200px) {
-        .gift-grid {
-          grid-template-columns: repeat(4, 1fr);
-        }
-      }
-
-      @media (max-width: 992px) {
-        h1 {
-          font-size: 3rem;
-        }
-        h2 {
-          font-size: 2rem;
-        }
-        .hero p {
-          font-size: 1rem;
-        }
-        .gift-grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
-        .packages-grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
-      }
-
-      @media (max-width: 768px) {
-        .nav-container {
-          flex-direction: column;
-          gap: var(--spacing-unit);
-        }
-        nav ul {
-          justify-content: center;
-        }
-        h1 {
-          font-size: 2.5rem;
-        }
-        h2 {
-          font-size: 1.75rem;
-        }
-        .hero {
-          height: 75vh;
-        }
-        .benefits-grid {
-          grid-template-columns: 1fr;
-        }
-        .packages-grid {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      @media (max-width: 480px) {
-        h1 {
-          font-size: 2rem;
-        }
-        h2 {
-          font-size: 1.5rem;
-        }
-        .hero {
-          height: 60vh;
-        }
-        .gift-grid {
-          grid-template-columns: 1fr;
-        }
-        nav ul {
-          gap: var(--spacing-unit);
-        }
-      }
-    </style>
+    <meta
+      name="keywords"
+      content="e-commerce guides, retail business, gift shop, ebooks, business growth, digital products"
+    />
+    <link rel="canonical" href="https://nookstride.com" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
   </head>
   <body>
-    <!-- Header -->
-    <header id="main-header">
-      <div class="container nav-container">
-        <a href="#" class="logo">NOOKSTRIDE GIFT SHOP</a>
-        <nav>
-          <ul>
-            <li><a href="#featured">Guides</a></li>
-            <li><a href="#benefits">Why Us</a></li>
-            <li><a href="#packages">Packages</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </nav>
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-overlay"></div>
+
+      <!-- Decorative Elements -->
+      <div class="hero-decorative hero-decorative-1 hidden"></div>
+      <div class="hero-decorative hero-decorative-2 hidden"></div>
+
+      <!-- Content -->
+      <div class="hero-content container-max">
+        <!-- Badge -->
+        <div class="hero-badge fade-in">
+          <span>✨ Premium E-commerce Guides</span>
+        </div>
+
+        <!-- Main Heading -->
+        <h1 class="hero-title fade-in stagger-delay-1">
+          Transform Your
+          <span class="hero-gradient-text">E-commerce Journey</span>
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="hero-subtitle fade-in stagger-delay-2">
+          Our expertly crafted ebooks and guides help you build and grow a
+          successful retail or e-commerce gift shop with proven strategies and
+          insider knowledge.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="hero-buttons fade-in stagger-delay-3">
+          <button id="explore-guides" class="btn-primary">
+            <span>Explore Our Guides</span>
+          </button>
+          <button id="view-pricing" class="btn-secondary">View Pricing</button>
+        </div>
+
+        <!-- Stats -->
+        <div class="hero-stats fade-in stagger-delay-4">
+          <div class="hero-stat">
+            <div class="hero-stat-number">8+</div>
+            <div class="hero-stat-label">Expert Guides</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-number">500+</div>
+            <div class="hero-stat-label">Success Stories</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-number">24/7</div>
+            <div class="hero-stat-label">Support</div>
+          </div>
+        </div>
       </div>
-    </header>
 
-    <main>
-      <!-- Hero Section -->
-      <section class="hero" id="hero">
-        <div class="container">
-          <h1 class="hero-headline">Guides for Your E-commerce Journey</h1>
-          <p class="hero-subtext">
-            Our expertly crafted ebooks and guides help you build and grow a
-            successful retail or e-commerce gift shop.
-          </p>
-          <a href="#featured" class="btn hero-cta">Explore Guides</a>
+      <!-- Scroll Indicator -->
+      <div class="scroll-indicator fade-in stagger-delay-4">
+        <span>Scroll to explore</span>
+        <svg
+          width="24"
+          height="24"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M19 14l-7 7m0 0l-7-7m7 7V3"
+          ></path>
+        </svg>
+      </div>
+    </section>
+
+    <!-- Guides & Ebooks Section -->
+    <section id="guides" class="section-padding">
+      <div class="container-max">
+        <h2 class="text-center mb-16 fade-in">Our Guides & Ebooks</h2>
+
+        <div class="grid grid-4">
+          <article class="card guide-card fade-in">
+            <img
+              src="https://images.pexels.com/photos/1050244/pexels-photo-1050244.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+              alt="E-commerce Launchpad Guide"
+            />
+            <h3>E-commerce Launchpad Guide</h3>
+            <p>
+              Everything you need to start your online gift shop from scratch.
+              Step-by-step instructions for beginners.
+            </p>
+          </article>
+
+          <article class="card guide-card fade-in">
+            <img
+              src="https://m.media-amazon.com/images/I/61vkWyu-Z6L._UF1000,1000_QL80_.jpg"
+              alt="Marketing 101 for Gift Shops"
+            />
+            <h3>Marketing 101 for Gift Shops</h3>
+            <p>
+              Proven marketing strategies to attract customers and boost sales
+              for your gift shop business.
+            </p>
+          </article>
+
+          <article class="card guide-card fade-in">
+            <img
+              src="https://m.media-amazon.com/images/I/61GfO27QHYL._UF1000,1000_QL80_.jpg"
+              alt="Seasonal Sales Strategy"
+            />
+            <h3>Seasonal Sales Strategy</h3>
+            <p>
+              Master holiday and seasonal sales with our comprehensive guide to
+              maximizing revenue year-round.
+            </p>
+          </article>
+
+          <article class="card guide-card fade-in">
+            <img
+              src="https://boltboxes.com/wp-content/uploads/2023/07/01-Bolt-Boxes-guide-to-designing-the-perfect-product-packaging-1024x492.jpg"
+              alt="Perfect Packaging Guide"
+            />
+            <h3>Perfect Packaging Guide</h3>
+            <p>
+              Create memorable unboxing experiences that build brand loyalty and
+              encourage repeat purchases.
+            </p>
+          </article>
+
+          <article class="card guide-card fade-in">
+            <img
+              src="https://indigomultitrade.com/wp-content/uploads/2025/05/product_sourcing_guide_optimized.webp"
+              alt="Sourcing for Retail Success"
+            />
+            <h3>Sourcing for Retail Success</h3>
+            <p>
+              Find reliable suppliers and source quality products at competitive
+              prices for your gift shop.
+            </p>
+          </article>
+
+          <article class="card guide-card fade-in">
+            <img
+              src="https://cdn.prod.website-files.com/67f65698354e16e1d107437a/681117d1e234249522589156_Blog_-How-To-Improve-Customer-Service-1200x630-2.png"
+              alt="Customer Care Excellence"
+            />
+            <h3>Customer Care Excellence</h3>
+            <p>
+              Build lasting relationships with exceptional customer service that
+              turns buyers into loyal advocates.
+            </p>
+          </article>
+
+          <article class="card guide-card fade-in">
+            <img
+              src="https://media.licdn.com/dms/image/v2/D4E12AQExJMj2HLerkw/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1670900911178?e=2147483647&v=beta&t=OE_ID4JkHxSIya-gtrslk1oICEKtCb1hKrv11Xsu8f8"
+              alt="Social Media Growth"
+            />
+            <h3>Social Media Growth</h3>
+            <p>
+              Grow your online presence and drive traffic to your store with
+              effective social media strategies.
+            </p>
+          </article>
+
+          <article class="card guide-card fade-in">
+            <img
+              src="https://media.licdn.com/dms/image/v2/D4D12AQHJuXoXmcPUdw/article-cover_image-shrink_600_2000/B4DZfQ9fcVH4AQ-/0/1751557471658?e=2147483647&v=beta&t=I8_aLuu3XaeRrowFk6Qtzhf2HBljAJ2Jju_0EYl4PHI"
+              alt="Analytics & Growth"
+            />
+            <h3>Analytics & Growth</h3>
+            <p>
+              Use data-driven insights to optimize your business performance and
+              accelerate growth.
+            </p>
+          </article>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- Guide Collection Highlights -->
-      <section id="featured">
-        <div class="container">
-          <h2 class="text-center">Our Guides & Ebooks</h2>
-          <div class="gift-grid">
-            <!-- Example Guide/Ebook Item -->
-            <div class="card gift-item">
-              <img
-                src="https://images.pexels.com/photos/1050244/pexels-photo-1050244.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-                alt="Ebook: E-commerce Launch Guide"
-              />
-              <h3>Launchpad Guide</h3>
-              <p>
-                A step-by-step guide to starting your first online gift shop.
-              </p>
+    <!-- Benefits Section -->
+    <section id="benefits" class="section-padding" style="background: white">
+      <div class="container-max">
+        <h2 class="text-center mb-16 fade-in">Why Choose Our Guides?</h2>
+
+        <div class="grid grid-3">
+          <div class="text-center benefit-item fade-in">
+            <div
+              style="
+                font-size: 3rem;
+                color: var(--brand-gold);
+                margin-bottom: 1rem;
+              "
+            >
+              🎯
             </div>
-            <div class="card gift-item">
-              <img
-                src="https://m.media-amazon.com/images/I/61vkWyu-Z6L._UF1000,1000_QL80_.jpg"
-                alt="Ebook: Digital Marketing for Gift Shops"
-              />
-              <h3>Marketing 101</h3>
-              <p>
-                Essential strategies to market your unique gift products online.
-              </p>
+            <h3 class="mb-6">Expertly Crafted Content</h3>
+            <p>
+              Our guides are written by industry professionals to give you a
+              competitive edge in the market.
+            </p>
+          </div>
+
+          <div class="text-center benefit-item fade-in">
+            <div
+              style="
+                font-size: 3rem;
+                color: var(--brand-gold);
+                margin-bottom: 1rem;
+              "
+            >
+              ⚡
             </div>
-            <div class="card gift-item">
-              <img
-                src="https://m.media-amazon.com/images/I/61GfO27QHYL._UF1000,1000_QL80_.jpg"
-                alt="Ebook: Seasonal Sales Strategies"
-              />
-              <h3>Seasonal Sales Guide</h3>
-              <p>
-                Maximize your revenue during holidays and special occasions.
-              </p>
+            <h3 class="mb-6">Instant Digital Access</h3>
+            <p>
+              Receive your guides immediately after purchase, no waiting for
+              shipping or delays.
+            </p>
+          </div>
+
+          <div class="text-center benefit-item fade-in">
+            <div
+              style="
+                font-size: 3rem;
+                color: var(--brand-gold);
+                margin-bottom: 1rem;
+              "
+            >
+              🔒
             </div>
-            <div class="card gift-item">
-              <img
-                src="https://boltboxes.com/wp-content/uploads/2023/07/01-Bolt-Boxes-guide-to-designing-the-perfect-product-packaging-1024x492.jpg"
-                alt="Ebook: Perfect Packaging Guide"
-              />
-              <h3>Perfect Packaging Guide</h3>
-              <p>
-                Tips for creating memorable and beautiful gift packaging on a
-                budget.
-              </p>
-            </div>
-            <div class="card gift-item">
-              <img
-                src="https://indigomultitrade.com/wp-content/uploads/2025/05/product_sourcing_guide_optimized.webp"
-                alt="Ebook: Sourcing for Retail"
-              />
-              <h3>Sourcing for Retail</h3>
-              <p>
-                Find the best quality products for your gift shop from trusted
-                vendors.
-              </p>
-            </div>
-            <div class="card gift-item">
-              <img
-                src="https://cdn.prod.website-files.com/67f65698354e16e1d107437a/681117d1e234249522589156_Blog_-How-To-Improve-Customer-Service-1200x630-2.png"
-                alt="Ebook: Customer Care Excellence"
-              />
-              <h3>Customer Care Guide</h3>
-              <p>
-                Build lasting relationships with your customers through
-                exceptional service.
-              </p>
-            </div>
-            <div class="card gift-item">
-              <img
-                src="https://media.licdn.com/dms/image/v2/D4E12AQExJMj2HLerkw/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1670900911178?e=2147483647&v=beta&t=OE_ID4JkHxSIya-gtrslk1oICEKtCb1hKrv11Xsu8f8"
-                alt="Ebook: Social Media for Business"
-              />
-              <h3>Social Media Growth</h3>
-              <p>
-                Grow your brand's presence on social media with proven
-                strategies.
-              </p>
-            </div>
-            <div class="card gift-item">
-              <img
-                src="https://media.licdn.com/dms/image/v2/D4D12AQHJuXoXmcPUdw/article-cover_image-shrink_600_2000/B4DZfQ9fcVH4AQ-/0/1751557471658?e=2147483647&v=beta&t=I8_aLuu3XaeRrowFk6Qtzhf2HBljAJ2Jju_0EYl4PHI"
-                alt="Ebook: E-commerce Analytics"
-              />
-              <h3>Analytics & Growth</h3>
-              <p>
-                Understand your metrics and make data-driven decisions to scale
-                your business.
-              </p>
-            </div>
+            <h3 class="mb-6">Secure Online Payment</h3>
+            <p>
+              Shop with confidence using our secure payment gateway in Ghana
+              Cedis.
+            </p>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- Shop Benefits -->
-      <section id="benefits">
-        <div class="container">
-          <h2 class="text-center">Why Choose Our Guides?</h2>
-          <div class="benefits-grid">
-            <div class="benefit-item">
-              <i class="fas fa-book-reader icon"></i>
-              <h3>Expertly Crafted Content</h3>
-              <p>
-                Our guides are written by industry professionals to give you a
-                competitive edge.
-              </p>
+    <!-- Pricing Section -->
+    <section id="pricing" class="section-padding">
+      <div class="container-max">
+        <h2 class="text-center mb-16 fade-in">Our Premium Packages</h2>
+
+        <div class="grid grid-3">
+          <div class="card pricing-card fade-in">
+            <h3 class="mb-6" style="color: var(--brand-burgundy)">
+              Starter E-commerce Kit
+            </h3>
+            <div
+              style="
+                font-size: 2.5rem;
+                font-weight: bold;
+                color: var(--brand-gold);
+                margin-bottom: 1rem;
+              "
+            >
+              ₵250
             </div>
-            <div class="benefit-item">
-              <i class="fas fa-download icon"></i>
-              <h3>Instant Digital Access</h3>
-              <p>
-                Receive your guides immediately after purchase, no waiting for
-                shipping.
-              </p>
+            <p class="mb-8">
+              Perfect for beginners starting their e-commerce journey.
+            </p>
+            <ul style="list-style: none; padding: 0; margin-bottom: 2rem">
+              <li style="margin-bottom: 0.5rem">✓ Launchpad Guide</li>
+              <li style="margin-bottom: 0.5rem">✓ Marketing 101</li>
+              <li style="margin-bottom: 0.5rem">✓ Email Support</li>
+            </ul>
+            <button
+              class="btn-primary package-btn"
+              data-package="Starter E-commerce Kit"
+              style="width: 100%"
+            >
+              <span>Get the Bundle</span>
+            </button>
+          </div>
+
+          <div
+            class="card pricing-card fade-in"
+            style="border: 2px solid var(--brand-gold); position: relative"
+          >
+            <div
+              style="
+                position: absolute;
+                top: -15px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: var(--brand-gold);
+                color: white;
+                padding: 0.5rem 1rem;
+                border-radius: 20px;
+                font-size: 0.875rem;
+                font-weight: bold;
+              "
+            >
+              POPULAR
             </div>
-            <div class="benefit-item">
-              <i class="fas fa-lock icon"></i>
-              <h3>Secure Online Payment</h3>
-              <p>
-                Shop with confidence using our secure payment gateway in Ghana
-                Cedis.
-              </p>
+            <h3 class="mb-6" style="color: var(--brand-burgundy)">
+              Holiday Sales Bundle
+            </h3>
+            <div
+              style="
+                font-size: 2.5rem;
+                font-weight: bold;
+                color: var(--brand-gold);
+                margin-bottom: 1rem;
+              "
+            >
+              ₵320
             </div>
+            <p class="mb-8">
+              Maximize your seasonal sales with proven strategies.
+            </p>
+            <ul style="list-style: none; padding: 0; margin-bottom: 2rem">
+              <li style="margin-bottom: 0.5rem">✓ Seasonal Sales Guide</li>
+              <li style="margin-bottom: 0.5rem">✓ Perfect Packaging Guide</li>
+              <li style="margin-bottom: 0.5rem">✓ Social Media Growth</li>
+              <li style="margin-bottom: 0.5rem">✓ Priority Support</li>
+            </ul>
+            <button
+              class="btn-primary package-btn"
+              data-package="Holiday Sales Bundle"
+              style="width: 100%"
+            >
+              <span>Get the Bundle</span>
+            </button>
+          </div>
+
+          <div class="card pricing-card fade-in">
+            <h3 class="mb-6" style="color: var(--brand-burgundy)">
+              Ultimate Business Growth
+            </h3>
+            <div
+              style="
+                font-size: 2.5rem;
+                font-weight: bold;
+                color: var(--brand-gold);
+                margin-bottom: 1rem;
+              "
+            >
+              ₵450
+            </div>
+            <p class="mb-8">Complete package for serious entrepreneurs.</p>
+            <ul style="list-style: none; padding: 0; margin-bottom: 2rem">
+              <li style="margin-bottom: 0.5rem">✓ All 8 Guides Included</li>
+              <li style="margin-bottom: 0.5rem">✓ Bonus Templates</li>
+              <li style="margin-bottom: 0.5rem">✓ 1-on-1 Consultation</li>
+              <li style="margin-bottom: 0.5rem">✓ Lifetime Updates</li>
+            </ul>
+            <button
+              class="btn-primary package-btn"
+              data-package="Ultimate Business Growth"
+              style="width: 100%"
+            >
+              <span>Get the Bundle</span>
+            </button>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- Pricing / Featured Packages -->
-      <section id="packages">
-        <div class="container">
-          <h2 class="text-center">Our Premium Packages</h2>
-          <div class="packages-grid">
-            <div class="card package-card">
-              <div>
-                <h3>Starter E-commerce Kit</h3>
-                <p class="price">₵250</p>
-                <p>
-                  Includes Launchpad Guide and Marketing 101 to get your
-                  business off the ground.
-                </p>
-              </div>
-              <a href="#" class="btn cta-btn">Get the Bundle</a>
-            </div>
-            <div class="card package-card">
-              <div>
-                <h3>Holiday Sales Bundle</h3>
-                <p class="price">₵320</p>
-                <p>
-                  Includes Seasonal Sales Guide, Perfect Packaging Guide, and
-                  Social Media Growth.
-                </p>
-              </div>
-              <a href="#" class="btn cta-btn">Get the Bundle</a>
-            </div>
-            <div class="card package-card">
-              <div>
-                <h3>Ultimate Business Growth</h3>
-                <p class="price">₵450</p>
-                <p>
-                  Includes all guides: Launchpad, Marketing 101, Social Media,
-                  and Analytics & Growth.
-                </p>
-              </div>
-              <a href="#" class="btn cta-btn">Get the Bundle</a>
-            </div>
-          </div>
-        </div>
-      </section>
+    <!-- Contact Section -->
+    <section id="contact" class="section-padding" style="background: white">
+      <div class="container-max">
+        <h2 class="text-center mb-16 fade-in">Get in Touch</h2>
 
-      <!-- Contact Section -->
-      <section id="contact">
-        <div class="container">
-          <h2 class="text-center">Get in Touch</h2>
-          <form id="contact-form" class="contact-form">
+        <div style="max-width: 600px; margin: 0 auto">
+          <form id="contact-form" class="fade-in">
             <div class="form-group">
-              <label for="name">Name</label>
-              <input type="text" id="name" name="name" required />
+              <label for="name" class="form-label">Name *</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                class="form-input"
+                required
+              />
             </div>
+
             <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" required />
+              <label for="email" class="form-label">Email *</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="form-input"
+                required
+              />
             </div>
+
             <div class="form-group">
-              <label for="message">Message</label>
+              <label for="message" class="form-label">Message *</label>
               <textarea
                 id="message"
                 name="message"
-                rows="5"
+                class="form-input form-textarea"
                 required
               ></textarea>
             </div>
-            <button type="submit" class="btn submit-btn">Send Message</button>
+
+            <button type="submit" class="btn-primary" style="width: 100%">
+              <span>Send Message</span>
+            </button>
           </form>
         </div>
-      </section>
-    </main>
+      </div>
+    </section>
 
     <!-- Footer -->
-    <footer id="main-footer">
-      <div class="container">
+    <footer class="footer">
+      <div class="container-max">
         <p>
           &copy; 2024 NOOKSTRIDE GIFT SHOP |
           <a href="mailto:contact@nookstride.com">contact@nookstride.com</a> |
@@ -679,183 +436,34 @@
     </footer>
 
     <!-- Success Modal -->
-    <div id="success-modal" class="modal">
+    <div id="success-modal" class="modal-overlay">
       <div class="modal-content">
-        <h3 style="color: var(--primary-color)">Thank You!</h3>
-        <p>We’ll respond to your message shortly.</p>
+        <h3>Thank You!</h3>
+        <p>We'll respond shortly to your message.</p>
+        <button id="close-modal" class="btn-primary">
+          <span>Close</span>
+        </button>
       </div>
     </div>
 
-    <!-- GSAP CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        // Register GSAP plugins
-        gsap.registerPlugin(ScrollTrigger);
-
-        /* --- Hero Section Animations --- */
-        const heroTimeline = gsap.timeline();
-
-        heroTimeline
-          .fromTo(
-            ".hero-headline",
-            { y: 50, opacity: 0 },
-            { y: 0, opacity: 1, duration: 1.2, ease: "power3.out" }
-          )
-          .fromTo(
-            ".hero-subtext",
-            { y: 30, opacity: 0 },
-            { y: 0, opacity: 1, duration: 1, ease: "power2.out" },
-            "<0.3"
-          )
-          .fromTo(
-            ".hero-cta",
-            { scale: 0.8, opacity: 0 },
-            { scale: 1, opacity: 1, duration: 0.8, ease: "back.out(1.7)" },
-            "<0.5"
-          );
-
-        // Parallax effect on the hero background
-        gsap.to(".hero", {
-          backgroundPositionY: "20%",
-          ease: "none",
-          scrollTrigger: {
-            trigger: ".hero",
-            start: "top top",
-            end: "bottom top",
-            scrub: true,
-          },
-        });
-
-        /* --- Scroll-based Animations for Sections --- */
-
-        // Generic function for stagger fade-in animation
-        function createStaggerAnimation(selector, trigger, direction = "y") {
-          gsap.from(selector, {
-            [direction]: 50,
-            opacity: 0,
-            duration: 1,
-            stagger: 0.2,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: trigger,
-              start: "top 80%",
-              toggleActions: "play none none none",
-            },
-          });
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "NOOKSTRIDE GIFT SHOP",
+        "url": "https://nookstride.com",
+        "description": "Expert ebooks and guides for e-commerce and retail gift shop success",
+        "email": "contact@nookstride.com",
+        "foundingDate": "2024",
+        "offers": {
+          "@type": "Offer",
+          "category": "Digital Products",
+          "description": "E-commerce guides and ebooks"
         }
-
-        // Animate gift collection cards
-        createStaggerAnimation(".gift-item", "#featured");
-
-        // Animate benefits
-        createStaggerAnimation(".benefit-item", "#benefits");
-
-        // Animate packages
-        createStaggerAnimation(".package-card", "#packages");
-
-        // Animate footer
-        gsap.from("#main-footer", {
-          y: 50,
-          opacity: 0,
-          duration: 1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#main-footer",
-            start: "top 95%",
-            toggleActions: "play none none none",
-          },
-        });
-
-        /* --- Contact Form & Modal Logic --- */
-        const contactForm = document.getElementById("contact-form");
-        const successModal = document.getElementById("success-modal");
-        const modalContent = successModal.querySelector(".modal-content");
-
-        contactForm.addEventListener("submit", function (event) {
-          event.preventDefault(); // Prevent page reload
-
-          // Simple form validation
-          const name = document.getElementById("name").value;
-          const email = document.getElementById("email").value;
-          const message = document.getElementById("message").value;
-
-          if (name && email && message) {
-            // Show success modal with GSAP animation
-            showSuccessModal();
-
-            // Clear the form
-            contactForm.reset();
-          }
-        });
-
-        function showSuccessModal() {
-          // Fade in and slide up
-          gsap.set(successModal, { visibility: "visible" });
-          gsap.to(successModal, { opacity: 1, duration: 0.3 });
-          gsap.fromTo(
-            modalContent,
-            { y: 50, opacity: 0 },
-            { y: 0, opacity: 1, duration: 0.5, ease: "back.out(1.7)" }
-          );
-        }
-
-        function hideSuccessModal() {
-          // Fade out and slide down
-          gsap.to(modalContent, { y: 50, opacity: 0, duration: 0.3 });
-          gsap.to(successModal, {
-            opacity: 0,
-            duration: 0.3,
-            onComplete: () => {
-              gsap.set(successModal, { visibility: "hidden" });
-            },
-          });
-        }
-
-        // Dismiss modal on ESC key press
-        window.addEventListener("keydown", (event) => {
-          if (
-            event.key === "Escape" &&
-            successModal.classList.contains("is-visible")
-          ) {
-            hideSuccessModal();
-          }
-        });
-
-        // Dismiss modal on outside click
-        successModal.addEventListener("click", (event) => {
-          if (event.target === successModal) {
-            hideSuccessModal();
-          }
-        });
-
-        // Add class for modal visibility after animations are setup
-        successModal.classList.add("is-visible");
-
-        // Optional: CTA for "Add to Cart" to show a festive message
-        const ctaButtons = document.querySelectorAll(".cta-btn");
-        ctaButtons.forEach((btn) => {
-          btn.addEventListener("click", (e) => {
-            e.preventDefault();
-            // Add festive bounce animation for the button
-            gsap.fromTo(
-              btn,
-              { scale: 1 },
-              {
-                scale: 1.1,
-                duration: 0.2,
-                yoyo: true,
-                repeat: 1,
-                ease: "power1.inOut",
-              }
-            );
-
-            // In a real app, this would add to a cart. Here it's a visual feedback.
-            // For example, a small pop-up message saying "Added to cart!" could appear.
-          });
-        });
-      });
+      }
     </script>
+
+    <script src="script.js"></script>
   </body>
 </html>
